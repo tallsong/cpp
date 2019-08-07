@@ -123,6 +123,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="01_Two_Sum.cpp" />
+    <ClCompile Include="07_Reverse_Integer.cpp" />
+    <ClCompile Include="09_ palindrome_number.cpp" />
+    <ClCompile Include="quick sort.cpp" />
     <ClCompile Include="test01.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
