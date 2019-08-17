@@ -28,7 +28,7 @@ public:
 */
 
 
-class Solution {
+class Solution2 {
 public:
 	bool isPalindrome(int x) {
 		int midrev = 0;//存储后半部分数字的反转结果
@@ -45,7 +45,7 @@ public:
 /*
 分析：可以利用栈的特性，将数字的后半部分压入栈内，再一一弹出对比，为此我们需要获取整数的位数，创建一个栈。特别需要注意的是奇数位和偶数位操作的差别。
 */
-class Solution {
+class Solution3 {
 public:
     int get_length(int x){//获取整数位数
      int leng=0;

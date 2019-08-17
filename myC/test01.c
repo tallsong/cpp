@@ -47,7 +47,7 @@ void bubble2(char ** arr,int len)
 		}
 	}
 }
-int main()
+int main2()
 {
 	char *arr[] = { "cshdf", "ehsdhf", "bjhdjfhd","abee" };
 

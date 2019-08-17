@@ -52,7 +52,7 @@ public:
 /*
 一遍哈希表
 */
-class Solution {
+class Solution2 {
 public:
 	vector<int> twoSum(vector<int>& nums, int target) {
 		map<int, int> a;//建立hash表存放数组元素

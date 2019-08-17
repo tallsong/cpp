@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\360_test">
+      <UniqueIdentifier>{f0527622-ce39-4ed9-9ccb-5d629910de05}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="test01.c">
@@ -29,6 +32,12 @@
     </ClCompile>
     <ClCompile Include="09_ palindrome_number.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="beike1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source.cpp">
+      <Filter>Source Files\360_test</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

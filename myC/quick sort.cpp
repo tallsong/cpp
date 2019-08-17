@@ -38,7 +38,7 @@ void Qsort(int arr[], int low, int high)
 	Qsort(arr, j + 1, high);
 }
 
-int main()
+int main2()
 {
 	int a[] = { 57, 68, 59, 52, 72, 28, 96, 33, 24 };
 
