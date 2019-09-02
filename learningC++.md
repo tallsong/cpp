@@ -1,4 +1,4 @@
-﻿# P71
+﻿# P94
 答案:P950
 # 基础知识 
 ## C++ 与C的区别
@@ -14,5 +14,6 @@ int emus{7};//set emus to 7
 int emus = {7};//set emus to 7
 int emus = {};//set emus to 0
 int emus{};//set emus to 0
-
+对象是指一块能存储数据并具有某种类型的内存空间
+指针p也是对象，它同样有地址&p和存储的值p，只不过，p存储的数据类型是数据的地址。
 cout<<hex ; 修改cout显示证书的方式;
