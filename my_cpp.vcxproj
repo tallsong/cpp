@@ -123,20 +123,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\CedarChennn\myC\myC\01_Two_Sum.cpp" />
-    <ClCompile Include="..\CedarChennn\myC\myC\07_Reverse_Integer.cpp" />
-    <ClCompile Include="..\CedarChennn\myC\myC\09_ palindrome_number.cpp" />
-    <ClCompile Include="..\CedarChennn\myC\myC\area.cpp" />
-    <ClCompile Include="..\CedarChennn\myC\myC\beike1.cpp" />
-    <ClCompile Include="..\CedarChennn\myC\myC\quick sort.cpp" />
-    <ClCompile Include="..\CedarChennn\myC\myC\Source.cpp" />
-    <ClCompile Include="..\CedarChennn\myC\myC\test01.c" />
+    <ClCompile Include="..\..\myC\LeetCode\01_Two_Sum.cpp" />
+    <ClCompile Include="..\..\myC\LeetCode\07_Reverse_Integer.cpp" />
+    <ClCompile Include="..\..\myC\LeetCode\09_ palindrome_number.cpp" />
+    <ClCompile Include="..\..\myC\LeetCode\quick sort.cpp" />
     <ClCompile Include="mian.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\CedarChennn\myC\myC\15_3sum.py" />
-    <None Include="..\CedarChennn\myC\myC\myC.vcxproj" />
-    <None Include="..\CedarChennn\myC\myC\myC.vcxproj.filters" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
