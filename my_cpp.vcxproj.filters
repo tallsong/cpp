@@ -15,20 +15,33 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="mian.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\myC\LeetCode\01_Two_Sum.cpp">
+    <ClCompile Include="leetcode\01_Two_Sum.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\myC\LeetCode\07_Reverse_Integer.cpp">
+    <ClCompile Include="leetcode\07_Reverse_Integer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\myC\LeetCode\09_ palindrome_number.cpp">
+    <ClCompile Include="leetcode\09_ palindrome_number.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\myC\LeetCode\quick sort.cpp">
+    <ClCompile Include="leetcode\beike1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="leetcode\quick sort.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="leetcode\Source.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="leetcode\test01.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="learningC++.md" />
+    <None Include="README.md" />
   </ItemGroup>
 </Project>

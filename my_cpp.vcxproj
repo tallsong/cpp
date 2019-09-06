@@ -20,7 +20,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{49BD8E9B-283B-4301-9264-DFFE269A41D6}</ProjectGuid>
+    <ProjectGuid>{9C27FDA4-AA96-4792-BE61-B78BBD5C7CE0}</ProjectGuid>
     <RootNamespace>mycpp</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -123,11 +123,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\myC\LeetCode\01_Two_Sum.cpp" />
-    <ClCompile Include="..\..\myC\LeetCode\07_Reverse_Integer.cpp" />
-    <ClCompile Include="..\..\myC\LeetCode\09_ palindrome_number.cpp" />
-    <ClCompile Include="..\..\myC\LeetCode\quick sort.cpp" />
-    <ClCompile Include="mian.cpp" />
+    <ClCompile Include="leetcode\01_Two_Sum.cpp" />
+    <ClCompile Include="leetcode\07_Reverse_Integer.cpp" />
+    <ClCompile Include="leetcode\09_ palindrome_number.cpp" />
+    <ClCompile Include="leetcode\beike1.cpp" />
+    <ClCompile Include="leetcode\quick sort.cpp" />
+    <ClCompile Include="leetcode\Source.cpp" />
+    <ClCompile Include="leetcode\test01.c" />
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="learningC++.md" />
+    <None Include="README.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
