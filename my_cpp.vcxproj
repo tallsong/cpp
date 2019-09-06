@@ -126,10 +126,7 @@
     <ClCompile Include="leetcode\01_Two_Sum.cpp" />
     <ClCompile Include="leetcode\07_Reverse_Integer.cpp" />
     <ClCompile Include="leetcode\09_ palindrome_number.cpp" />
-    <ClCompile Include="leetcode\beike1.cpp" />
     <ClCompile Include="leetcode\quick sort.cpp" />
-    <ClCompile Include="leetcode\Source.cpp" />
-    <ClCompile Include="leetcode\test01.c" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>

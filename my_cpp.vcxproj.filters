@@ -27,16 +27,7 @@
     <ClCompile Include="leetcode\09_ palindrome_number.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="leetcode\beike1.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="leetcode\quick sort.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="leetcode\Source.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="leetcode\test01.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

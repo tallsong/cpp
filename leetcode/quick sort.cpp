@@ -37,17 +37,3 @@ void Qsort(int arr[], int low, int high)
 	Qsort(arr, low, j - 1);
 	Qsort(arr, j + 1, high);
 }
-
-int main2()
-{
-	int a[] = { 57, 68, 59, 52, 72, 28, 96, 33, 24 };
-
-	Qsort(a, 0, sizeof(a) / sizeof(a[0]) - 1);/*这里原文第三个参数要减1否则内存越界*/
-
-	for (int i = 0; i < sizeof(a) / sizeof(a[0]); i++)
-	{
-		cout << a[i] << "";
-	}
-
-	return 0;
-}
