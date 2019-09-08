@@ -1,6 +1,11 @@
 #include <iostream>
 #include<cmath>
 #include<vector>
+#include<stack>
+#include <algorithm>
+#include<map>
+#include<string>
+#include<fstream>
 using namespace std;
 
 class MyQueue {
@@ -29,7 +34,8 @@ public:
 		return data[p_start];
 	};
 	/** Checks whether the queue is empty or not. */
-	bool isEmpty() {
+	bool isEmpty() 
+	{
 		return p_start >= data.size();
 	}
 
@@ -129,8 +135,153 @@ public:
  * bool param_6 = obj.isFull();
  */
 };
-int main()
+class MyStack 
 {
-	cout << "hello world";
-	return 0;
+private:
+	vector<int> data;               // store elements
+public:
+	/** Insert an element into the stack. */
+	void push(int x) {
+		data.push_back(x);
+	}
+	/** Checks whether the queue is empty or not. */
+	bool isEmpty() {
+		return data.empty();
+	}
+	/** Get the top item from the queue. */
+	int top() {
+		return data.back();
+	}
+	/** Delete an element from the queue. Return true if the operation is successful. */
+	bool pop() {
+		if (isEmpty()) {
+			return false;
+		}
+		data.pop_back();
+		return true;
+	}
+};
+class MinStack 
+{
+	vector<int> data;
+	vector<int> min_data;
+public:
+	/** initialize your data structure here. */
+	MinStack() 
+	{
+
+	}
+
+	void push(int x) {
+		data.push_back(x);
+		min_data = data;
+	}
+
+	void pop() 
+	{
+		data.pop_back();
+		min_data = data;
+
+		
+	}
+
+	int top() {
+		return data.back();
+	}
+
+	int getMin() {
+		reverse(min_data.begin(), min_data.end());
+		return min_data.back();
+	}
+};
+vector<int> l001_twoSum(vector<int>& nums, int target) {
+	map<int, int> a;//建立hash表存放数组元素
+	vector<int> b(2, -1);//存放结果, 声明一个初始大小为2且初始值都为-1的向量
+	for (int i = 0; i < nums.size(); i++)
+		a.insert(map<int, int>::value_type(nums[i], i));
+	for (int i = 0; i < nums.size(); i++)
+	{
+		if (a.count(target - nums[i]) > 0 && (a[target - nums[i]] != i))
+			//判断是否找到目标元素且目标元素不能是本身,count()方法返回值是一个整数，1表示有这个元素，0表示没有这个元素。
+		{
+			b[0] = i;
+			b[1] = a[target - nums[i]];
+			break;
+		}
+	}
+	return b;
+};
+vector<int> l001_twoSum2(vector<int>& nums, int target) {
+	map<int, int> a;//建立hash表存放数组元素
+	vector<int> b(2, -1);//存放结果, 声明一个初始大小为2且初始值都为-1的向量
+	for (int i = 0; i < nums.size(); i++)
+	{
+		if (a.count(target - nums[i]) > 0)
+		{
+			b[0] = a[target - nums[i]];
+			b[1] = i;
+			break;
+		}
+		a[nums[i]] = i;
+	}
+	return b;
+};
+int l007_reverse(int x) 
+{
+	int rev = 0;
+	while (x != 0) 
+	{
+		int pop = x % 10;
+		x /= 10;
+		if (rev > INT_MAX / 10 || (rev == INT_MAX / 10 && pop > 7)) return 0;
+		if (rev < INT_MIN / 10 || (rev == INT_MIN / 10 && pop < -8)) return 0;
+		rev = rev * 10 + pop;
+	}
+	return rev;
+}
+bool l009_isPalindrome2(int x) {
+	int midrev = 0;//存储后半部分数字的反转结果
+	if (x < 0 || (x % 10 == 0 && x != 0)) return false;//排除负数和最后一位数字为0的数字
+	while (x > midrev)
+	{
+		midrev = midrev * 10 + x % 10;
+		x /= 10;
+	}
+	return midrev == x || midrev / 10 == x;//数字个数为偶数和奇数分两种情况
+}
+vector<int> l739_dailyTemperatures(vector<int>& T)
+{
+	stack<int> s;
+	int n = T.size();
+	vector<int> res(n);
+	for (int i = n - 1; i >= 0; --i) {
+		while (!s.empty() && T[i] >= T[s.top()])
+		{
+			s.pop();
+		}
+		res[i] = s.empty() ? 0 : s.top() - i;
+		s.push(i);
+	}
+	return res;
+}
+int main() 
+{
+	// 1. Initialize a stack.
+	stack<int> s;
+	// 2. Push new element.
+	s.push(5);
+	s.push(13);
+	s.push(8);
+	s.push(6);
+	// 3. Check if stack is empty.
+	if (s.empty()) {
+		cout << "Stack is empty!" << endl;
+		return 0;
+	}
+	// 4. Pop an element.
+	s.pop();
+	// 5. Get the top element.
+	cout << "The top element is: " << s.top() << endl;
+	// 6. Get the size of the stack.
+	cout << "The size is: " << s.size() << endl;
 }

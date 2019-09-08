@@ -18,15 +18,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="leetcode\01_Two_Sum.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="leetcode\07_Reverse_Integer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="leetcode\09_ palindrome_number.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="leetcode\quick sort.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

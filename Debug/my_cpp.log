@@ -1,11 +1,3 @@
-﻿  01_Two_Sum.cpp
-D:\github\my_cpp\leetcode\01_Two_Sum.cpp(37): warning C4018: '<': signed/unsigned mismatch
-D:\github\my_cpp\leetcode\01_Two_Sum.cpp(39): warning C4018: '<': signed/unsigned mismatch
-D:\github\my_cpp\leetcode\01_Two_Sum.cpp(60): warning C4018: '<': signed/unsigned mismatch
-  07_Reverse_Integer.cpp
-  09_ palindrome_number.cpp
-  quick sort.cpp
-  main.cpp
-D:\github\my_cpp\main.cpp(33): warning C4018: '>=': signed/unsigned mismatch
-  Generating Code...
+﻿  main.cpp
+D:\github\my_cpp\main.cpp(36): warning C4018: '>=': signed/unsigned mismatch
   my_cpp.vcxproj -> D:\github\my_cpp\Debug\my_cpp.exe
