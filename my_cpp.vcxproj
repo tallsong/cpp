@@ -20,7 +20,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{9C27FDA4-AA96-4792-BE61-B78BBD5C7CE0}</ProjectGuid>
+    <ProjectGuid>{63231EF9-F5AD-4B79-998C-BA4BB5A823FB}</ProjectGuid>
     <RootNamespace>mycpp</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -123,12 +123,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="leetcode\quick sort.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="my_algorithm.cpp" />
+    <ClCompile Include="my_data_structure.cpp" />
+    <ClCompile Include="my_leet_code.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="learningC++.md" />
-    <None Include="README.md" />
+    <None Include="..\..\my_cpp\README.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,3 +1,0 @@
-﻿  main.cpp
-D:\github\my_cpp\main.cpp(36): warning C4018: '>=': signed/unsigned mismatch
-  my_cpp.vcxproj -> D:\github\my_cpp\Debug\my_cpp.exe

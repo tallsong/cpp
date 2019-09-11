@@ -34,12 +34,12 @@ public:
 		return data[p_start];
 	};
 	/** Checks whether the queue is empty or not. */
-	bool isEmpty() 
+	bool isEmpty()
 	{
 		return p_start >= data.size();
 	}
 
-	int text() 
+	int text()
 	{
 		MyQueue q;
 		q.enQueue(5);
@@ -135,7 +135,7 @@ public:
  * bool param_6 = obj.isFull();
  */
 };
-class MyStack 
+class MyStack
 {
 private:
 	vector<int> data;               // store elements
@@ -161,13 +161,13 @@ public:
 		return true;
 	}
 };
-class MinStack 
+class MinStack
 {
 	vector<int> data;
 	vector<int> min_data;
 public:
 	/** initialize your data structure here. */
-	MinStack() 
+	MinStack()
 	{
 
 	}
@@ -177,12 +177,12 @@ public:
 		min_data = data;
 	}
 
-	void pop() 
+	void pop()
 	{
 		data.pop_back();
 		min_data = data;
 
-		
+
 	}
 
 	int top() {
@@ -226,10 +226,10 @@ vector<int> l001_twoSum2(vector<int>& nums, int target) {
 	}
 	return b;
 };
-int l007_reverse(int x) 
+int l007_reverse(int x)
 {
 	int rev = 0;
-	while (x != 0) 
+	while (x != 0)
 	{
 		int pop = x % 10;
 		x /= 10;
@@ -264,7 +264,7 @@ vector<int> l739_dailyTemperatures(vector<int>& T)
 	}
 	return res;
 }
-int main() 
+int main()
 {
 	// 1. Initialize a stack.
 	stack<int> s;
