@@ -28,9 +28,4 @@
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\my_cpp\README.md">
-      <Filter>Source Files</Filter>
-    </None>
-  </ItemGroup>
 </Project>

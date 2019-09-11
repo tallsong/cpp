@@ -128,9 +128,6 @@
     <ClCompile Include="my_data_structure.cpp" />
     <ClCompile Include="my_leet_code.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\my_cpp\README.md" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
