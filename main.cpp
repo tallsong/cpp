@@ -6,11 +6,14 @@
 #include<map>
 #include<string>
 #include<fstream>
+#include<queue>
 using namespace std;
+
+
 int main()
 {
 	vector<int> obj;//默认值为0,默认size为0
-	for (int i = 0; i < obj.size(); i++)//size()容器中实际数据个数 
+	for (unsigned int i = 0; i < obj.size(); i++)//size()容器中实际数据个数 
 	{
 		cout << obj.size() << ",";
 	}

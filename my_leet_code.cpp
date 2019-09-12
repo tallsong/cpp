@@ -6,6 +6,7 @@
 #include <stack>
 #include <string>
 #include <vector>
+#include<queue>
 using namespace std;
 
 vector<int> twoSum_001(vector<int>& nums, int target) 
@@ -59,6 +60,38 @@ bool isPalindrome2_009(int x) {
     x /= 10;
   }
   return midrev == x || midrev / 10 == x;  //数字个数为偶数和奇数分两种情况
+}
+int numIslands_200(vector<vector<char>>& grid)
+{
+	int h = grid.size();
+	if (!h) return 0;
+	int w = grid[0].size();
+	int num_islands = 0;
+	for (int i = 0; i < h; i++)
+	{
+		for (int j = 0; j < w; j++)
+		{
+			if (grid[i][j] == '1')
+			{
+				grid[i][j] = '0';
+				num_islands++;
+				queue < pair<int, int>> q;
+				q.push({ i,j });
+				while (!q.empty())
+				{
+					auto new_center = q.front();
+					q.pop();
+					int nh = new_center.first;
+					int nw = new_center.second;
+					if ((nh > 0) && (grid[nh - 1][nw] == '1')) { q.push({ nh - 1,nw }); grid[nh - 1][nw] = '0'; }
+					if ((nw > 0) && (grid[nh][nw - 1] == '1')) { q.push({ nh,nw - 1 }); grid[nh][nw - 1] = '0'; }
+					if ((nh < h - 1) && (grid[nh + 1][nw] == '1')) { q.push({ nh + 1,nw }); grid[nh + 1][nw] = '0'; }
+					if ((nw < w - 1) && (grid[nh][nw + 1] == '1')) { q.push({ nh,nw + 1 }); grid[nh][nw + 1] = '0'; }
+				}
+			}
+		}
+	}
+	return num_islands;
 }
 vector<int> dailyTemperatures_739(vector<int>& T)
 {
