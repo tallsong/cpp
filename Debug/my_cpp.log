@@ -1,3 +1,10 @@
 ﻿  main.cpp
-D:\Repos\my_cpp\main.cpp(14,20): warning C4018:  '<': signed/unsigned mismatch
+  my_data_structure.cpp
+D:\Repos\my_cpp\main.cpp(13,20): warning C4018:  '<': signed/unsigned mismatch
+  my_leet_code.cpp
+D:\Repos\my_cpp\my_data_structure.cpp(39,18): warning C4018:  '>=': signed/unsigned mismatch
+D:\Repos\my_cpp\my_leet_code.cpp(15,21): warning C4018:  '<': signed/unsigned mismatch
+D:\Repos\my_cpp\my_leet_code.cpp(17,21): warning C4018:  '<': signed/unsigned mismatch
+  Generating Code...
+D:\Repos\my_cpp\my_leet_code.cpp(32,21): warning C4018:  '<': signed/unsigned mismatch
   my_cpp.vcxproj -> D:\Repos\my_cpp\Debug\my_cpp.exe
