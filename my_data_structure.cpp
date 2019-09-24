@@ -194,3 +194,59 @@ public:
 		return min_data.back();
 	}
 };
+
+
+class MyQueue_implementbyqueue {
+	stack<int> s1;
+	stack<int> s2;
+public:
+	/** Initialize your data structure here. */
+	MyQueue_implementbyqueue() {
+
+	}
+
+	/** Push element x to the back of queue. */
+	void push(int x) {
+		s1.push(x);
+	}
+
+	/** Removes the element from in front of queue and returns that element. */
+	int pop() {
+		int len = s1.size();
+		for (int i = 0; i < len; i++)
+		{
+			s2.push(s1.top());
+			s1.pop();
+		}
+		int cur = s2.top();
+		s2.pop();
+		for (int i = 0; i < len - 1; i++)
+		{
+			s1.push(s2.top());
+			s2.pop();
+		}
+		return cur;
+	}
+
+	/** Get the front element. */
+	int peek() {
+		int len = s1.size();
+		for (int i = 0; i < len; i++)
+		{
+			s2.push(s1.top());
+			s1.pop();
+		}
+		int cur = s2.top();
+		for (int i = 0; i < len - 1; i++)
+		{
+			s1.push(s2.top());
+			s2.pop();
+		}
+		return cur;
+	}
+
+	/** Returns whether the queue is empty. */
+	bool empty() {
+		return s1.empty() && s2.empty();
+	}
+};
