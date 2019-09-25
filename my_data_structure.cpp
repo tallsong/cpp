@@ -6,6 +6,7 @@
 #include<map>
 #include<string>
 #include<fstream>
+#include<queue>
 using namespace std;
 
 class MyQueue {
@@ -248,5 +249,44 @@ public:
 	/** Returns whether the queue is empty. */
 	bool empty() {
 		return s1.empty() && s2.empty();
+	}
+};
+
+
+
+class MyStack_implementbyqueue
+{
+	queue<int> a;
+public:
+	/** Initialize your data structure here. */
+	MyStack_implementbyqueue() {
+		//nothing to do
+	}
+
+	/** Push element x onto stack. */
+	void push(int x) {
+		a.push(x);
+		for (int i = 0; i < a.size() - 1; i++)
+		{
+			a.push(a.front());
+			a.pop();
+		}
+	}
+
+	/** Removes the element on top of the stack and returns that element. */
+	int pop() {
+		int n = a.front();
+		a.pop();
+		return n;
+	}
+
+	/** Get the top element. */
+	int top() {
+		return a.front();
+	}
+
+	/** Returns whether the stack is empty. */
+	bool empty() {
+		return a.empty();
 	}
 };

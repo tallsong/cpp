@@ -1,3 +1,2 @@
 ﻿  main.cpp
-D:\Repos\my_cpp\main.cpp(55,20): warning C4018:  '<': signed/unsigned mismatch
-  my_cpp.vcxproj -> D:\Repos\my_cpp\Debug\my_cpp.exe
+  my_cpp.vcxproj -> D:\github\my_cpp\Debug\my_cpp.exe
