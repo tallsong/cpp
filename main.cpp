@@ -13,6 +13,8 @@ using namespace std;
 
 
 
+
+
 int main()
 {
 	vector<int> obj;//默认值为0,默认size为0
