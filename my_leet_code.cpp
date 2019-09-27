@@ -144,7 +144,7 @@ string decodeString(string s) {
 		}
 		else //遇到‘]’时，操作与之相配的‘[’之间的字符，使用分配律
 		{
-			int times = nums.top();
+			int times = nums.top(); 
 			nums.pop();
 			for (int j = 0; j < times; ++j)
 				strs.top() += res;
