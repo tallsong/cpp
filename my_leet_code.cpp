@@ -158,3 +158,28 @@ string decodeString(string s)
 	}
 	return res;
 }
+
+vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newColor) 
+{
+	queue<pair<int,int>> q;
+	int w = image[0].size();
+	int h = image.size();
+	q.push({sr,sc});
+	int oldColor = image[sr][sc];
+	if(oldColor == newColor) return image;
+	
+
+	while(!q.empty())
+	{		
+		pair<int,int> pos = q.front();
+		int nsr = pos.first;
+		int nsc = pos.second;
+		image[nsr][nsc] = newColor;
+		q.pop();
+		if (nsc > 0 && image[nsr][nsc-1] == oldColor) q.push({ nsr,nsc - 1 });
+		if (nsc < w - 1 && image[nsr][nsc + 1] == oldColor) q.push({ nsr,nsc + 1 });
+		if (nsr > 0 && image[nsr-1][nsc] == oldColor) q.push({ nsr - 1,nsc });
+		if (nsr < h - 1 && image[nsr+1][nsc] == oldColor) q.push({ nsr + 1,nsc });
+	}
+	return image;
+}
