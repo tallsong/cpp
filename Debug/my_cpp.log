@@ -1,2 +1,10 @@
 ﻿  main.cpp
-  my_cpp.vcxproj -> D:\github\my_cpp\Debug\my_cpp.exe
+  my_leet_code.cpp
+D:\github\my_cpp\my_leet_code.cpp(16): warning C4018: '<': signed/unsigned mismatch
+D:\github\my_cpp\my_leet_code.cpp(18): warning C4018: '<': signed/unsigned mismatch
+D:\github\my_cpp\my_leet_code.cpp(33): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+D:\github\my_cpp\main.cpp(49): warning C4715: 'decodeString': not all control paths return a value
+  LINK : D:\github\my_cpp\Debug\my_cpp.exe not found or not built by the last incremental link; performing full link
+my_leet_code.obj : error LNK2005: "class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > __cdecl decodeString(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?decodeString@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@Z) already defined in main.obj
+D:\github\my_cpp\Debug\my_cpp.exe : fatal error LNK1169: one or more multiply defined symbols found
