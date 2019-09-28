@@ -23,6 +23,9 @@ int main()
 		cout << obj.size() << ","<<endl;
 	}
 	auto a = '11' ;
-	cout << typeid('1'-'0').name();
+	cout << typeid('1'-'0').name()<<endl;
+	cout << typeid('1' - '0').name();
+	cout << __cplusplus << endl;
 	return 0;
+
 }
