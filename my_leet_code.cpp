@@ -184,7 +184,7 @@ vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int ne
 	return image;
 }
 
-vector<vector<int> > updateMatrix(vector<vector<int> >& matrix)
+vector<vector<int> > updateMatrix_violence(vector<vector<int> >& matrix)
 {
 	int rows = matrix.size();
 	if (rows == 0)
@@ -208,8 +208,60 @@ vector<vector<int> > updateMatrix(vector<vector<int> >& matrix)
 	return dist;
 
 }
+vector<vector<int>> updateMatrix_542(vector<vector<int>>& matrix)
+{
+	int rows = matrix.size();
+	if (rows == 0)
+		return matrix;
+	int cols = matrix[0].size();
+	vector<vector<int>> diss(rows, vector<int>(cols, INT_MAX));
+	queue<pair<int, int>> q;
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < cols; j++)
+		{
+			if (matrix[i][j] == 0)
+			{
+				diss[i][j] = 0;
+				q.push({ i,j });
+			}
 
-vector<vector<int> > updateMatrix(vector<vector<int> >& matrix)
+		}
+	}
+	while (!q.empty())
+	{
+		pair<int, int> cur = q.front();
+		q.pop();
+
+
+		if (cur.first > 0 && diss[cur.first][cur.second] + 1 < diss[cur.first - 1][cur.second])
+		{
+			diss[cur.first - 1][cur.second] = diss[cur.first][cur.second] + 1;
+			q.push({ cur.first - 1,cur.second });
+		}
+		if (cur.first < rows - 1 && diss[cur.first][cur.second] + 1 < diss[cur.first + 1][cur.second])
+		{
+			diss[cur.first + 1][cur.second] = diss[cur.first][cur.second] + 1;
+			q.push({ cur.first + 1,cur.second });
+		}
+		if (cur.second > 0 && diss[cur.first][cur.second] + 1 < diss[cur.first][cur.second - 1])
+		{
+			diss[cur.first][cur.second - 1] = diss[cur.first][cur.second] + 1;
+			q.push({ cur.first,cur.second - 1 });
+		}
+		if (cur.second < cols - 1 && diss[cur.first][cur.second] + 1 < diss[cur.first][cur.second + 1])
+		{
+			diss[cur.first][cur.second + 1] = diss[cur.first][cur.second] + 1;
+			q.push({ cur.first,cur.second + 1 });
+		}
+
+
+	}
+	return diss;
+
+}
+
+vector<vector<int> > updateMatrix_dfs(vector<vector<int> >& matrix)
 {
 	int rows = matrix.size();
 	if (rows == 0)
