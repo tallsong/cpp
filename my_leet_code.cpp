@@ -7,6 +7,7 @@
 #include <string>
 #include <vector>
 #include<queue>
+#include<set>
 using namespace std;
 
 vector<int> twoSum_001(vector<int>& nums, int target) 
@@ -295,3 +296,26 @@ vector<vector<int> > updateMatrix_dfs(vector<vector<int> >& matrix)
 	}
 	return dist;
 }
+bool canVisitAllRooms_841(vector<vector<int>>& rooms)
+{
+	set<int> visited;
+	visited.insert(0);
+	queue<int>q;
+	q.push(0);
+	while (!q.empty())
+	{
+		int key = q.front();
+		q.pop();
+		int rc = rooms[key].size();
+		for (int i = 0; i < rc; i++)
+		{
+			if (!visited.count(rooms[key][i]))
+			{
+				visited.insert(rooms[key][i]);
+				q.push(rooms[key][i]);
+			}
+		}
+	}
+	return rooms.size() == visited.size();
+}
+

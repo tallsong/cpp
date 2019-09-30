@@ -7,8 +7,8 @@
 #include<string>
 #include<fstream>
 #include<queue>
+#include<set>
 using namespace std;
-
 
 
 
@@ -27,7 +27,6 @@ int main()
 	cout << typeid('1'-'0').name()<<endl;
 	cout << typeid('1' - '0').name();
 	cout << __cplusplus << endl;
-	updateMatrix(obj);
 
 	cout << 1;
 	return 0;
