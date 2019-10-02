@@ -319,3 +319,23 @@ bool canVisitAllRooms_841(vector<vector<int>>& rooms)
 	return rooms.size() == visited.size();
 }
 
+int pivotIndex_724(vector<int>& nums)
+{
+	int length = nums.size();
+
+	for (int i = 0; i < length; i++)
+	{
+		int left = 0, right = 0;
+		for (int j = 0; j < i; j++)
+		{
+			left += nums[j];
+		}
+		for (int k = length - 1; k > i; k--)
+		{
+			right += nums[k];
+		}
+		if (left == right) return i;
+
+	}
+	return -1;
+}
