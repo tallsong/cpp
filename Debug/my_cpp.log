@@ -1,7 +1,4 @@
 ﻿  main.cpp
-  my_leet_code.cpp
-D:\github\my_cpp\my_leet_code.cpp(17): warning C4018: '<': signed/unsigned mismatch
-D:\github\my_cpp\my_leet_code.cpp(19): warning C4018: '<': signed/unsigned mismatch
-D:\github\my_cpp\my_leet_code.cpp(34): warning C4018: '<': signed/unsigned mismatch
-  Generating Code...
+D:\github\my_cpp\main.cpp(19): warning C4018: '<': signed/unsigned mismatch
+D:\github\my_cpp\main.cpp(21): warning C4018: '<': signed/unsigned mismatch
   my_cpp.vcxproj -> D:\github\my_cpp\Debug\my_cpp.exe

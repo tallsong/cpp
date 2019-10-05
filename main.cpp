@@ -9,20 +9,19 @@
 #include<queue>
 #include<set>
 #include<climits>
+#include<math.h>
 using namespace std;
 
 
 
-
-
-
-int main()
+int main() 
 {
-	int nums[6] = { -1,-1,0,1,1,0 };
-	vector<int> n(nums, *(&nums + 1));
-	cout <<INT_MAX<<endl<<INT_MIN;
-}
+	vector<string> s = { "flower", "flow", "flight" };
+	cout << longestCommonPrefix(s);
 
+	return 0;
+
+}
 
 //int main() {
 //	// 1. initialize
@@ -92,21 +91,3 @@ int main()
 //}
 
 
-
-//int main()
-//{
-//	vector<vector<int>> obj(3,vector<int>(3,0));//默认值为0,默认size为0
-//	obj[1][1] = 1;
-//	for (unsigned int i  = 0; i < obj.size(); i++)//size()容器中实际数据个数 
-//	{
-//		cout << obj.size() << ","<<endl;
-//	}
-//	auto a = '11' ;
-//	cout << typeid('1'-'0').name()<<endl;
-//	cout << typeid('1' - '0').name();
-//	cout << __cplusplus << endl;
-//
-//	cout << 1;
-//	return 0;
-//
-//}

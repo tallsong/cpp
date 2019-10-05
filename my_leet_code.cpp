@@ -94,6 +94,22 @@ int numIslands_200(vector<vector<char>>& grid)
 	}
 	return num_islands;
 }
+
+
+vector<int> plusOne_66(vector<int>& digits) // ¼ÓÒ»
+{
+	int i = digits.size() - 1;
+	while (i >= 0 && digits[i] == 9)
+		i--;
+
+	for (int j = i + 1; j < digits.size(); j++)
+		digits[j] = 0;
+	if (i == -1) digits.insert(digits.begin(), 1);
+	else digits[i] += 1;
+	return digits;
+}
+
+
 vector<int> dailyTemperatures_739(vector<int>& T)
 {
 	int n = T.size();
@@ -338,4 +354,293 @@ int pivotIndex_724(vector<int>& nums)
 
 	}
 	return -1;
+}
+
+int dominantIndex(vector<int>& nums) 
+{
+	if (nums.size() == 1)
+		return 0;
+	int small_num = INT_MIN;
+	int big_index = 0;
+	for (int i = 1; i < nums.size(); i++)
+	{
+		if (nums[i] > nums[big_index])
+		{
+			small_num = nums[big_index];
+			big_index = i;
+		}
+		else
+		{
+			if (nums[i] > small_num)
+			{
+				small_num = nums[i];
+			}
+		}
+	}
+	return nums[big_index] >= 2 * small_num ? big_index : -1;
+}
+
+
+vector<int> spiralOrder_54(vector<vector<int>>& matrix) 
+{
+	vector<int> ans;
+	if (matrix.size() == 0 || matrix[0].size()==0)
+	{
+		return ans;
+	}
+	int u = 0;
+	int r = matrix[0].size() - 1;
+	int b = matrix.size() - 1;
+	int l = 0;
+	while (true)
+	{
+		for (int i = l; i <= r; i++) ans.push_back(matrix[u][i]);
+		if (++u > b) break;
+		for (int i = u; i <= b; i++) ans.push_back(matrix[i][r]);
+		if (--r < l) break;
+		for (int i = r; i >= l; i--) ans.push_back(matrix[b][i]);
+		if (--b < u) break;
+		for (int i = b; i >= u; i--) ans.push_back(matrix[i][l]);
+		if (++l > r) break;
+	}
+	return ans;
+
+}
+
+
+vector<vector<int>> generate_118(int numRows)
+{
+	vector<vector<int>> ans(numRows);
+	for (int i = 0; i < numRows; i++)
+	{
+		for (int j = 0; j <= i; j++)
+		{
+			if (j == 0 || j == i)
+			{
+
+				ans[i].push_back(1);
+				//ans[i][j] = 1;
+			}
+			else
+			{
+				ans[i].push_back(ans[i - 1][j] + ans[i - 1][j - 1]);
+				//ans[i][j] = ans[i - 1][j] + ans[i - 1][j - 1];
+			}
+		}
+	}
+	return ans;
+}
+vector<int> findDiagonalOrder_498(vector<vector<int>>& matrix) //important
+{
+	vector<int> nums;
+	int m = matrix.size();
+	if (m == 0) return nums;
+	int n = matrix[0].size();
+	if (n == 0) return nums;
+
+	bool bXFlag = true;
+	for (int i = 0; i < m + n; i++)
+	{
+		int pm = bXFlag ? m : n;
+		int pn = bXFlag ? n : m;
+
+		int x = (i < pm) ? i : pm - 1;
+		int y = i - x;
+
+		while (x >= 0 && y < pn)
+		{
+			nums.push_back(bXFlag ? matrix[x][y] : matrix[y][x]);
+			x--;
+			y++;
+		}
+
+		bXFlag = !bXFlag;
+	}
+	return nums;
+}
+
+
+string addBinary(string a, string b)
+{
+
+	while (a.size() > b.size())
+	{
+		b = '0' + b;
+	}
+	while (a.size() < b.size())
+	{
+		a = '0' + a;
+	}
+	for (int i = a.size() - 1; i > 0; i--)
+	{
+		a[i] = a[i] - '0' + b[i];
+		if (a[i] > '1')
+		{
+			a[i] = a[i] - '0' - 2 + '0';
+			a[i - 1] = a[i - 1] - '0' + 1 + '0';
+		}
+	}
+	a[0] = a[0] - '0' + b[0];
+	if (a[0] > '1')
+	{
+		a[0] = a[0] - '0' - 2 + '0';
+		a = '1' + a;
+	}
+	return a;
+}
+
+int strStr(string haystack, string needle) 
+{
+	if (haystack.size() <= needle.size()) return -1;
+	if (needle == "") return 0;
+	for (int i = 0; i < haystack.size() - needle.size(); i++)
+	{
+		if (haystack.substr(i, needle.size()) == needle)
+		{
+			return i;
+		}
+	}
+	return -1;
+}
+
+string longestCommonPrefix(vector<string>& strs)
+{
+	if (strs.size() == 0) return "";
+	if (strs.size() == 1) return strs[0];
+	int b = 1;
+	string	s = "";
+	for (int i = 0; i < strs[0].size(); i++)
+	{
+		for (int j = 1; j < strs.size(); j++)
+		{
+			if (strs[j - 1][i] == strs[j][i])
+			{
+				if (j == strs.size() - 1)
+				{
+					s = s + strs[0][i];
+				}
+				else
+				{
+					continue;
+				}
+			}
+			else
+			{
+				b = 0;
+				break;
+			}
+
+		}
+		if (b == 0) break;
+	}
+	return s;
+}
+
+void reverseString(vector<char>& s) 
+{
+	int i = 0;
+	int j = s.size() - 1;
+	while (i<j)
+	{
+		swap(s[i], s[j]);
+		i++;
+		j--;
+	}
+}
+
+int arrayPairSum(vector<int>& nums)
+{
+	sort(nums.begin(), nums.end());
+	int sum = 0;
+	for (int i = 0; i < nums.size(); i += 2)
+	{
+		sum += nums[i];
+	}
+	return sum;
+}
+
+vector<int> twoSum(vector<int>& numbers, int target) 
+{
+	vector<int> ans(2, -1);
+	for (int i = 0; i < numbers.size()-1; i++)
+	{
+		for (int j = i + 1; j < numbers.size(); j++)
+		{
+			if (numbers[i] + numbers[j] == target)
+			{
+				ans[0] = i + 1;
+				ans[1] = j + 1;
+				return ans;
+			}
+			if (numbers[i] + numbers[j] > target) break;
+
+		}
+	}
+	return ans;
+}
+
+int removeElement(vector<int>& nums, int val)
+{
+	int k = 0;
+	for (int i = 0; i < nums.size(); i++)
+	{
+		if (nums[i] != val)
+		{
+			nums[k] = nums[i];
+			k++;
+		}
+
+	}
+	return k;
+}
+
+int findMaxConsecutiveOnes(vector<int>& nums) 
+{
+	int count = 0;
+	int temp = 0;
+	for (int i = 0; i < nums.size(); i++)
+	{
+		
+		if (nums[i] == 1)
+		{
+			temp += 1;
+			if (i == nums.size() - 1)
+			{
+				count = count > temp ? count : temp;
+			}
+		}
+		else
+		{
+			count = count > temp ? count : temp;
+			temp = 0;
+		}
+	}
+	return count;
+}
+
+int minSubArrayLen(int s, vector<int>& nums)
+{
+	int minLen = 0;
+	for (int i = 0; i < nums.size(); i++)
+	{
+		int count = 0;
+		for (int j = i; j < nums.size(); j++)
+		{
+			count += nums[j];
+			if (count >= s)
+			{
+				if (minLen==0)
+				{
+					minLen = j - i + 1;
+				}
+				else
+				{
+					minLen = minLen < j - i + 1 ? minLen : j - i + 1;
+				}
+			}
+
+
+		}
+	}
+	return minLen;
 }
