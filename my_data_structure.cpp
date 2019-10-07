@@ -291,7 +291,8 @@ public:
 	}
 };
 
-class MyLinkedList {
+class MyLinkedList 
+{
 public:
 	/** Initialize your data structure here. */
 	struct Node
@@ -300,7 +301,7 @@ public:
 		Node* next;
 		Node(int x) :val(x), next(NULL) {}
 	};
-	int len = 0;
+	int len ;
 	Node *head, *tail;
 	MyLinkedList()
 	{
@@ -346,7 +347,7 @@ public:
 		{
 			Node* p = new Node(val);
 			tail->next = p;
-			p = tail;
+			tail = p;
 		}
 		len++;
 	}
@@ -355,17 +356,29 @@ public:
 	void addAtIndex(int index, int val) 
 	{
 		if (index > len) return;
-		if (index == len) addAtTail(val);
-		if (index <= 0) addAtHead(val);
-		Node* p = new Node(val);
-		Node* cur = head;
-		for (int i = 0; i < index - 1; i++)
+		
+		if (index <= 0)
 		{
-			cur = cur->next;
+			addAtHead(val);
+
 		}
-		p->next = cur->next;
-		cur->next = p;
-		len++;
+		else
+		{
+			if (index == len) addAtTail(val);
+			else
+			{
+				Node* p = new Node(val);
+				Node* cur = head;
+				for (int i = 0; i < index - 1; i++)
+				{
+					cur = cur->next;
+				}
+				p->next = cur->next;
+				cur->next = p;
+				len++;
+			}
+		}
+		
 
 	}
 
@@ -386,7 +399,7 @@ public:
 				{
 					p = p->next;
 				}
-				p = p->next->next;
+				p->next = p->next->next;
 				if (index == len - 1)
 				{
 					tail = p;
