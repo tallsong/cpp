@@ -291,7 +291,7 @@ public:
 	}
 };
 
-class MyLinkedList 
+class MyLinkedList
 {
 public:
 	/** Initialize your data structure here. */
@@ -301,8 +301,8 @@ public:
 		Node* next;
 		Node(int x) :val(x), next(NULL) {}
 	};
-	int len ;
-	Node *head, *tail;
+	int len;
+	Node* head, * tail;
 	MyLinkedList()
 	{
 		len = 0;
@@ -313,15 +313,19 @@ public:
 
 	/** Get the value of the index-th node in the linked list. If the index is invalid, return -1. */
 	int get(int index) {
-		if (index<0 || index >= len) return-1;
+		if (index < 0 || index >= len)
+		{
+			return-1;
+		}
 		Node* p = head;
-		for (int i = 0; i < index; i++) p = p->next;
+		for (int i = 0; i < index; i++)
+		{
+			p = p->next;
+		}
 		return p->val;
-
 	}
-
 	/** Add a node of value val before the first element of the linked list. After the insertion, the new node will be the first node of the linked list. */
-	void addAtHead(int val) 
+	void addAtHead(int val)
 	{
 		if (len == 0)
 		{
@@ -335,14 +339,10 @@ public:
 		}
 		len++;
 	}
-
 	/** Append a node of value val to the last element of the linked list. */
-	void addAtTail(int val) 
+	void addAtTail(int val)
 	{
-		if (len == 0)
-		{
-			tail->val = val;
-		}
+		if (len == 0) tail->val = val;
 		else
 		{
 			Node* p = new Node(val);
@@ -353,18 +353,19 @@ public:
 	}
 
 	/** Add a node of value val before the index-th node in the linked list. If index equals to the length of linked list, the node will be appended to the end of linked list. If index is greater than the length, the node will not be inserted. */
-	void addAtIndex(int index, int val) 
+	void addAtIndex(int index, int val)
 	{
 		if (index > len) return;
-		
 		if (index <= 0)
 		{
 			addAtHead(val);
-
 		}
 		else
 		{
-			if (index == len) addAtTail(val);
+			if (index == len)
+			{
+				addAtTail(val);
+			}
 			else
 			{
 				Node* p = new Node(val);
@@ -378,20 +379,15 @@ public:
 				len++;
 			}
 		}
-		
 
 	}
 
 	/** Delete the index-th node in the linked list, if the index is valid. */
-	void deleteAtIndex(int index) 
+	void deleteAtIndex(int index)
 	{
 		if (index >= 0 && index < len)
 		{
-			if (index == 0)
-			{
-				head = head->next;
-
-			}
+			if (index == 0) head = head->next;
 			else
 			{
 				Node* p = head;
@@ -406,18 +402,6 @@ public:
 				}
 			}
 			len--;
-			
 		}
-		
 	}
 };
-
-/**
- * Your MyLinkedList object will be instantiated and called as such:
- * MyLinkedList* obj = new MyLinkedList();
- * int param_1 = obj->get(index);
- * obj->addAtHead(val);
- * obj->addAtTail(val);
- * obj->addAtIndex(index,val);
- * obj->deleteAtIndex(index);
- */
