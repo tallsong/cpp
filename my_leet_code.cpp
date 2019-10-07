@@ -644,3 +644,84 @@ int minSubArrayLen(int s, vector<int>& nums)
 	}
 	return minLen;
 }
+
+void rotate(vector<int>& nums, int k) 
+{
+	k = k % nums.size();
+	reverse(nums.begin(), nums.end());
+	reverse(nums.begin(), nums.begin()+k);
+	reverse(nums.begin()+k, nums.end());
+
+}
+
+vector<int> getRow(int rowIndex) //杨辉三角Ⅱ
+{
+	vector<int> result;
+	for (int i = 0; i <= rowIndex; ++i) 
+	{
+		result.push_back(1);
+		for (int j = i - 1; j > 0; --j) 
+		{
+			result[j] += result[j - 1];
+		}
+	}
+	return result;
+}
+
+string reverseWords(string s)//********
+{
+	int start = 0;
+	int end = s.size() - 1;
+	while (start<s.size()&&s[start]==' ')
+	{
+		start++;
+	}
+	while (end>=0&&s[end]==' ')
+	{
+		end++;
+	}
+	if (start > end) return "";
+	for (int i = start; i <= end;)
+	{
+		while (i <= end && s[i] == ' ') i++;
+		int l = i;
+		while (l <= end && s[l] != ' ') l++;
+		reverse(s.begin() + i, s.begin() + l);
+		i = l;
+	}
+
+	int tail = start;                                   //处理中间冗余空格
+	for (int i = start; i <= end; i++) 
+	{
+		if (s[i] == ' ' && s[i - 1] == ' ') continue;
+		s[tail++] = s[i];
+	}
+	return s.substr(start, tail - start);
+
+}
+
+void moveZeroes_283(vector<int>& nums) 
+{
+
+	int end_non_zero = 0;
+	while (end_non_zero < nums.size() && nums[end_non_zero] == 0) end_non_zero++;
+	if (end_non_zero == nums.size()) return;
+	for (int i = 0; i < nums.size(); i++)
+	{
+		
+		
+		if (nums[i] == 0)
+		{
+			swap(nums[i], nums[end_non_zero]);
+		}
+		else
+		{
+			if (i == end_non_zero) end_non_zero++;
+			
+		}
+		while (end_non_zero < nums.size() && nums[end_non_zero] == 0) end_non_zero++;
+		if (end_non_zero == nums.size()) break;
+	}
+	
+} 
+

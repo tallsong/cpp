@@ -16,8 +16,10 @@ using namespace std;
 
 int main() 
 {
-	vector<string> s = { "flower", "flow", "flight" };
-	cout << longestCommonPrefix(s);
+
+	int a = 5;
+	int* b = &a;
+	cout << b;
 
 	return 0;
 
