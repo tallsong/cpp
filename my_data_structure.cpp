@@ -310,9 +310,9 @@ public:
 		head = p;
 		tail = p;
 	}
-
 	/** Get the value of the index-th node in the linked list. If the index is invalid, return -1. */
-	int get(int index) {
+	int get(int index) 
+	{
 		if (index < 0 || index >= len)
 		{
 			return-1;
@@ -351,7 +351,6 @@ public:
 		}
 		len++;
 	}
-
 	/** Add a node of value val before the index-th node in the linked list. If index equals to the length of linked list, the node will be appended to the end of linked list. If index is greater than the length, the node will not be inserted. */
 	void addAtIndex(int index, int val)
 	{
@@ -375,13 +374,11 @@ public:
 					cur = cur->next;
 				}
 				p->next = cur->next;
-				cur->next = p;
+				cur->next = p;	
 				len++;
 			}
 		}
-
 	}
-
 	/** Delete the index-th node in the linked list, if the index is valid. */
 	void deleteAtIndex(int index)
 	{
