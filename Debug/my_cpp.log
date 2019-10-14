@@ -1,4 +1,3 @@
-﻿  my_data_structure.cpp
-D:\github\my_cpp\my_data_structure.cpp(40): warning C4018: '>=': signed/unsigned mismatch
-D:\github\my_cpp\my_data_structure.cpp(269): warning C4018: '<': signed/unsigned mismatch
+﻿  main.cpp
+D:\github\my_cpp\main.cpp(20): warning C4018: '<': signed/unsigned mismatch
   my_cpp.vcxproj -> D:\github\my_cpp\Debug\my_cpp.exe

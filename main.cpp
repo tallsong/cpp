@@ -14,15 +14,13 @@ using namespace std;
 
 
 
+
+
 int main()
 {
 
-	int a = 5;
-	int* b = &a;
-	cout << b;
-
+	cout << __cplusplus << endl;
 	return 0;
-
 }
 
 //int main() {
