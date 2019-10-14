@@ -1,4 +1,21 @@
-﻿  my_data_structure.cpp
-D:\github\my_cpp\my_data_structure.cpp(40): warning C4018: '>=': signed/unsigned mismatch
-D:\github\my_cpp\my_data_structure.cpp(269): warning C4018: '<': signed/unsigned mismatch
+﻿  my_leet_code.cpp
+D:\github\my_cpp\my_leet_code.cpp(24,20): warning C4018:  '<': signed/unsigned mismatch
+D:\github\my_cpp\my_leet_code.cpp(26,20): warning C4018:  '<': signed/unsigned mismatch
+D:\github\my_cpp\my_leet_code.cpp(41,20): warning C4018:  '<': signed/unsigned mismatch
+D:\github\my_cpp\my_leet_code.cpp(112,24): warning C4018:  '<': signed/unsigned mismatch
+D:\github\my_cpp\my_leet_code.cpp(372,20): warning C4018:  '<': signed/unsigned mismatch
+D:\github\my_cpp\my_leet_code.cpp(503,20): warning C4018:  '<': signed/unsigned mismatch
+D:\github\my_cpp\my_leet_code.cpp(519,20): warning C4018:  '<': signed/unsigned mismatch
+D:\github\my_cpp\my_leet_code.cpp(521,21): warning C4018:  '<': signed/unsigned mismatch
+D:\github\my_cpp\my_leet_code.cpp(562,20): warning C4018:  '<': signed/unsigned mismatch
+D:\github\my_cpp\my_leet_code.cpp(572,20): warning C4018:  '<': signed/unsigned mismatch
+D:\github\my_cpp\my_leet_code.cpp(574,25): warning C4018:  '<': signed/unsigned mismatch
+D:\github\my_cpp\my_leet_code.cpp(592,20): warning C4018:  '<': signed/unsigned mismatch
+D:\github\my_cpp\my_leet_code.cpp(608,20): warning C4018:  '<': signed/unsigned mismatch
+D:\github\my_cpp\my_leet_code.cpp(631,20): warning C4018:  '<': signed/unsigned mismatch
+D:\github\my_cpp\my_leet_code.cpp(634,21): warning C4018:  '<': signed/unsigned mismatch
+D:\github\my_cpp\my_leet_code.cpp(682,15): warning C4018:  '<': signed/unsigned mismatch
+D:\github\my_cpp\my_leet_code.cpp(714,22): warning C4018:  '<': signed/unsigned mismatch
+D:\github\my_cpp\my_leet_code.cpp(716,20): warning C4018:  '<': signed/unsigned mismatch
+D:\github\my_cpp\my_leet_code.cpp(729,23): warning C4018:  '<': signed/unsigned mismatch
   my_cpp.vcxproj -> D:\github\my_cpp\Debug\my_cpp.exe

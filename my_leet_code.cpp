@@ -751,3 +751,36 @@ bool hasCycle(ListNode * head)
 	return false;
 	
 }
+
+ListNode* detectCycle_142(ListNode* head)
+{
+	set<ListNode*> visited;
+	ListNode* p = head;
+	while (p != NULL)
+	{
+		if (visited.count(p) == 1)
+		{
+			return p;
+		}
+		else
+		{
+			visited.insert(p);
+			p = p->next;
+		}
+	}
+	return NULL;
+}
+
+
+ListNode* getIntersectionNode(ListNode* headA, ListNode* headB) 
+{
+	set<ListNode*> visited;
+	ListNode* p1 = headA;
+	ListNode* p2 = headB;
+	map<int,ListNode*> m;
+	while (p1!=NULL)
+	{
+		
+	}
+	return NULL;
+}
