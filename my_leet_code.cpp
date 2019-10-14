@@ -3,11 +3,11 @@
 #include <fstream>
 #include <iostream>
 #include <map>
-#include <queue>
-#include <set>
 #include <stack>
 #include <string>
 #include <vector>
+#include<queue>
+#include<set>
 
 using namespace std;
 
@@ -15,9 +15,7 @@ struct ListNode
 {
 	int val;
 	ListNode* next;
-	ListNode(int x) : val(x), next(NULL)
-	{
-	}
+	ListNode(int x) : val(x), next(NULL) {}
 };
 
 vector<int> twoSum_001(vector<int>& nums, int target)
@@ -38,14 +36,11 @@ vector<int> twoSum_001(vector<int>& nums, int target)
 	}
 	return b;
 };
-vector<int> twoSum2_001(vector<int>& nums, int target)
-{
+vector<int> twoSum2_001(vector<int>& nums, int target) {
 	map<int, int> a;  //建立hash表存放数组元素
 	vector<int> b(2, -1);  //存放结果, 声明一个初始大小为2且初始值都为-1的向量
-	for (int i = 0; i < nums.size(); i++)
-	{
-		if (a.count(target - nums[i]) > 0)
-		{
+	for (int i = 0; i < nums.size(); i++) {
+		if (a.count(target - nums[i]) > 0) {
 			b[0] = a[target - nums[i]];
 			b[1] = i;
 			break;
@@ -54,11 +49,9 @@ vector<int> twoSum2_001(vector<int>& nums, int target)
 	}
 	return b;
 };
-int reverse_007(int x)
-{
+int reverse_007(int x) {
 	int rev = 0;
-	while (x != 0)
-	{
+	while (x != 0) {
 		int pop = x % 10;
 		x /= 10;
 		if (rev > INT_MAX / 10 || (rev == INT_MAX / 10 && pop > 7)) return 0;
@@ -67,13 +60,11 @@ int reverse_007(int x)
 	}
 	return rev;
 }
-bool isPalindrome2_009(int x)
-{
+bool isPalindrome2_009(int x) {
 	int midrev = 0;  //存储后半部分数字的反转结果
 	if (x < 0 || (x % 10 == 0 && x != 0))
 		return false;  //排除负数和最后一位数字为0的数字
-	while (x > midrev)
-	{
+	while (x > midrev) {
 		midrev = midrev * 10 + x % 10;
 		x /= 10;
 	}
@@ -93,34 +84,18 @@ int numIslands_200(vector<vector<char>> & grid)
 			{
 				grid[i][j] = '0';
 				num_islands++;
-				queue<pair<int, int>> q;
-				q.push({ i, j });
+				queue < pair<int, int>> q;
+				q.push({ i,j });
 				while (!q.empty())
 				{
 					auto new_center = q.front();
 					q.pop();
 					int nh = new_center.first;
 					int nw = new_center.second;
-					if ((nh > 0) && (grid[nh - 1][nw] == '1'))
-					{
-						q.push({ nh - 1, nw });
-						grid[nh - 1][nw] = '0';
-					}
-					if ((nw > 0) && (grid[nh][nw - 1] == '1'))
-					{
-						q.push({ nh, nw - 1 });
-						grid[nh][nw - 1] = '0';
-					}
-					if ((nh < h - 1) && (grid[nh + 1][nw] == '1'))
-					{
-						q.push({ nh + 1, nw });
-						grid[nh + 1][nw] = '0';
-					}
-					if ((nw < w - 1) && (grid[nh][nw + 1] == '1'))
-					{
-						q.push({ nh, nw + 1 });
-						grid[nh][nw + 1] = '0';
-					}
+					if ((nh > 0) && (grid[nh - 1][nw] == '1')) { q.push({ nh - 1,nw }); grid[nh - 1][nw] = '0'; }
+					if ((nw > 0) && (grid[nh][nw - 1] == '1')) { q.push({ nh,nw - 1 }); grid[nh][nw - 1] = '0'; }
+					if ((nh < h - 1) && (grid[nh + 1][nw] == '1')) { q.push({ nh + 1,nw }); grid[nh + 1][nw] = '0'; }
+					if ((nw < w - 1) && (grid[nh][nw + 1] == '1')) { q.push({ nh,nw + 1 }); grid[nh][nw + 1] = '0'; }
 				}
 			}
 		}
@@ -128,18 +103,20 @@ int numIslands_200(vector<vector<char>> & grid)
 	return num_islands;
 }
 
-vector<int> plusOne_66(vector<int> & digits)  // 加一
+
+vector<int> plusOne_66(vector<int> & digits) // 加一
 {
 	int i = digits.size() - 1;
-	while (i >= 0 && digits[i] == 9) i--;
+	while (i >= 0 && digits[i] == 9)
+		i--;
 
-	for (int j = i + 1; j < digits.size(); j++) digits[j] = 0;
-	if (i == -1)
-		digits.insert(digits.begin(), 1);
-	else
-		digits[i] += 1;
+	for (int j = i + 1; j < digits.size(); j++)
+		digits[j] = 0;
+	if (i == -1) digits.insert(digits.begin(), 1);
+	else digits[i] += 1;
 	return digits;
 }
+
 
 vector<int> dailyTemperatures_739(vector<int> & T)
 {
@@ -202,19 +179,20 @@ string decodeString(string s)
 			res = strs.top();
 			strs.pop();
 		}
+
 	}
 	return res;
 }
 
-vector<vector<int>> floodFill(vector<vector<int>> & image, int sr, int sc,
-	int newColor)
+vector<vector<int>> floodFill(vector<vector<int>> & image, int sr, int sc, int newColor)
 {
 	queue<pair<int, int>> q;
 	int w = image[0].size();
 	int h = image.size();
-	q.push({ sr, sc });
+	q.push({ sr,sc });
 	int oldColor = image[sr][sc];
 	if (oldColor == newColor) return image;
+
 
 	while (!q.empty())
 	{
@@ -223,32 +201,29 @@ vector<vector<int>> floodFill(vector<vector<int>> & image, int sr, int sc,
 		int nsc = pos.second;
 		image[nsr][nsc] = newColor;
 		q.pop();
-		if (nsc > 0 && image[nsr][nsc - 1] == oldColor) q.push({ nsr, nsc - 1 });
-		if (nsc < w - 1 && image[nsr][nsc + 1] == oldColor) q.push({ nsr, nsc + 1 });
-		if (nsr > 0 && image[nsr - 1][nsc] == oldColor) q.push({ nsr - 1, nsc });
-		if (nsr < h - 1 && image[nsr + 1][nsc] == oldColor) q.push({ nsr + 1, nsc });
+		if (nsc > 0 && image[nsr][nsc - 1] == oldColor) q.push({ nsr,nsc - 1 });
+		if (nsc < w - 1 && image[nsr][nsc + 1] == oldColor) q.push({ nsr,nsc + 1 });
+		if (nsr > 0 && image[nsr - 1][nsc] == oldColor) q.push({ nsr - 1,nsc });
+		if (nsr < h - 1 && image[nsr + 1][nsc] == oldColor) q.push({ nsr + 1,nsc });
 	}
 	return image;
 }
 
-vector<vector<int>> updateMatrix_violence(vector<vector<int>> & matrix)
+vector<vector<int> > updateMatrix_violence(vector<vector<int> > & matrix)
 {
 	int rows = matrix.size();
-	if (rows == 0) return matrix;
+	if (rows == 0)
+		return matrix;
 	int cols = matrix[0].size();
-	vector<vector<int>> dist(rows, vector<int>(cols, INT_MAX));
-	for (int i = 0; i < rows; i++)
-	{
-		for (int j = 0; j < cols; j++)
-		{
+	vector<vector<int> > dist(rows, vector<int>(cols, INT_MAX));
+	for (int i = 0; i < rows; i++) {
+		for (int j = 0; j < cols; j++) {
 			if (matrix[i][j] == 0)
 				dist[i][j] = 0;
-			else
-			{
+			else {
 				for (int k = 0; k < rows; k++)
 					for (int l = 0; l < cols; l++)
-						if (matrix[k][l] == 0)
-						{
+						if (matrix[k][l] == 0) {
 							int dist_01 = abs(k - i) + abs(l - j);
 							dist[i][j] = min(dist[i][j], abs(k - i) + abs(l - j));
 						}
@@ -256,11 +231,13 @@ vector<vector<int>> updateMatrix_violence(vector<vector<int>> & matrix)
 		}
 	}
 	return dist;
+
 }
 vector<vector<int>> updateMatrix_542(vector<vector<int>> & matrix)
 {
 	int rows = matrix.size();
-	if (rows == 0) return matrix;
+	if (rows == 0)
+		return matrix;
 	int cols = matrix[0].size();
 	vector<vector<int>> diss(rows, vector<int>(cols, INT_MAX));
 	queue<pair<int, int>> q;
@@ -271,8 +248,9 @@ vector<vector<int>> updateMatrix_542(vector<vector<int>> & matrix)
 			if (matrix[i][j] == 0)
 			{
 				diss[i][j] = 0;
-				q.push({ i, j });
+				q.push({ i,j });
 			}
+
 		}
 	}
 	while (!q.empty())
@@ -280,52 +258,52 @@ vector<vector<int>> updateMatrix_542(vector<vector<int>> & matrix)
 		pair<int, int> cur = q.front();
 		q.pop();
 
-		if (cur.first > 0 &&
-			diss[cur.first][cur.second] + 1 < diss[cur.first - 1][cur.second])
+
+		if (cur.first > 0 && diss[cur.first][cur.second] + 1 < diss[cur.first - 1][cur.second])
 		{
 			diss[cur.first - 1][cur.second] = diss[cur.first][cur.second] + 1;
-			q.push({ cur.first - 1, cur.second });
+			q.push({ cur.first - 1,cur.second });
 		}
-		if (cur.first < rows - 1 &&
-			diss[cur.first][cur.second] + 1 < diss[cur.first + 1][cur.second])
+		if (cur.first < rows - 1 && diss[cur.first][cur.second] + 1 < diss[cur.first + 1][cur.second])
 		{
 			diss[cur.first + 1][cur.second] = diss[cur.first][cur.second] + 1;
-			q.push({ cur.first + 1, cur.second });
+			q.push({ cur.first + 1,cur.second });
 		}
-		if (cur.second > 0 &&
-			diss[cur.first][cur.second] + 1 < diss[cur.first][cur.second - 1])
+		if (cur.second > 0 && diss[cur.first][cur.second] + 1 < diss[cur.first][cur.second - 1])
 		{
 			diss[cur.first][cur.second - 1] = diss[cur.first][cur.second] + 1;
-			q.push({ cur.first, cur.second - 1 });
+			q.push({ cur.first,cur.second - 1 });
 		}
-		if (cur.second < cols - 1 &&
-			diss[cur.first][cur.second] + 1 < diss[cur.first][cur.second + 1])
+		if (cur.second < cols - 1 && diss[cur.first][cur.second] + 1 < diss[cur.first][cur.second + 1])
 		{
 			diss[cur.first][cur.second + 1] = diss[cur.first][cur.second] + 1;
-			q.push({ cur.first, cur.second + 1 });
+			q.push({ cur.first,cur.second + 1 });
 		}
+
+
 	}
 	return diss;
+
 }
 
-vector<vector<int>> updateMatrix_dfs(vector<vector<int>> & matrix)
+vector<vector<int> > updateMatrix_dfs(vector<vector<int> > & matrix)
 {
 	int rows = matrix.size();
-	if (rows == 0) return matrix;
+	if (rows == 0)
+		return matrix;
 	int cols = matrix[0].size();
-	vector<vector<int>> dist(rows, vector<int>(cols, INT_MAX));
-	queue<pair<int, int>> q;
+	vector<vector<int> > dist(rows, vector<int>(cols, INT_MAX));
+	queue<pair<int, int> > q;
 	for (int i = 0; i < rows; i++)
 		for (int j = 0; j < cols; j++)
 			if (matrix[i][j] == 0)
 			{
 				dist[i][j] = 0;
-				q.push({ i, j });  // Put all 0s in the queue.
+				q.push({ i, j }); //Put all 0s in the queue.
 			}
 
-	int dir[4][2] = { {-1, 0}, {1, 0}, {0, -1}, {0, 1} };
-	while (!q.empty())
-	{
+	int dir[4][2] = { { -1, 0 }, { 1, 0 }, { 0, -1 }, { 0, 1 } };
+	while (!q.empty()) {
 		pair<int, int> curr = q.front();
 		q.pop();
 		for (int i = 0; i < 4; i++)
@@ -333,8 +311,7 @@ vector<vector<int>> updateMatrix_dfs(vector<vector<int>> & matrix)
 			int new_r = curr.first + dir[i][0], new_c = curr.second + dir[i][1];
 			if (new_r >= 0 && new_c >= 0 && new_r < rows && new_c < cols)
 			{
-				if (dist[new_r][new_c] > dist[curr.first][curr.second] + 1)
-				{
+				if (dist[new_r][new_c] > dist[curr.first][curr.second] + 1) {
 					dist[new_r][new_c] = dist[curr.first][curr.second] + 1;
 					q.push({ new_r, new_c });
 				}
@@ -347,7 +324,7 @@ bool canVisitAllRooms_841(vector<vector<int>> & rooms)
 {
 	set<int> visited;
 	visited.insert(0);
-	queue<int> q;
+	queue<int>q;
 	q.push(0);
 	while (!q.empty())
 	{
@@ -382,13 +359,15 @@ int pivotIndex_724(vector<int> & nums)
 			right += nums[k];
 		}
 		if (left == right) return i;
+
 	}
 	return -1;
 }
 
 int dominantIndex(vector<int> & nums)
 {
-	if (nums.size() == 1) return 0;
+	if (nums.size() == 1)
+		return 0;
 	int small_num = INT_MIN;
 	int big_index = 0;
 	for (int i = 1; i < nums.size(); i++)
@@ -408,6 +387,7 @@ int dominantIndex(vector<int> & nums)
 	}
 	return nums[big_index] >= 2 * small_num ? big_index : -1;
 }
+
 
 vector<int> spiralOrder_54(vector<vector<int>> & matrix)
 {
@@ -432,7 +412,9 @@ vector<int> spiralOrder_54(vector<vector<int>> & matrix)
 		if (++l > r) break;
 	}
 	return ans;
+
 }
+
 
 vector<vector<int>> generate_118(int numRows)
 {
@@ -443,19 +425,20 @@ vector<vector<int>> generate_118(int numRows)
 		{
 			if (j == 0 || j == i)
 			{
+
 				ans[i].push_back(1);
-				// ans[i][j] = 1;
+				//ans[i][j] = 1;
 			}
 			else
 			{
 				ans[i].push_back(ans[i - 1][j] + ans[i - 1][j - 1]);
-				// ans[i][j] = ans[i - 1][j] + ans[i - 1][j - 1];
+				//ans[i][j] = ans[i - 1][j] + ans[i - 1][j - 1];
 			}
 		}
 	}
 	return ans;
 }
-vector<int> findDiagonalOrder_498(vector<vector<int>> & matrix)  // important
+vector<int> findDiagonalOrder_498(vector<vector<int>> & matrix) //important
 {
 	vector<int> nums;
 	int m = matrix.size();
@@ -484,8 +467,10 @@ vector<int> findDiagonalOrder_498(vector<vector<int>> & matrix)  // important
 	return nums;
 }
 
+
 string addBinary(string a, string b)
 {
+
 	while (a.size() > b.size())
 	{
 		b = '0' + b;
@@ -531,7 +516,7 @@ string longestCommonPrefix(vector<string> & strs)
 	if (strs.size() == 0) return "";
 	if (strs.size() == 1) return strs[0];
 	int b = 1;
-	string s = "";
+	string	s = "";
 	for (int i = 0; i < strs[0].size(); i++)
 	{
 		for (int j = 1; j < strs.size(); j++)
@@ -552,6 +537,7 @@ string longestCommonPrefix(vector<string> & strs)
 				b = 0;
 				break;
 			}
+
 		}
 		if (b == 0) break;
 	}
@@ -595,6 +581,7 @@ vector<int> twoSum(vector<int> & numbers, int target)
 				return ans;
 			}
 			if (numbers[i] + numbers[j] > target) break;
+
 		}
 	}
 	return ans;
@@ -610,6 +597,7 @@ int removeElement(vector<int> & nums, int val)
 			nums[k] = nums[i];
 			k++;
 		}
+
 	}
 	return k;
 }
@@ -620,6 +608,7 @@ int findMaxConsecutiveOnes(vector<int> & nums)
 	int temp = 0;
 	for (int i = 0; i < nums.size(); i++)
 	{
+
 		if (nums[i] == 1)
 		{
 			temp += 1;
@@ -657,6 +646,8 @@ int minSubArrayLen(int s, vector<int> & nums)
 					minLen = minLen < j - i + 1 ? minLen : j - i + 1;
 				}
 			}
+
+
 		}
 	}
 	return minLen;
@@ -668,9 +659,10 @@ void rotate(vector<int> & nums, int k)
 	reverse(nums.begin(), nums.end());
 	reverse(nums.begin(), nums.begin() + k);
 	reverse(nums.begin() + k, nums.end());
+
 }
 
-vector<int> getRow(int rowIndex)  //杨辉三角Ⅱ
+vector<int> getRow(int rowIndex) //杨辉三角Ⅱ
 {
 	vector<int> result;
 	for (int i = 0; i <= rowIndex; ++i)
@@ -684,7 +676,7 @@ vector<int> getRow(int rowIndex)  //杨辉三角Ⅱ
 	return result;
 }
 
-string reverseWords(string s)  //********
+string reverseWords(string s)//********
 {
 	int start = 0;
 	int end = s.size() - 1;
@@ -706,22 +698,26 @@ string reverseWords(string s)  //********
 		i = l;
 	}
 
-	int tail = start;  //处理中间冗余空格
+	int tail = start;                                   //处理中间冗余空格
 	for (int i = start; i <= end; i++)
 	{
 		if (s[i] == ' ' && s[i - 1] == ' ') continue;
 		s[tail++] = s[i];
 	}
 	return s.substr(start, tail - start);
+
 }
 
 void moveZeroes_283(vector<int> & nums)
 {
+
 	int end_non_zero = 0;
 	while (end_non_zero < nums.size() && nums[end_non_zero] == 0) end_non_zero++;
 	if (end_non_zero == nums.size()) return;
 	for (int i = 0; i < nums.size(); i++)
 	{
+
+
 		if (nums[i] == 0)
 		{
 			swap(nums[i], nums[end_non_zero]);
@@ -729,11 +725,12 @@ void moveZeroes_283(vector<int> & nums)
 		else
 		{
 			if (i == end_non_zero) end_non_zero++;
+
 		}
-		while (end_non_zero < nums.size() && nums[end_non_zero] == 0)
-			end_non_zero++;
+		while (end_non_zero < nums.size() && nums[end_non_zero] == 0) end_non_zero++;
 		if (end_non_zero == nums.size()) break;
 	}
+
 }
 
 bool hasCycle(ListNode * head)
@@ -742,7 +739,7 @@ bool hasCycle(ListNode * head)
 	{
 		return false;
 	}
-	ListNode* slow = head;
+	ListNode *slow = head;
 	ListNode* fast = head->next;
 	while (fast)
 	{
@@ -752,74 +749,38 @@ bool hasCycle(ListNode * head)
 		if (fast == slow) return true;
 	}
 	return false;
+	
 }
 
-ListNode* getIntersectionNode(ListNode * headA, ListNode * headB)
+ListNode* detectCycle_142(ListNode* head)
 {
-	ListNode* a = headA;
-	ListNode* b = headB;
-	if (!a || !b)
+	set<ListNode*> visited;
+	ListNode* p = head;
+	while (p != NULL)
 	{
-		return NULL;
-	}
-	while (a!=b)
-	{
-		if (a)
+		if (visited.count(p) == 1)
 		{
-			a = a->next;
+			return p;
 		}
 		else
 		{
-			a = headB;
-		}
-		if (b)
-		{
-			b = b->next;
-		}
-		else
-		{
-			b = headA;
+			visited.insert(p);
+			p = p->next;
 		}
 	}
-	return a;
+	return NULL;
 }
-ListNode* removeNthFromEnd(ListNode* head, int n)
-{
-	if (head->next == NULL)
-	{
-		head = NULL;
-		return head;
-	}
-	else
-	{
-		if (head->next->next == NULL)
-		{
-			if (n == 1)
-			{
-				head->next = NULL;
-				return head;
-			}
-			if (n == 2)
-			{
-				head = head->next;
-				return head;
-			}
-		}
-	}
 
-	ListNode* dummp = new ListNode(0);
-	dummp->next = head;
-	ListNode* first = dummp;
-	ListNode* second = dummp;
-	for (int i = 0; i < n; i++)
+
+ListNode* getIntersectionNode(ListNode* headA, ListNode* headB) 
+{
+	set<ListNode*> visited;
+	ListNode* p1 = headA;
+	ListNode* p2 = headB;
+	map<int,ListNode*> m;
+	while (p1!=NULL)
 	{
-		first = first->next;
+		
 	}
-	while (first->next!=NULL)
-	{
-		first = first->next;
-		second = second->next;
-	}
-	second->next = second->next->next;
-	return head;
+	return NULL;
 }
