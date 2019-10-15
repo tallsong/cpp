@@ -12,15 +12,22 @@
 #include<math.h>
 using namespace std;
 
-
+struct ListNode
+{
+	int val;
+	ListNode* next;
+	ListNode(int x) : val(x), next(NULL)
+	{
+	}
+};
 
 
 int main()
 {
-
+	ListNode* head = new ListNode(0);
 	int a = 5;
 	int* b = &a;
-	cout << b;
+	if (head->next == NULL) cout << "----";
 
 	return 0;
 

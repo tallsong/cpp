@@ -772,15 +772,82 @@ ListNode* detectCycle_142(ListNode* head)
 }
 
 
-ListNode* getIntersectionNode(ListNode* headA, ListNode* headB) 
+ListNode* getIntersectionNode(ListNode* headA, ListNode* headB)
 {
-	set<ListNode*> visited;
-	ListNode* p1 = headA;
-	ListNode* p2 = headB;
-	map<int,ListNode*> m;
-	while (p1!=NULL)
+	ListNode* a = headA;
+	ListNode* b = headB;
+	if (!a || !b)
 	{
-		
+		return NULL;
 	}
-	return NULL;
+	while (a != b)
+	{
+		if (a)
+		{
+			a = a->next;
+		}
+		else
+		{
+			a = headB;
+		}
+		if (b)
+		{
+			b = b->next;
+		}
+		else
+		{
+			b = headA;
+		}
+	}
+	return a;
+}
+
+ListNode* removeNthFromEnd(ListNode* head, int n)
+{
+	if (head->next == NULL)
+	{
+		head = NULL;
+		return head;
+	}
+	else
+	{
+		if (head->next->next == NULL)
+		{
+			if (n == 1)
+			{
+				head->next = NULL;
+				return head;
+			}
+			if (n == 2)
+			{
+				head = head->next;
+				return head;
+			}
+		}
+	}
+	ListNode* dummp = new ListNode(0);
+	dummp->next = head;
+	ListNode* first = dummp;
+	ListNode* second = dummp;
+	for (int i = 0; i < n; i++)
+	{
+		first = first->next;
+	}
+	if (first->next == NULL)
+	{
+		head = head->next;
+		return head;
+	}
+	else
+	{
+		while (first->next != NULL)
+		{
+			first = first->next;
+			second = second->next;
+		}
+	}
+
+	second->next = second->next->next;
+	
+	return head;
 }
