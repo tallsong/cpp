@@ -851,3 +851,63 @@ ListNode* removeNthFromEnd(ListNode* head, int n)
 	
 	return head;
 }
+
+
+
+ListNode* reverseList(ListNode* head)
+{
+	ListNode* p = NULL;
+	ListNode* c = head;
+	while (c)
+	{
+		ListNode* t = c->next;
+		c->next = p;
+		p = c;
+		c = t;
+	}
+	return p;
+}
+
+
+
+
+ListNode* removeElements(ListNode* head, int val)
+{
+	if (head == NULL) return head;
+	if (head->next == NULL && head->val == val) return NULL;
+	ListNode* p = head;
+	while (p->next)
+	{
+		if (p->next->val == val)
+		{
+			p->next = p->next->next;
+		}
+		else
+		{
+			p = p->next;
+		}
+	}
+	if (head->val == val) head = head->next;
+	
+	return head;
+}
+
+
+ListNode* oddEvenList(ListNode* head)
+{
+	if (head == NULL || head->next == NULL) return head;
+
+	ListNode* odd = head;
+	ListNode* even = head->next;
+	ListNode* t = even;
+	while (even!=NULL && even->next!=NULL)
+	{
+		odd->next = even->next;
+		odd = even->next;
+		even->next = odd->next;
+		even = odd->next;
+	}
+	odd->next = t;
+	return head;
+
+}
