@@ -4,13 +4,7 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 ## my ignore file
-.vs/*
-Debug/*
-.gitattributes
-my_cpp.sln
-my_cpp.vcxproj
-my_cpp.vcxproj.filters
-my_cpp.vcxproj.user
+
 
 # User-specific files
 *.rsuser

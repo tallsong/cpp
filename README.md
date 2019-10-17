@@ -40,3 +40,36 @@ cout<<hex ; 修改cout显示证书的方式;
 
 * 箭头（->）：左边必须为指针；
 * 点号（.）：左边必须为实体。
+*  
+## Array
+```C++
+int a1[5] = { 1, 2, 3 };  // other element will be set as the default value，也就是该数组的第4，5个元素的值为0
+int size = sizeof(a1) / sizeof(*a1);  // sizeof(a1)的值为20，sizeof(*a1)为4，*a1为数组第一个元素，值为1，*(a1+2)为数组第三个元素，值为3
+for (int& item : a1) {cout << " " << item;} // Iterate all Elements
+sort(a1, a1 + size); //sort
+```
+## vector
+```C++
+	vector<int> v2(v1.begin(), v1.end());vector<int> v3(v2);// 2. make a copy
+	// 2. cast an array to a vector
+	int a[5] = { 0, 1, 2, 3, 4 };
+	vector<int> v4(a, *(&a + 1));  //如果v4.rezise(3)，会把后面的两个值丢掉，此时的值为0,1,2
+	// 5. iterate the vector
+	cout << "[Version 1] The contents of v4 are:";
+	for (int i = 0; i < v4.size(); ++i) {
+		cout << " " << v4[i];
+	}
+	cout << endl;
+	cout << "[Version 2] The contents of v4 are:";
+	for (int& item : v4) {
+		cout << " " << item;
+	}
+	cout << endl;
+	cout << "[Version 3] The contents of v4 are:";
+	for (auto item = v4.begin(); item != v4.end(); ++item) {
+		cout << " " << *item;//typeid(*item).name()的值为int
+
+	}
+```
+
+
