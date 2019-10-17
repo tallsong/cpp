@@ -854,7 +854,7 @@ ListNode* removeNthFromEnd(ListNode* head, int n)
 	}
 
 	second->next = second->next->next;
-	
+
 	return head;
 }
 
@@ -894,7 +894,7 @@ ListNode* removeElements(ListNode* head, int val)
 		}
 	}
 	if (head->val == val) head = head->next;
-	
+
 	return head;
 }
 
