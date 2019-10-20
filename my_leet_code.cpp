@@ -8,61 +8,75 @@
 #include <vector>
 #include<queue>
 #include<set>
+
 using namespace std;
 
-vector<int> twoSum_001(vector<int>& nums, int target) 
+struct ListNode
 {
-  map<int, int> a;  //建立hash表存放数组元素
-  vector<int> b(2, -1);  //存放结果, 声明一个初始大小为2且初始值都为-1的向量
-  for (int i = 0; i < nums.size(); i++)
-    a.insert(map<int, int>::value_type(nums[i], i));
-  for (int i = 0; i < nums.size(); i++) 
-  {
-    if (a.count(target - nums[i]) > 0 && (a[target - nums[i]] != i))
-    //判断是否找到目标元素且目标元素不能是本身,count()方法返回值是一个整数，1表示有这个元素，0表示没有这个元素。
-    {
-      b[0] = i;
-      b[1] = a[target - nums[i]];
-      break;
-    }
-  }
-  return b;
+	int val;
+	ListNode* next;
+	ListNode(int x) : val(x), next(NULL) {}
+};
+struct DoublyListNode
+{
+	int val;
+	DoublyListNode* next, * prev;
+	DoublyListNode(int x) : val(x), next(NULL), prev(NULL){}
+};
+
+vector<int> twoSum_001(vector<int>& nums, int target)
+{
+	map<int, int> a;  //建立hash表存放数组元素
+	vector<int> b(2, -1);  //存放结果, 声明一个初始大小为2且初始值都为-1的向量
+	for (int i = 0; i < nums.size(); i++)
+		a.insert(map<int, int>::value_type(nums[i], i));
+	for (int i = 0; i < nums.size(); i++)
+	{
+		if (a.count(target - nums[i]) > 0 && (a[target - nums[i]] != i))
+			//判断是否找到目标元素且目标元素不能是本身,count()方法返回值是一个整数，1表示有这个元素，0表示没有这个元素。
+		{
+			b[0] = i;
+			b[1] = a[target - nums[i]];
+			break;
+		}
+	}
+	return b;
 };
 vector<int> twoSum2_001(vector<int>& nums, int target) {
-  map<int, int> a;  //建立hash表存放数组元素
-  vector<int> b(2, -1);  //存放结果, 声明一个初始大小为2且初始值都为-1的向量
-  for (int i = 0; i < nums.size(); i++) {
-    if (a.count(target - nums[i]) > 0) {
-      b[0] = a[target - nums[i]];
-      b[1] = i;
-      break;
-    }
-    a[nums[i]] = i;
-  }
-  return b;
+	map<int, int> a;  //建立hash表存放数组元素
+	vector<int> b(2, -1);  //存放结果, 声明一个初始大小为2且初始值都为-1的向量
+	for (int i = 0; i < nums.size(); i++) {
+		if (a.count(target - nums[i]) > 0) {
+			b[0] = a[target - nums[i]];
+			b[1] = i;
+			break;
+		}
+		a[nums[i]] = i;
+	}
+	return b;
 };
 int reverse_007(int x) {
-  int rev = 0;
-  while (x != 0) {
-    int pop = x % 10;
-    x /= 10;
-    if (rev > INT_MAX / 10 || (rev == INT_MAX / 10 && pop > 7)) return 0;
-    if (rev < INT_MIN / 10 || (rev == INT_MIN / 10 && pop < -8)) return 0;
-    rev = rev * 10 + pop;
-  }
-  return rev;
+	int rev = 0;
+	while (x != 0) {
+		int pop = x % 10;
+		x /= 10;
+		if (rev > INT_MAX / 10 || (rev == INT_MAX / 10 && pop > 7)) return 0;
+		if (rev < INT_MIN / 10 || (rev == INT_MIN / 10 && pop < -8)) return 0;
+		rev = rev * 10 + pop;
+	}
+	return rev;
 }
 bool isPalindrome2_009(int x) {
-  int midrev = 0;  //存储后半部分数字的反转结果
-  if (x < 0 || (x % 10 == 0 && x != 0))
-    return false;  //排除负数和最后一位数字为0的数字
-  while (x > midrev) {
-    midrev = midrev * 10 + x % 10;
-    x /= 10;
-  }
-  return midrev == x || midrev / 10 == x;  //数字个数为偶数和奇数分两种情况
+	int midrev = 0;  //存储后半部分数字的反转结果
+	if (x < 0 || (x % 10 == 0 && x != 0))
+		return false;  //排除负数和最后一位数字为0的数字
+	while (x > midrev) {
+		midrev = midrev * 10 + x % 10;
+		x /= 10;
+	}
+	return midrev == x || midrev / 10 == x;  //数字个数为偶数和奇数分两种情况
 }
-int numIslands_200(vector<vector<char>>& grid)
+int numIslands_200(vector<vector<char>> & grid)
 {
 	int h = grid.size();
 	if (!h) return 0;
@@ -96,7 +110,7 @@ int numIslands_200(vector<vector<char>>& grid)
 }
 
 
-vector<int> plusOne_66(vector<int>& digits) // 加一
+vector<int> plusOne_66(vector<int> & digits) // 加一
 {
 	int i = digits.size() - 1;
 	while (i >= 0 && digits[i] == 9)
@@ -110,7 +124,7 @@ vector<int> plusOne_66(vector<int>& digits) // 加一
 }
 
 
-vector<int> dailyTemperatures_739(vector<int>& T)
+vector<int> dailyTemperatures_739(vector<int> & T)
 {
 	int n = T.size();
 	vector<int> result(n);
@@ -162,7 +176,7 @@ string decodeString(string s)
 		}
 		if (s[i] == ']')
 		{
-			int times = nums.top(); 
+			int times = nums.top();
 			nums.pop();
 			for (int i = 0; i < times; i++)
 			{
@@ -176,32 +190,32 @@ string decodeString(string s)
 	return res;
 }
 
-vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newColor) 
+vector<vector<int>> floodFill(vector<vector<int>> & image, int sr, int sc, int newColor)
 {
-	queue<pair<int,int>> q;
+	queue<pair<int, int>> q;
 	int w = image[0].size();
 	int h = image.size();
-	q.push({sr,sc});
+	q.push({ sr,sc });
 	int oldColor = image[sr][sc];
-	if(oldColor == newColor) return image;
-	
+	if (oldColor == newColor) return image;
 
-	while(!q.empty())
-	{		
-		pair<int,int> pos = q.front();
+
+	while (!q.empty())
+	{
+		pair<int, int> pos = q.front();
 		int nsr = pos.first;
 		int nsc = pos.second;
 		image[nsr][nsc] = newColor;
 		q.pop();
-		if (nsc > 0 && image[nsr][nsc-1] == oldColor) q.push({ nsr,nsc - 1 });
+		if (nsc > 0 && image[nsr][nsc - 1] == oldColor) q.push({ nsr,nsc - 1 });
 		if (nsc < w - 1 && image[nsr][nsc + 1] == oldColor) q.push({ nsr,nsc + 1 });
-		if (nsr > 0 && image[nsr-1][nsc] == oldColor) q.push({ nsr - 1,nsc });
-		if (nsr < h - 1 && image[nsr+1][nsc] == oldColor) q.push({ nsr + 1,nsc });
+		if (nsr > 0 && image[nsr - 1][nsc] == oldColor) q.push({ nsr - 1,nsc });
+		if (nsr < h - 1 && image[nsr + 1][nsc] == oldColor) q.push({ nsr + 1,nsc });
 	}
 	return image;
 }
 
-vector<vector<int> > updateMatrix_violence(vector<vector<int> >& matrix)
+vector<vector<int> > updateMatrix_violence(vector<vector<int> > & matrix)
 {
 	int rows = matrix.size();
 	if (rows == 0)
@@ -225,7 +239,7 @@ vector<vector<int> > updateMatrix_violence(vector<vector<int> >& matrix)
 	return dist;
 
 }
-vector<vector<int>> updateMatrix_542(vector<vector<int>>& matrix)
+vector<vector<int>> updateMatrix_542(vector<vector<int>> & matrix)
 {
 	int rows = matrix.size();
 	if (rows == 0)
@@ -278,7 +292,7 @@ vector<vector<int>> updateMatrix_542(vector<vector<int>>& matrix)
 
 }
 
-vector<vector<int> > updateMatrix_dfs(vector<vector<int> >& matrix)
+vector<vector<int> > updateMatrix_dfs(vector<vector<int> > & matrix)
 {
 	int rows = matrix.size();
 	if (rows == 0)
@@ -288,7 +302,7 @@ vector<vector<int> > updateMatrix_dfs(vector<vector<int> >& matrix)
 	queue<pair<int, int> > q;
 	for (int i = 0; i < rows; i++)
 		for (int j = 0; j < cols; j++)
-			if (matrix[i][j] == 0) 
+			if (matrix[i][j] == 0)
 			{
 				dist[i][j] = 0;
 				q.push({ i, j }); //Put all 0s in the queue.
@@ -298,10 +312,10 @@ vector<vector<int> > updateMatrix_dfs(vector<vector<int> >& matrix)
 	while (!q.empty()) {
 		pair<int, int> curr = q.front();
 		q.pop();
-		for (int i = 0; i < 4; i++) 
+		for (int i = 0; i < 4; i++)
 		{
 			int new_r = curr.first + dir[i][0], new_c = curr.second + dir[i][1];
-			if (new_r >= 0 && new_c >= 0 && new_r < rows && new_c < cols) 
+			if (new_r >= 0 && new_c >= 0 && new_r < rows && new_c < cols)
 			{
 				if (dist[new_r][new_c] > dist[curr.first][curr.second] + 1) {
 					dist[new_r][new_c] = dist[curr.first][curr.second] + 1;
@@ -312,7 +326,7 @@ vector<vector<int> > updateMatrix_dfs(vector<vector<int> >& matrix)
 	}
 	return dist;
 }
-bool canVisitAllRooms_841(vector<vector<int>>& rooms)
+bool canVisitAllRooms_841(vector<vector<int>> & rooms)
 {
 	set<int> visited;
 	visited.insert(0);
@@ -335,7 +349,7 @@ bool canVisitAllRooms_841(vector<vector<int>>& rooms)
 	return rooms.size() == visited.size();
 }
 
-int pivotIndex_724(vector<int>& nums)
+int pivotIndex_724(vector<int> & nums)
 {
 	int length = nums.size();
 
@@ -356,7 +370,7 @@ int pivotIndex_724(vector<int>& nums)
 	return -1;
 }
 
-int dominantIndex(vector<int>& nums) 
+int dominantIndex(vector<int> & nums)
 {
 	if (nums.size() == 1)
 		return 0;
@@ -381,10 +395,10 @@ int dominantIndex(vector<int>& nums)
 }
 
 
-vector<int> spiralOrder_54(vector<vector<int>>& matrix) 
+vector<int> spiralOrder_54(vector<vector<int>> & matrix)
 {
 	vector<int> ans;
-	if (matrix.size() == 0 || matrix[0].size()==0)
+	if (matrix.size() == 0 || matrix[0].size() == 0)
 	{
 		return ans;
 	}
@@ -430,7 +444,7 @@ vector<vector<int>> generate_118(int numRows)
 	}
 	return ans;
 }
-vector<int> findDiagonalOrder_498(vector<vector<int>>& matrix) //important
+vector<int> findDiagonalOrder_498(vector<vector<int>> & matrix) //important
 {
 	vector<int> nums;
 	int m = matrix.size();
@@ -489,7 +503,7 @@ string addBinary(string a, string b)
 	return a;
 }
 
-int strStr(string haystack, string needle) 
+int strStr(string haystack, string needle)
 {
 	if (haystack.size() <= needle.size()) return -1;
 	if (needle == "") return 0;
@@ -503,7 +517,7 @@ int strStr(string haystack, string needle)
 	return -1;
 }
 
-string longestCommonPrefix(vector<string>& strs)
+string longestCommonPrefix(vector<string> & strs)
 {
 	if (strs.size() == 0) return "";
 	if (strs.size() == 1) return strs[0];
@@ -536,11 +550,11 @@ string longestCommonPrefix(vector<string>& strs)
 	return s;
 }
 
-void reverseString(vector<char>& s) 
+void reverseString(vector<char> & s)
 {
 	int i = 0;
 	int j = s.size() - 1;
-	while (i<j)
+	while (i < j)
 	{
 		swap(s[i], s[j]);
 		i++;
@@ -548,7 +562,7 @@ void reverseString(vector<char>& s)
 	}
 }
 
-int arrayPairSum(vector<int>& nums)
+int arrayPairSum(vector<int> & nums)
 {
 	sort(nums.begin(), nums.end());
 	int sum = 0;
@@ -559,10 +573,10 @@ int arrayPairSum(vector<int>& nums)
 	return sum;
 }
 
-vector<int> twoSum(vector<int>& numbers, int target) 
+vector<int> twoSum(vector<int> & numbers, int target)
 {
 	vector<int> ans(2, -1);
-	for (int i = 0; i < numbers.size()-1; i++)
+	for (int i = 0; i < numbers.size() - 1; i++)
 	{
 		for (int j = i + 1; j < numbers.size(); j++)
 		{
@@ -579,7 +593,7 @@ vector<int> twoSum(vector<int>& numbers, int target)
 	return ans;
 }
 
-int removeElement(vector<int>& nums, int val)
+int removeElement(vector<int> & nums, int val)
 {
 	int k = 0;
 	for (int i = 0; i < nums.size(); i++)
@@ -594,13 +608,13 @@ int removeElement(vector<int>& nums, int val)
 	return k;
 }
 
-int findMaxConsecutiveOnes(vector<int>& nums) 
+int findMaxConsecutiveOnes(vector<int> & nums)
 {
 	int count = 0;
 	int temp = 0;
 	for (int i = 0; i < nums.size(); i++)
 	{
-		
+
 		if (nums[i] == 1)
 		{
 			temp += 1;
@@ -618,7 +632,7 @@ int findMaxConsecutiveOnes(vector<int>& nums)
 	return count;
 }
 
-int minSubArrayLen(int s, vector<int>& nums)
+int minSubArrayLen(int s, vector<int> & nums)
 {
 	int minLen = 0;
 	for (int i = 0; i < nums.size(); i++)
@@ -629,7 +643,7 @@ int minSubArrayLen(int s, vector<int>& nums)
 			count += nums[j];
 			if (count >= s)
 			{
-				if (minLen==0)
+				if (minLen == 0)
 				{
 					minLen = j - i + 1;
 				}
@@ -645,22 +659,22 @@ int minSubArrayLen(int s, vector<int>& nums)
 	return minLen;
 }
 
-void rotate(vector<int>& nums, int k) 
+void rotate(vector<int> & nums, int k)
 {
 	k = k % nums.size();
 	reverse(nums.begin(), nums.end());
-	reverse(nums.begin(), nums.begin()+k);
-	reverse(nums.begin()+k, nums.end());
+	reverse(nums.begin(), nums.begin() + k);
+	reverse(nums.begin() + k, nums.end());
 
 }
 
 vector<int> getRow(int rowIndex) //杨辉三角Ⅱ
 {
 	vector<int> result;
-	for (int i = 0; i <= rowIndex; ++i) 
+	for (int i = 0; i <= rowIndex; ++i)
 	{
 		result.push_back(1);
-		for (int j = i - 1; j > 0; --j) 
+		for (int j = i - 1; j > 0; --j)
 		{
 			result[j] += result[j - 1];
 		}
@@ -672,11 +686,11 @@ string reverseWords(string s)//********
 {
 	int start = 0;
 	int end = s.size() - 1;
-	while (start<s.size()&&s[start]==' ')
+	while (start < s.size() && s[start] == ' ')
 	{
 		start++;
 	}
-	while (end>=0&&s[end]==' ')
+	while (end >= 0 && s[end] == ' ')
 	{
 		end++;
 	}
@@ -691,7 +705,7 @@ string reverseWords(string s)//********
 	}
 
 	int tail = start;                                   //处理中间冗余空格
-	for (int i = start; i <= end; i++) 
+	for (int i = start; i <= end; i++)
 	{
 		if (s[i] == ' ' && s[i - 1] == ' ') continue;
 		s[tail++] = s[i];
@@ -700,7 +714,7 @@ string reverseWords(string s)//********
 
 }
 
-void moveZeroes_283(vector<int>& nums) 
+void moveZeroes_283(vector<int> & nums)
 {
 
 	int end_non_zero = 0;
@@ -708,8 +722,8 @@ void moveZeroes_283(vector<int>& nums)
 	if (end_non_zero == nums.size()) return;
 	for (int i = 0; i < nums.size(); i++)
 	{
-		
-		
+
+
 		if (nums[i] == 0)
 		{
 			swap(nums[i], nums[end_non_zero]);
@@ -717,11 +731,271 @@ void moveZeroes_283(vector<int>& nums)
 		else
 		{
 			if (i == end_non_zero) end_non_zero++;
-			
+
 		}
 		while (end_non_zero < nums.size() && nums[end_non_zero] == 0) end_non_zero++;
 		if (end_non_zero == nums.size()) break;
 	}
-	
-} 
 
+}
+
+bool hasCycle(ListNode * head)
+{
+	if (head == NULL || head->next == NULL)
+	{
+		return false;
+	}
+	ListNode *slow = head;
+	ListNode* fast = head->next;
+	while (fast)
+	{
+		slow = slow->next;
+		if (fast->next == NULL) return false;
+		fast = fast->next->next;
+		if (fast == slow) return true;
+	}
+	return false;
+	
+}
+
+ListNode* detectCycle_142(ListNode* head)
+{
+	set<ListNode*> visited;
+	ListNode* p = head;
+	while (p != NULL)
+	{
+		if (visited.count(p) == 1)
+		{
+			return p;
+		}
+		else
+		{
+			visited.insert(p);
+			p = p->next;
+		}
+	}
+	return NULL;
+}
+
+
+ListNode* getIntersectionNode(ListNode* headA, ListNode* headB)
+{
+	ListNode* a = headA;
+	ListNode* b = headB;
+	if (!a || !b)
+	{
+		return NULL;
+	}
+	while (a != b)
+	{
+		if (a)
+		{
+			a = a->next;
+		}
+		else
+		{
+			a = headB;
+		}
+		if (b)
+		{
+			b = b->next;
+		}
+		else
+		{
+			b = headA;
+		}
+	}
+	return a;
+}
+
+ListNode* removeNthFromEnd(ListNode* head, int n)
+{
+	if (head->next == NULL)
+	{
+		head = NULL;
+		return head;
+	}
+	else
+	{
+		if (head->next->next == NULL)
+		{
+			if (n == 1)
+			{
+				head->next = NULL;
+				return head;
+			}
+			if (n == 2)
+			{
+				head = head->next;
+				return head;
+			}
+		}
+	}
+	ListNode* dummp = new ListNode(0);
+	dummp->next = head;
+	ListNode* first = dummp;
+	ListNode* second = dummp;
+	for (int i = 0; i < n; i++)
+	{
+		first = first->next;
+	}
+	if (first->next == NULL)
+	{
+		head = head->next;
+		return head;
+	}
+	else
+	{
+		while (first->next != NULL)
+		{
+			first = first->next;
+			second = second->next;
+		}
+	}
+
+	second->next = second->next->next;
+
+	return head;
+}
+
+
+
+ListNode* reverseList(ListNode* head)
+{
+	ListNode* p = NULL;
+	ListNode* c = head;
+	while (c)
+	{
+		ListNode* t = c->next;
+		c->next = p;
+		p = c;
+		c = t;
+	}
+	return p;
+}
+
+
+
+
+ListNode* removeElements(ListNode* head, int val)
+{
+	if (head == NULL) return head;
+	if (head->next == NULL && head->val == val) return NULL;
+	ListNode* p = head;
+	while (p->next)
+	{
+		if (p->next->val == val)
+		{
+			p->next = p->next->next;
+		}
+		else
+		{
+			p = p->next;
+		}
+	}
+	if (head->val == val) head = head->next;
+
+	return head;
+}
+
+
+ListNode* oddEvenList(ListNode* head)
+{
+	if (head == NULL || head->next == NULL) return head;
+	ListNode* odd = head;
+	ListNode* even = head->next;
+	ListNode* t = even;
+	while (even && even->next)
+	{
+		odd->next = even->next;
+		odd = odd->next;
+		even->next = odd->next;
+		even = even->next;
+	}
+	even->next = t;
+	return head;
+
+}
+
+
+int maxPoints(vector<vector<int>>& points)//149 直线上最多的点数
+{
+	if (points.size() < 3) return points.size();
+	int Max = 0;
+	for (int i = 0; i < points.size(); i++)
+	{
+
+		int same = 1;
+		for (int j = i + 1; j < points.size(); j++)
+		{
+			int count = 0;
+			if (points[i][0] == points[j][0] && points[i][1] == points[j][1]) same++;
+			else
+			{
+				count++;
+				long long x = points[i][0] - points[j][0];
+				long long y = points[i][1] - points[j][1];
+				for (int k = j + 1; k < points.size(); k++)
+				{
+					if ((points[i][0] - points[k][0]) * y == (points[i][1] - points[k][1]) * x)
+						count++;
+				}
+
+			}
+			Max = max(Max, count + same);
+		}
+		if (Max > points.size() / 2) return Max;
+	}
+	return Max;
+}
+
+
+bool isPalindrome(ListNode* head)
+{
+	if (head == nullptr || head->next == nullptr) return true;
+	int flag = 0;
+	ListNode* fast = head, * slow = head;
+	stack<int> a;
+	while (fast)
+	{
+		a.push(slow->val);
+		slow = slow->next;
+		if (fast->next != nullptr)
+		{
+			fast = fast->next->next;
+		}
+		else
+		{
+			fast = nullptr;
+			flag = 1;
+		}
+	}
+	if (flag) a.pop();
+	while (!a.empty())
+	{
+		if (a.top() != slow->val) return false;
+		a.pop();
+		slow = slow->next;
+	}
+	return true;
+}
+
+
+ListNode* mergeTwoLists(ListNode* l1, ListNode* l2)
+{
+	if (l1 == NULL) return l2;
+	if (l2 == NULL) return l1;
+	ListNode* head = l1;
+	if (l1->val < l2->val)
+	{
+
+		l1->next = mergeTwoLists(l1->next, l2);
+		return l1;
+	}
+	else
+	{
+		l2->next = mergeTwoLists(l2->next, l1);
+		return l2;
+	}
+
+}

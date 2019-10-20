@@ -1,2 +1,32 @@
 ﻿  main.cpp
-  my_cpp.vcxproj -> D:\github\my_cpp\Debug\my_cpp.exe
+  my_algorithm.cpp
+  my_data_structure.cpp
+D:\github\my_cpp\my_data_structure.cpp(40,18): warning C4018: '>=': signed/unsigned mismatch
+  my_leet_code.cpp
+D:\github\my_cpp\my_data_structure.cpp(269,21): warning C4018: '<': signed/unsigned mismatch
+D:\github\my_cpp\my_leet_code.cpp(31,20): warning C4018: '<': signed/unsigned mismatch
+D:\github\my_cpp\my_leet_code.cpp(33,20): warning C4018: '<': signed/unsigned mismatch
+D:\github\my_cpp\my_leet_code.cpp(48,20): warning C4018: '<': signed/unsigned mismatch
+D:\github\my_cpp\my_leet_code.cpp(119,24): warning C4018: '<': signed/unsigned mismatch
+D:\github\my_cpp\my_leet_code.cpp(379,20): warning C4018: '<': signed/unsigned mismatch
+D:\github\my_cpp\my_leet_code.cpp(510,20): warning C4018: '<': signed/unsigned mismatch
+D:\github\my_cpp\my_leet_code.cpp(526,20): warning C4018: '<': signed/unsigned mismatch
+D:\github\my_cpp\my_leet_code.cpp(528,21): warning C4018: '<': signed/unsigned mismatch
+D:\github\my_cpp\my_leet_code.cpp(569,20): warning C4018: '<': signed/unsigned mismatch
+D:\github\my_cpp\my_leet_code.cpp(579,20): warning C4018: '<': signed/unsigned mismatch
+D:\github\my_cpp\my_leet_code.cpp(581,25): warning C4018: '<': signed/unsigned mismatch
+D:\github\my_cpp\my_leet_code.cpp(599,20): warning C4018: '<': signed/unsigned mismatch
+D:\github\my_cpp\my_leet_code.cpp(615,20): warning C4018: '<': signed/unsigned mismatch
+D:\github\my_cpp\my_leet_code.cpp(638,20): warning C4018: '<': signed/unsigned mismatch
+D:\github\my_cpp\my_leet_code.cpp(641,21): warning C4018: '<': signed/unsigned mismatch
+D:\github\my_cpp\my_leet_code.cpp(689,15): warning C4018: '<': signed/unsigned mismatch
+D:\github\my_cpp\my_leet_code.cpp(721,22): warning C4018: '<': signed/unsigned mismatch
+D:\github\my_cpp\my_leet_code.cpp(723,20): warning C4018: '<': signed/unsigned mismatch
+D:\github\my_cpp\my_leet_code.cpp(736,23): warning C4018: '<': signed/unsigned mismatch
+D:\github\my_cpp\my_leet_code.cpp(926,20): warning C4018: '<': signed/unsigned mismatch
+D:\github\my_cpp\my_leet_code.cpp(930,25): warning C4018: '<': signed/unsigned mismatch
+D:\github\my_cpp\my_leet_code.cpp(939,27): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+D:\github\my_cpp\my_leet_code.cpp(948,11): warning C4018: '>': signed/unsigned mismatch
+my_leet_code.obj : error LNK2005: "struct ListNode * __cdecl reverseList(struct ListNode *)" (?reverseList@@YAPAUListNode@@PAU1@@Z) already defined in main.obj
+D:\github\my_cpp\Debug\my_cpp.exe : fatal error LNK1169: one or more multiply defined symbols found
