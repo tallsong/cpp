@@ -23,6 +23,28 @@ struct DoublyListNode
 	DoublyListNode* next, * prev;
 	DoublyListNode(int x) : val(x), next(NULL), prev(NULL){}
 };
+//class Node
+//{
+//public:
+//	int val;
+//	Node* prev;
+//	Node* next;
+//	Node* child;
+//
+//	Node()
+//	{
+//	}
+//
+//	Node(int _val, Node* _prev, Node* _next, Node* _child)
+//	{
+//		val = _val;
+//		prev = _prev;
+//		next = _next;
+//		child = _child;
+//	}
+//};
+
+
 
 vector<int> twoSum_001(vector<int>& nums, int target)
 {
@@ -998,4 +1020,47 @@ ListNode* mergeTwoLists(ListNode* l1, ListNode* l2)
 		return l2;
 	}
 
+}
+
+ListNode* addTwoNumbers(ListNode* l1, ListNode* l2)
+{
+	ListNode* res = new ListNode(0);
+	ListNode* p = res;
+	int j = 0;
+	while (l1 != NULL || l2 != NULL)
+	{
+		int c1 = l1 == NULL ? 0 : l1->val;
+		int c2 = l2 == NULL ? 0 : l2->val;
+		p->next = new ListNode((c1 + c2 + j) % 10);
+		j = (c1 + c2 + j) / 10;
+		p = p->next;
+		l1 = l1 == NULL ? l1 : l1->next;
+		l2 = l2 == NULL ? l2 : l2->next;
+	}
+	if (j != 0) p->next = new ListNode(j);
+	return res->next;
+}
+
+
+
+ListNode* rotateRight_61(ListNode* head, int k)
+{
+	if (head == NULL || head->next == NULL) return head;
+	if (k == 0) return head;
+	ListNode* old_tail = head;
+	int length = 1;
+	while (old_tail->next)
+	{
+		length += 1;
+		old_tail = old_tail->next;
+	}
+	old_tail->next = head;
+	old_tail = head;
+	for (int i = 0; i < length-(k % length)-1; i++)  //为什么是 length-(k % length)-1???而不是k？
+	{
+		old_tail = old_tail->next;
+	}
+	head = old_tail->next;																																					
+	old_tail->next = NULL;
+	return head;
 }
