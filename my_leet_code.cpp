@@ -1064,3 +1064,21 @@ ListNode* rotateRight_61(ListNode* head, int k)
 	old_tail->next = NULL;
 	return head;
 }
+
+double myPow_50(double x, int n)
+{
+	long N = n;
+	if (N < 0)
+	{
+		N = -N;
+		x = 1 / x;
+	}
+	double res = 1;
+	double cur_product = x;
+	for (long i = N; i; i /= 2)
+	{
+		if (i % 2 == 1) res *= cur_product;
+		cur_product = cur_product * cur_product;
+	}
+	return res;
+}
