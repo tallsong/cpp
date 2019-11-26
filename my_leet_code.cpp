@@ -6,9 +6,10 @@
 #include <stack>
 #include <string>
 #include <vector>
-#include<queue>
-#include<set>
-
+#include <queue>
+#include <set>
+#include <unordered_map>
+#include <map>
 using namespace std;
 
 struct ListNode
@@ -1081,4 +1082,100 @@ double myPow_50(double x, int n)
 		cur_product = cur_product * cur_product;
 	}
 	return res;
+}
+
+
+int firstUniqChar(string s) 
+{
+	unordered_map<char, int> m;
+	for (int i = 0; i < s.size(); i++)
+	{
+		if (m.count(s[i]))
+		{
+			m[s[i]] += 1;
+		}
+		else
+		{
+			m[s[i]] = 1;
+		}
+	}
+	for (int i = 0; i < s.size(); i++)
+	{
+		if (m[s[i]] == 1)
+		{
+			return i;
+		}
+	}
+
+}
+
+vector<int> intersect(vector<int>& nums1, vector<int>& nums2) 
+{
+	unordered_map<int, int> m;
+	vector<int> res;
+	for (int i = 0; i < nums1.size(); i++)
+	{
+		m[nums1[i]] += 1;
+	}
+	for (int i = 0; i < nums2.size(); i++)
+	{
+		if (m[nums2[i]] > 0)
+		{
+			res.push_back(nums2[i]);
+				m[nums2[i]]--;
+		}
+	}
+	return res;
+}
+
+bool containsDuplicate(vector<int>& nums)
+{
+	unordered_set<int> hashset;
+	for (int num : nums)
+	{
+		if (hashset.count(num) > 0)
+		{
+			return true;
+		}
+		else
+		{
+			hashset.insert(num);
+		}
+
+	}
+	return false;
+}
+
+vector<string> findRestaurant(vector<string>& list1, vector<string>& list2)
+{
+	unordered_map<string, int> a;
+	int min_index = INT_MAX;
+	vector<string> res;
+
+	for (int i = 0; i < list1.size(); i++)
+	{
+		a[list1[i]] = i;
+	}
+	for (int i = 0; i < list2.size(); i++)
+	{
+		if (a.count(list2[i]) > 0 && (a[list2[i]] + i == min_index))
+		{
+			res.push_back(list2[i]);
+		}
+		if (a.count(list2[i]) > 0 && (a[list2[i]] + i < min_index))
+		{
+			min_index = a[list2[i]] + i;
+			res.clear();
+			res.push_back(list2[i]);
+		}
+	}
+	return res;
+}
+bool containsNearbyDuplicate(vector<int>& nums, int k) 
+{
+	unordered_map<string, int> a;
+	for (int i = 0; i < nums.size(); i++)
+	{
+
+	}
 }

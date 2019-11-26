@@ -402,31 +402,67 @@ public:
 		}
 	}
 };
-class MyHashSet
-{
+
+class MyHashSet {
+private:
+	vector<bool> hash_set;
 public:
 	/** Initialize your data structure here. */
-	MyHashSet()
-	{
-
+	MyHashSet() {
+		hash_set = vector<bool>(1000001, false);
 	}
 
-	void add(int key)
-	{
-
+	void add(int key) {
+		hash_set[key] = true;
 	}
 
-	void remove(int key)
-	{
-
+	void remove(int key) {
+		if (hash_set[key])
+		{
+			hash_set[key] = false;
+		}
 	}
 
 	/** Returns true if this set contains the specified element */
-	bool contains(int key)
-	{
-
+	bool contains(int key) {
+		return hash_set[key];
 	}
 };
+
+class MyHashMap {
+	vector<pair<int, bool>> hash_map;
+public:
+	/** Initialize your data structure here. */
+	MyHashMap() {
+		hash_map = vector<pair<int, bool>>(1000001, make_pair(-1, false));
+	}
+
+	/** value will always be non-negative. */
+	void put(int key, int value) {
+		hash_map[key].first = value;
+		hash_map[key].second = true;
+	}
+
+	/** Returns the value to which the specified key is mapped, or -1 if this map contains no mapping for the key */
+	int get(int key) {
+		if (hash_map[key].second)
+		{
+			return hash_map[key].first;
+		}
+		else
+		{
+			return -1;
+		}
+	}
+
+	/** Removes the mapping of the specified value key if this map contains a mapping for the key */
+	void remove(int key) {
+		hash_map[key].first = -1;
+		hash_map[key].second = false;
+	}
+};
+
+
 
 /**
  * Your MyHashSet object will be instantiated and called as such:
@@ -435,3 +471,87 @@ public:
  * obj->remove(key);
  * bool param_3 = obj->contains(key);
  */
+
+ /*
+  * Template for using hash set to find duplicates.
+  */
+
+// 给定一个整数数组，查找数组是否包含任何重复项。
+bool findDuplicates(vector<Type>& keys) {
+	// Replace Type with actual type of your key
+	unordered_set<Type> hashset;
+	for (Type key : keys) {
+		if (hashset.count(key) > 0) {
+			return true;
+		}
+		hashset.insert(key);
+	}
+	
+}
+
+#include <unordered_map>                // 0. include the library
+
+int main() {
+	// 1. initialize a hash map
+	unordered_map<int, int> hashmap;
+	// 2. insert a new (key, value) pair
+	hashmap.insert(make_pair(0, 0));
+	hashmap.insert(make_pair(2, 3));
+	// 3. insert a new (key, value) pair or update the value of existed key
+	hashmap[1] = 1;
+	hashmap[1] = 2;
+	// 4. get the value of a specific key
+	cout << "The value of key 1 is: " << hashmap[1] << endl;
+	// 5. delete a key
+	hashmap.erase(2);
+	// 6. check if a key is in the hash map
+	if (hashmap.count(2) <= 0) {
+		cout << "Key 2 is not in the hash map." << endl;
+	}
+	// 7. get the size of the hash map
+	cout << "the size of hash map is: " << hashmap.size() << endl;
+	// 8. iterate the hash map
+	for (auto it = hashmap.begin(); it != hashmap.end(); ++it) {
+		cout << "(" << it->first << "," << it->second << ") ";
+	}
+	cout << "are in the hash map." << endl;
+	// 9. clear the hash map
+	hashmap.clear();
+	// 10. check if the hash map is empty
+	if (hashmap.empty()) {
+		cout << "hash map is empty now!" << endl;
+	}
+}
+//two sum模板
+ReturnType aggregateByKey_hashmap(vector<Type>& keys) {
+	// Replace Type and InfoType with actual type of your key and value
+	unordered_map<Type, InfoType> hashtable;
+	for (Type key : keys) {
+		if (hashmap.count(key) > 0) {
+			if (hashmap[key] satisfies the requirement) {
+				return needed_information;
+			}
+		}
+		// Value can be any information you needed (e.g. index)
+		hashmap[key] = value;
+	}
+	return needed_information;
+}
+
+
+/*
+ * Template for using hash map to find duplicates.
+ * Replace ReturnType with the actual type of your return value.
+ */
+ReturnType aggregateByKey_hashmap(vector<Type>& keys) {
+	// Replace Type and InfoType with actual type of your key and value
+	unordered_map<Type, InfoType> hashtable;
+	for (Type key : keys) {
+		if (hashmap.count(key) > 0) {
+			update hashmap[key];
+		}
+		// Value can be any information you needed (e.g. index)
+		hashmap[key] = value;
+	}
+	return needed_information;
+}
