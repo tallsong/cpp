@@ -23,14 +23,11 @@ using namespace std;
 int main()
 {
 
-	  MyHashSet* obj = new MyHashSet();
-	  obj->add(key);
-	  obj->remove(key);
-	  bool param_3 = obj->contains(key);
- 
+
+
 	/*ListNode* prev = nullptr;*/
 	vector<int>a = { 2, 7, 11, 15 };
-	cout << (4+6)/10;
+	cout << (4 + 6) / 10;
 	string s = "sdfsdfsd";
 	cout << s[0] + '0';
 

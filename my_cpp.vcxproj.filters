@@ -18,17 +18,17 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="my_algorithm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="my_data_structure.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="my_leet_code.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="my_algorithm.cpp">
+    <ClCompile Include="exam.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="README.md" />
   </ItemGroup>
 </Project>

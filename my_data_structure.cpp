@@ -311,7 +311,7 @@ public:
 		tail = p;
 	}
 	/** Get the value of the index-th node in the linked list. If the index is invalid, return -1. */
-	int get(int index) 
+	int get(int index)
 	{
 		if (index < 0 || index >= len)
 		{
@@ -374,7 +374,7 @@ public:
 					cur = cur->next;
 				}
 				p->next = cur->next;
-				cur->next = p;	
+				cur->next = p;
 				len++;
 			}
 		}
@@ -476,22 +476,22 @@ public:
   * Template for using hash set to find duplicates.
   */
 
-// 给定一个整数数组，查找数组是否包含任何重复项。
-bool findDuplicates(vector<Type>& keys) {
-	// Replace Type with actual type of your key
-	unordered_set<Type> hashset;
-	for (Type key : keys) {
-		if (hashset.count(key) > 0) {
-			return true;
-		}
-		hashset.insert(key);
-	}
-	
-}
+  // 给定一个整数数组，查找数组是否包含任何重复项。
+  //bool findDuplicates(vector<Type>& keys) {
+  //	// Replace Type with actual type of your key
+  //	unordered_set<Type> hashset;
+  //	for (Type key : keys) {
+  //		if (hashset.count(key) > 0) {
+  //			return true;
+  //		}
+  //		hashset.insert(key);
+  //	}
+  //	
+  //}
 
 #include <unordered_map>                // 0. include the library
 
-int main() {
+int fuck_main() {
 	// 1. initialize a hash map
 	unordered_map<int, int> hashmap;
 	// 2. insert a new (key, value) pair
@@ -521,37 +521,38 @@ int main() {
 	if (hashmap.empty()) {
 		cout << "hash map is empty now!" << endl;
 	}
+	return 0;
 }
 //two sum模板
-ReturnType aggregateByKey_hashmap(vector<Type>& keys) {
-	// Replace Type and InfoType with actual type of your key and value
-	unordered_map<Type, InfoType> hashtable;
-	for (Type key : keys) {
-		if (hashmap.count(key) > 0) {
-			if (hashmap[key] satisfies the requirement) {
-				return needed_information;
-			}
-		}
-		// Value can be any information you needed (e.g. index)
-		hashmap[key] = value;
-	}
-	return needed_information;
-}
+//ReturnType aggregateByKey_hashmap(vector<Type>& keys) {
+//	// Replace Type and InfoType with actual type of your key and value
+//	unordered_map<Type, InfoType> hashtable;
+//	for (Type key : keys) {
+//		if (hashmap.count(key) > 0) {
+//			if (hashmap[key] satisfies the requirement) {
+//				return needed_information;
+//			}
+//		}
+//		// Value can be any information you needed (e.g. index)
+//		hashmap[key] = value;
+//	}
+//	return needed_information;
+//}
 
 
 /*
  * Template for using hash map to find duplicates.
  * Replace ReturnType with the actual type of your return value.
  */
-ReturnType aggregateByKey_hashmap(vector<Type>& keys) {
-	// Replace Type and InfoType with actual type of your key and value
-	unordered_map<Type, InfoType> hashtable;
-	for (Type key : keys) {
-		if (hashmap.count(key) > 0) {
-			update hashmap[key];
-		}
-		// Value can be any information you needed (e.g. index)
-		hashmap[key] = value;
-	}
-	return needed_information;
-}
+ //ReturnType aggregateByKey_hashmap(vector<Type>& keys) {
+ //	// Replace Type and InfoType with actual type of your key and value
+ //	unordered_map<Type, InfoType> hashtable;
+ //	for (Type key : keys) {
+ //		if (hashmap.count(key) > 0) {
+ //			update hashmap[key];
+ //		}
+ //		// Value can be any information you needed (e.g. index)
+ //		hashmap[key] = value;
+ //	}
+ //	return needed_information;
+ //}

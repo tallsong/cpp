@@ -39,7 +39,7 @@ int acrpss_river(vector<int> arr, int n)
 	}
 	else
 	{
-		return guohe(arr, n - 2) + min(arr[n - 1] + arr[n - 2] + 2 * arr[0],arr[n - 1] + arr[1] * 2 + arr[0]);
+		return acrpss_river(arr, n - 2) + min(arr[n - 1] + arr[n - 2] + 2 * arr[0], arr[n - 1] + arr[1] * 2 + arr[0]);
 	}
 }
 

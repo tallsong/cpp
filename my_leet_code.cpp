@@ -10,6 +10,7 @@
 #include <set>
 #include <unordered_map>
 #include <map>
+#include <unordered_set>
 using namespace std;
 
 struct ListNode
@@ -22,7 +23,7 @@ struct DoublyListNode
 {
 	int val;
 	DoublyListNode* next, * prev;
-	DoublyListNode(int x) : val(x), next(NULL), prev(NULL){}
+	DoublyListNode(int x) : val(x), next(NULL), prev(NULL) {}
 };
 //class Node
 //{
@@ -99,7 +100,7 @@ bool isPalindrome2_009(int x) {
 	}
 	return midrev == x || midrev / 10 == x;  //数字个数为偶数和奇数分两种情况
 }
-int numIslands_200(vector<vector<char>> & grid)
+int numIslands_200(vector<vector<char>>& grid)
 {
 	int h = grid.size();
 	if (!h) return 0;
@@ -133,7 +134,7 @@ int numIslands_200(vector<vector<char>> & grid)
 }
 
 
-vector<int> plusOne_66(vector<int> & digits) // 加一
+vector<int> plusOne_66(vector<int>& digits) // 加一
 {
 	int i = digits.size() - 1;
 	while (i >= 0 && digits[i] == 9)
@@ -147,7 +148,7 @@ vector<int> plusOne_66(vector<int> & digits) // 加一
 }
 
 
-vector<int> dailyTemperatures_739(vector<int> & T)
+vector<int> dailyTemperatures_739(vector<int>& T)
 {
 	int n = T.size();
 	vector<int> result(n);
@@ -213,7 +214,7 @@ string decodeString(string s)
 	return res;
 }
 
-vector<vector<int>> floodFill(vector<vector<int>> & image, int sr, int sc, int newColor)
+vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newColor)
 {
 	queue<pair<int, int>> q;
 	int w = image[0].size();
@@ -238,7 +239,7 @@ vector<vector<int>> floodFill(vector<vector<int>> & image, int sr, int sc, int n
 	return image;
 }
 
-vector<vector<int> > updateMatrix_violence(vector<vector<int> > & matrix)
+vector<vector<int> > updateMatrix_violence(vector<vector<int> >& matrix)
 {
 	int rows = matrix.size();
 	if (rows == 0)
@@ -262,7 +263,7 @@ vector<vector<int> > updateMatrix_violence(vector<vector<int> > & matrix)
 	return dist;
 
 }
-vector<vector<int>> updateMatrix_542(vector<vector<int>> & matrix)
+vector<vector<int>> updateMatrix_542(vector<vector<int>>& matrix)
 {
 	int rows = matrix.size();
 	if (rows == 0)
@@ -315,7 +316,7 @@ vector<vector<int>> updateMatrix_542(vector<vector<int>> & matrix)
 
 }
 
-vector<vector<int> > updateMatrix_dfs(vector<vector<int> > & matrix)
+vector<vector<int> > updateMatrix_dfs(vector<vector<int> >& matrix)
 {
 	int rows = matrix.size();
 	if (rows == 0)
@@ -349,7 +350,7 @@ vector<vector<int> > updateMatrix_dfs(vector<vector<int> > & matrix)
 	}
 	return dist;
 }
-bool canVisitAllRooms_841(vector<vector<int>> & rooms)
+bool canVisitAllRooms_841(vector<vector<int>>& rooms)
 {
 	set<int> visited;
 	visited.insert(0);
@@ -372,7 +373,7 @@ bool canVisitAllRooms_841(vector<vector<int>> & rooms)
 	return rooms.size() == visited.size();
 }
 
-int pivotIndex_724(vector<int> & nums)
+int pivotIndex_724(vector<int>& nums)
 {
 	int length = nums.size();
 
@@ -393,7 +394,7 @@ int pivotIndex_724(vector<int> & nums)
 	return -1;
 }
 
-int dominantIndex(vector<int> & nums)
+int dominantIndex(vector<int>& nums)
 {
 	if (nums.size() == 1)
 		return 0;
@@ -418,7 +419,7 @@ int dominantIndex(vector<int> & nums)
 }
 
 
-vector<int> spiralOrder_54(vector<vector<int>> & matrix)
+vector<int> spiralOrder_54(vector<vector<int>>& matrix)
 {
 	vector<int> ans;
 	if (matrix.size() == 0 || matrix[0].size() == 0)
@@ -467,7 +468,7 @@ vector<vector<int>> generate_118(int numRows)
 	}
 	return ans;
 }
-vector<int> findDiagonalOrder_498(vector<vector<int>> & matrix) //important
+vector<int> findDiagonalOrder_498(vector<vector<int>>& matrix) //important
 {
 	vector<int> nums;
 	int m = matrix.size();
@@ -540,7 +541,7 @@ int strStr(string haystack, string needle)
 	return -1;
 }
 
-string longestCommonPrefix(vector<string> & strs)
+string longestCommonPrefix(vector<string>& strs)
 {
 	if (strs.size() == 0) return "";
 	if (strs.size() == 1) return strs[0];
@@ -573,7 +574,7 @@ string longestCommonPrefix(vector<string> & strs)
 	return s;
 }
 
-void reverseString(vector<char> & s)
+void reverseString(vector<char>& s)
 {
 	int i = 0;
 	int j = s.size() - 1;
@@ -585,7 +586,7 @@ void reverseString(vector<char> & s)
 	}
 }
 
-int arrayPairSum(vector<int> & nums)
+int arrayPairSum(vector<int>& nums)
 {
 	sort(nums.begin(), nums.end());
 	int sum = 0;
@@ -596,7 +597,7 @@ int arrayPairSum(vector<int> & nums)
 	return sum;
 }
 
-vector<int> twoSum(vector<int> & numbers, int target)
+vector<int> twoSum(vector<int>& numbers, int target)
 {
 	vector<int> ans(2, -1);
 	for (int i = 0; i < numbers.size() - 1; i++)
@@ -616,7 +617,7 @@ vector<int> twoSum(vector<int> & numbers, int target)
 	return ans;
 }
 
-int removeElement(vector<int> & nums, int val)
+int removeElement(vector<int>& nums, int val)
 {
 	int k = 0;
 	for (int i = 0; i < nums.size(); i++)
@@ -631,7 +632,7 @@ int removeElement(vector<int> & nums, int val)
 	return k;
 }
 
-int findMaxConsecutiveOnes(vector<int> & nums)
+int findMaxConsecutiveOnes(vector<int>& nums)
 {
 	int count = 0;
 	int temp = 0;
@@ -655,7 +656,7 @@ int findMaxConsecutiveOnes(vector<int> & nums)
 	return count;
 }
 
-int minSubArrayLen(int s, vector<int> & nums)
+int minSubArrayLen(int s, vector<int>& nums)
 {
 	int minLen = 0;
 	for (int i = 0; i < nums.size(); i++)
@@ -682,7 +683,7 @@ int minSubArrayLen(int s, vector<int> & nums)
 	return minLen;
 }
 
-void rotate(vector<int> & nums, int k)
+void rotate(vector<int>& nums, int k)
 {
 	k = k % nums.size();
 	reverse(nums.begin(), nums.end());
@@ -737,7 +738,7 @@ string reverseWords(string s)//********
 
 }
 
-void moveZeroes_283(vector<int> & nums)
+void moveZeroes_283(vector<int>& nums)
 {
 
 	int end_non_zero = 0;
@@ -762,13 +763,13 @@ void moveZeroes_283(vector<int> & nums)
 
 }
 
-bool hasCycle(ListNode * head)
+bool hasCycle(ListNode* head)
 {
 	if (head == NULL || head->next == NULL)
 	{
 		return false;
 	}
-	ListNode *slow = head;
+	ListNode* slow = head;
 	ListNode* fast = head->next;
 	while (fast)
 	{
@@ -778,7 +779,7 @@ bool hasCycle(ListNode * head)
 		if (fast == slow) return true;
 	}
 	return false;
-	
+
 }
 
 ListNode* detectCycle_142(ListNode* head)
@@ -1057,11 +1058,11 @@ ListNode* rotateRight_61(ListNode* head, int k)
 	}
 	old_tail->next = head;
 	old_tail = head;
-	for (int i = 0; i < length-(k % length)-1; i++)  //为什么是 length-(k % length)-1???而不是k？
+	for (int i = 0; i < length - (k % length) - 1; i++)  //为什么是 length-(k % length)-1???而不是k？
 	{
 		old_tail = old_tail->next;
 	}
-	head = old_tail->next;																																					
+	head = old_tail->next;
 	old_tail->next = NULL;
 	return head;
 }
@@ -1085,7 +1086,7 @@ double myPow_50(double x, int n)
 }
 
 
-int firstUniqChar(string s) 
+int firstUniqChar(string s)
 {
 	unordered_map<char, int> m;
 	for (int i = 0; i < s.size(); i++)
@@ -1109,7 +1110,7 @@ int firstUniqChar(string s)
 
 }
 
-vector<int> intersect(vector<int>& nums1, vector<int>& nums2) 
+vector<int> intersect(vector<int>& nums1, vector<int>& nums2)
 {
 	unordered_map<int, int> m;
 	vector<int> res;
@@ -1122,7 +1123,7 @@ vector<int> intersect(vector<int>& nums1, vector<int>& nums2)
 		if (m[nums2[i]] > 0)
 		{
 			res.push_back(nums2[i]);
-				m[nums2[i]]--;
+			m[nums2[i]]--;
 		}
 	}
 	return res;
@@ -1170,12 +1171,4 @@ vector<string> findRestaurant(vector<string>& list1, vector<string>& list2)
 		}
 	}
 	return res;
-}
-bool containsNearbyDuplicate(vector<int>& nums, int k) 
-{
-	unordered_map<string, int> a;
-	for (int i = 0; i < nums.size(); i++)
-	{
-
-	}
 }
