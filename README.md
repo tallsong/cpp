@@ -1,3 +1,7 @@
+# Debug
+- When using print statements, use std::cerr instead of `std::cout`.
+
+
 # my_cpp
 sqe8ql
 this is leetcode solution and learn cpp for you all

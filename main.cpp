@@ -1,37 +1,28 @@
-//11.25 T16
+#include <array>
 #include <iostream>
-#include<cmath>
-#include<vector>
-#include<stack>
-#include <algorithm>
-#include<map>
-#include<string>
-#include<fstream>
-#include<queue>
-#include<set>
-#include<climits>
-#include<math.h>
-#include<unordered_set>
-#include<unordered_map>
-using namespace std;
-
-
-
-
-
-
+#include <string_view>
+#include <tuple>
+#include <type_traits>
+ 
+namespace a::b::c
+{
+    inline constexpr std::string_view str{ "hello" };
+}
+ 
+template <class... T>
+std::tuple<std::size_t, std::common_type_t<T...>> sum(T... args)
+{
+    return { sizeof...(T), (args + ...) };
+}
+ 
 int main()
 {
-
-
-
-	/*ListNode* prev = nullptr;*/
-	vector<int>a = { 2, 7, 11, 15 };
-	cout << (4 + 6) / 10;
-	string s = "sdfsdfsd";
-	cout << s[0] + '0';
-
-	return 0;
+    auto [iNumbers, iSum]{ sum(1, 2, 3) };
+    std::cout << a::b::c::str << ' ' << iNumbers << ' ' << iSum << '\n';
+ 
+    std::array arr{ 1, 2, 3 };
+ 
+    std::cout << std::size(arr) << '\n';
+ 
+    return 0;
 }
-
-
