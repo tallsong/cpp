@@ -1,5 +1,30 @@
+# Fundamental Data Types
+## Now that fixed-width integers have been added to C++, the best practice for integers in C++ is as follows:
+- int should be preferred when the size of the integer doesn’t matter (e.g. the number will always fit within the range of a 2 byte signed integer). For example, if you’re asking the user to enter their age, or counting from 1 to 10, it doesn’t matter whether int is 16 or 32 bits (the numbers will fit either way). This will cover the vast majority of the cases you’re likely to run across.
+- If you need a variable guaranteed to be a particular size and want to favor performance, use std::int_fast#_t.
+- If you need a variable guaranteed to be a particular size and want to favor memory conservation over performance, use std::int_least#_t. This is used most often when allocating lots of variables.
+------------------
+## Floating point number
+- Favor double over float unless space is at a premium, as the lack of precision in a float will often lead to inaccuracies.
+## const
+- Any variable that should not be modifiable after initialization and whose initializer is known at compile-time should be declared as constexpr.
+- Any variable that should not be modifiable after initialization and whose initializer is not known at compile-time should be declared as const.
 # Debug
 - When using print statements, use std::cerr instead of `std::cout`.
+
+## literals
+
+| Data Type | Suffix                                    | Meaning            |
+| --------- | ----------------------------------------- | ------------------ |
+| int       | u or U                                    | unsigned int       |
+| int       | l or L                                    | long               |
+| int       | ul, uL, Ul, UL, lu, lU, Lu, or LU         | unsigned long      |
+| int       | ll or LL                                  | long long          |
+| int       | ull, uLL, Ull, ULL, llu, llU, LLu, or LLU | unsigned long long |
+| double    | f or F                                    | float              |
+| double    | l or L                                    | long double        |
+
+
 
 
 # my_cpp
