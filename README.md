@@ -24,6 +24,12 @@
 | double    | f or F                                    | float              |
 | double    | l or L                                    | long double        |
 
+# Operators
+- [Table of operators](https://www.learncpp.com/cpp-tutorial/operator-precedence-and-associativity/)
+- The modulus operator can also work with negative operands. x % y always returns results with the sign of x.
+- Avoid the postfix versions of these operators whenever possible.
+- `double x{ 0.1 + 0.1 + 0.1 }; return (x == 0.3);` return false;
+- De Morgan’s law says that if we distribute a NOT, we need to flip ORs and ANDs to the other. So ~(option4 | option5) becomes ~option4 & ~option5.
 
 
 
