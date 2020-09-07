@@ -26,12 +26,16 @@
 
 # Operators
 - [Table of operators](https://www.learncpp.com/cpp-tutorial/operator-precedence-and-associativity/)
+- [scope-duration-and-linkage-summary](https://www.learncpp.com/cpp-tutorial/scope-duration-and-linkage-summary/)
 - The modulus operator can also work with negative operands. x % y always returns results with the sign of x.
 - Avoid the postfix versions of these operators whenever possible.
 - `double x{ 0.1 + 0.1 + 0.1 }; return (x == 0.3);` return false;
 - De Morgan’s law says that if we distribute a NOT, we need to flip ORs and ANDs to the other. So ~(option4 | option5) becomes ~option4 & ~option5.
-
-
+-  In C++, the term inline has evolved to mean “multiple definitions are allowed”.
+- When applied to a global variable, the static keyword defines the global variable as having internal linkage, meaning the variable cannot be exported to other files.
+- When applied to a local variable, the static keyword defines the local variable as having static duration, meaning the variable will only be created once, and will not be destroyed until the end of the program.
+- int8_t is actually a type alias for signed char
+- Don’t assign the same value to two enumerators in the same enumeration unless there’s a very good reason.
 
 # my_cpp
 sqe8ql
