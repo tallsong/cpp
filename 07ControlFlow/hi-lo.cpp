@@ -76,10 +76,6 @@ int main()
             {
                 break;
             }
-            else
-            {
-                continue;
-            }
         }
 
     } while (true);

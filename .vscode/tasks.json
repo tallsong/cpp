@@ -8,7 +8,7 @@
 			"args": [
 				"-std=c++17",
 				"-pedantic-errors",  //disable compiler extensions
-				"-Werror",  //Make all warnings into errors.
+				// "-Werror",  //Make all warnings into errors.
 				"-Wall",
 				"-Weffc++",
 				"-Wextra",  

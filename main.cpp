@@ -23,6 +23,6 @@ int main()
     std::array arr{ 1, 2, 3 };
  
     std::cout << std::size(arr) << '\n';
- 
+    
     return 0;
 }

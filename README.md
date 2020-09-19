@@ -36,7 +36,15 @@
 - When applied to a local variable, the static keyword defines the local variable as having static duration, meaning the variable will only be created once, and will not be destroyed until the end of the program.
 - int8_t is actually a type alias for signed char
 - Don’t assign the same value to two enumerators in the same enumeration unless there’s a very good reason.
-
+# Arrays, Strings, Pointers, and References
+## Pointers
+- When declaring a pointer variable, put the asterisk next to the variable name.
+- When declaring a function, put the asterisk of a pointer return value next to the type.
+## poinnter and array
+- Favor the pointer syntax (*) over the array syntax ([]) for array function parameters.
+-  array[n] is the same as *(array + n)
+- Pass non-pointer, non-fundamental data type variables (such as structs) by (const) reference, unless you know that passing it by value is faster.
+- An array that decayed to a pointer cannot be used in a for-each loop.
 # my_cpp
 sqe8ql
 this is leetcode solution and learn cpp for you all
