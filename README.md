@@ -45,6 +45,10 @@
 -  array[n] is the same as *(array + n)
 - Pass non-pointer, non-fundamental data type variables (such as structs) by (const) reference, unless you know that passing it by value is faster.
 - An array that decayed to a pointer cannot be used in a for-each loop.
+
+
+## Functions
+- Standard library functions may copy function objects (reminder: lambdas are function objects). If you want to provide lambdas with mutable captured variables, pass them by reference using std::ref.
 # my_cpp
 sqe8ql
 this is leetcode solution and learn cpp for you all

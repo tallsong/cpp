@@ -10,7 +10,7 @@
             "request": "launch",
             //"program": "${fileDirname}/${fileBasenameNoExtension}",
             "program": "${workspaceFolder}/test.out",
-            "args": [],
+            "args": [123,"fuck"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
