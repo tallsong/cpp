@@ -5,13 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "WSL default Build and debug active file",
+            "name": "single Build and debug active",
             "type": "cppdbg",
             "request": "launch",
             //"program": "${fileDirname}/${fileBasenameNoExtension}",
             "program": "${workspaceFolder}/test.out",
-            "args": [123,"fuck"],
-            "stopAtEntry": false,
+            "args": ["123","fuck"],
+            "stopAtEntry": false,  //If set to true, the debugger should stop at the entry-point of the target (ignored on attach). 
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
@@ -23,7 +23,7 @@
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "WSL default build active file",
+            "preLaunchTask": "single file",
             "miDebuggerPath": "/usr/bin/gdb"
         }
     ]

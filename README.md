@@ -36,6 +36,17 @@
 - When applied to a local variable, the static keyword defines the local variable as having static duration, meaning the variable will only be created once, and will not be destroyed until the end of the program.
 - int8_t is actually a type alias for signed char
 - Don’t assign the same value to two enumerators in the same enumeration unless there’s a very good reason.
+## static
+- for local variables , keep their values and are not destroyed even after they go out of scope
+- for global variables,it gives them internal linkage (which restricts them from being seen/used outside of the file they are defined in).
+### static member variable
+- static member variables are shared by all objects of the class;static members exist even if no objects of the class have been instantiated!  
+- Much like global variables, they are created when the program starts, and destroyed when the program ends.
+- static member definition is not subject to access controls: you can define and initialize the value even if it’s declared as private (or protected) in the class.
+## static member functions
+- static member functions are not attached to any particular object
+- Static member functions have no *this pointer
+- tic member functions can directly access other static members (variables or functions), but not non-static members. This is because non-static members must belong to a class object, and static member functions have no class object to work with!
 # Arrays, Strings, Pointers, and References
 ## Pointers
 - When declaring a pointer variable, put the asterisk next to the variable name.
@@ -47,8 +58,98 @@
 - An array that decayed to a pointer cannot be used in a for-each loop.
 
 
-## Functions
+# Functions
 - Standard library functions may copy function objects (reminder: lambdas are function objects). If you want to provide lambdas with mutable captured variables, pass them by reference using std::ref.
+- Member functions can (and should) be made const if they do not modify the state of the class. Const class objects can only call const member functions.
+- Static member variables are shared among all objects of the class. Although they can be accessed from a class object, they can also be accessed directly via the scope resolution operator. Similarly, static member functions are member functions that have no *this pointer. They can only access static member variables.
+# Basic object-oriented programming
+- By default, all members of a class are private and all members of a struct are public.		
+## classes-and-class-members
+- With normal non-member functions, a function can’t call a function that’s defined “below” it ,With member functions, this limitation doesn’t apply
+- Use the struct keyword for data-only structures. Use the class keyword for objects that have both data and functions.
+- Make member variables private, and member functions public, unless you have a good reason not to.
+- Getters should return by value or const reference.
+## constructors
+- Favor brace initialization to initialize class objects.
+- If you have constructors in your class and need a default constructor that does nothing, use = default.
+- Always initialize all member variables in your objects.
+- The default constructor is used if no initialization values are provided by the user. You should always provide at least one constructor for your classes.
+
+## constructor-member-initializer-lists
+- Member initializer lists allows you to initialize your member variables from within a constructor (rather than assigning the member variables values).
+- When the class’s constructor is executed, m_value1, m_value2, and m_value3 are created. Then the body of the constructor is run, where the member data variables are assigned values.
+- Use member initializer lists to initialize your class member variables instead of assignment.
+
+### Initializer list order
+1. Don’t initialize member variables in such a way that they are dependent upon other member variables being initialized first (in other words, ensure your member variables will properly initialize even if the initialization ordering is different).
+2. Initialize variables in the initializer list in the same order in which they are declared in your class. This isn’t strictly required so long as the prior recommendation has been followed, but your compiler may give you a warning if you don’t do so and you have all warnings turned on.
+
+## non-static-member-initialization
+- Favor use of non-static member initialization to give default values for your member variables.
+
+## -overlapping-and-delegating-constructors
+- If you have multiple constructors that have the same functionality, use delegating constructors to avoid duplicate code.
+
+## hidden-this-pointer
+```cpp
+
+
+class Simple
+{
+private:
+    int m_id;
+ 
+public:
+    Simple(int id)
+    {
+        setID(id);
+    }
+ 
+    void setID(int id) { m_id = id; }
+    int getID() { return m_id; }
+};
+int main()
+{
+    Simple simple(1);
+    simple.setID(2);
+    std::cout << simple.getID() << '\n';
+ 
+    return 0;
+}
+
+```
+
+```cpp
+simple.setID(2);
+
+void setId( Simple* const this,int id){this->m_id=id;}
+
+```
+
+
+## class-code-and-header-files
+
+1. For classes used in only one file that aren’t generally reusable, define them directly in the single .cpp file they’re used in.
+2. For classes used in multiple files, or intended for general reuse, define them in a .h file that has the same name as the class.
+3. Trivial member functions (trivial constructors or destructors, access functions, etc…) can be defined inside the class.
+4. Non-trivial member functions should be defined in a .cpp file that has the same name as the class.
+
+
+
+## const-class-objects-and-member-functions
+- we can’t call non-const member functions on const objects
+- A const member function is a member function that guarantees it will not modify the object or call any non-const member functions (as they may modify the object).
+
+## friend-functions-and-classes
+## Anonymous objects
+-  An anonymous object is essentially a value that has no name
+## nested-types-in-classe
+- Although enumerations are probably the most common type that is nested inside a class, C++ will let you define other types within a class, such as typedefs, type aliases, and even other classes!
+```cpp
+Cents cents{ 5 }; // normal variable
+Cents{ 7 }; // anonymous object
+```
+
 # my_cpp
 sqe8ql
 this is leetcode solution and learn cpp for you all

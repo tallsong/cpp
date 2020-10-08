@@ -3,7 +3,7 @@
 	"tasks": [
 		{
 			"type": "shell",
-			"label": "WSL default build active file",//"label": "C/C++: g++ build active file",
+			"label": "single file",//"label": "C/C++: g++ build active file",
 			"command": "/usr/bin/g++",
 			"args": [
 				"-std=c++17",
