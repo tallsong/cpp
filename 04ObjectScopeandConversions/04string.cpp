@@ -36,6 +36,8 @@ int main()
   // ...
   str.replace(8,3,"blue");
   std::cout << str << '\n'; // I saw a blue car yesterday.
+  main1();
+  main2();
  
   return 0;
 }

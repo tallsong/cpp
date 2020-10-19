@@ -110,8 +110,9 @@ int main5()
 
 int main()
 {
+    main5();
     std::string{"sdklfjsdlkfjsdlfjlsdjfldks"};
     char c{'q'};
-    std::cout<<&c;
+    std::cerr<<&c;
     return 0;
 }

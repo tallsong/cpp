@@ -59,17 +59,7 @@ arithmeticFcn getArithmeticFcn(char op)
 	}
 }
  
-int main()
-{
-    int x{ getInteger() };
-    char op{ getOperation() };
-    int y{ getInteger() };
- 
-    arithmeticFcn fcn{ getArithmeticFcn(op) };
-    std::cout << x << ' ' << op << ' ' << y << " = " << fcn(x, y) << '\n';
- 
-    return 0;
-}
+
 int foo() // code starts at memory address 0x002717f0
 {
     return 5;
@@ -79,5 +69,18 @@ int main1()
 {
     std::cout << foo << '\n'; // we meant to call foo(), but instead we're printing foo itself!
     std::cout << reinterpret_cast<void*>(foo) << '\n'; // Tell C++ to interpret function foo as a void pointer
+    return 0;
+}
+
+
+int main()
+{
+    int x{ getInteger() };
+    char op{ getOperation() };
+    int y{ getInteger() };
+ 
+    arithmeticFcn fcn{ getArithmeticFcn(op) };
+    std::cout << x << ' ' << op << ' ' << y << " = " << fcn(x, y) << '\n';
+    main1();
     return 0;
 }

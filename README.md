@@ -1,4 +1,8 @@
 # Fundamental Data Types
+```
+//Using g++, you can use the -I option to specify an alternate include directory.
+//g++ -o main -I/source/includes main.cpp
+```
 ## Now that fixed-width integers have been added to C++, the best practice for integers in C++ is as follows:
 - int should be preferred when the size of the integer doesn’t matter (e.g. the number will always fit within the range of a 2 byte signed integer). For example, if you’re asking the user to enter their age, or counting from 1 to 10, it doesn’t matter whether int is 16 or 32 bits (the numbers will fit either way). This will cover the vast majority of the cases you’re likely to run across.
 - If you need a variable guaranteed to be a particular size and want to favor performance, use std::int_fast#_t.
@@ -10,7 +14,7 @@
 - Any variable that should not be modifiable after initialization and whose initializer is known at compile-time should be declared as constexpr.
 - Any variable that should not be modifiable after initialization and whose initializer is not known at compile-time should be declared as const.
 # Debug
-- When using print statements, use std::cerr instead of `std::cout`.
+- When using print statements, use `std::cerr` instead of `std::cout`.
 
 ## literals
 
@@ -47,8 +51,68 @@
 - static member functions are not attached to any particular object
 - Static member functions have no *this pointer
 - tic member functions can directly access other static members (variables or functions), but not non-static members. This is because non-static members must belong to a class object, and static member functions have no class object to work with!
+
+# ObjectScopeandConversions
+```cpp
+std::string fullName{};
+    //std::cin>>fullName;
+    std::getline(std::cin,fullName);
+
+std::cin.ignore(32767, '\n'); // ignore up to 32767 characters until a \n is removed
+std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+
+int getInput()
+{
+    int inputNumber{};
+    while (true)
+    {
+		std::cout << "Enter a integer value: ";
+        std::cin >> inputNumber;
+        if (std::cin.fail())
+        {
+            std::cin.clear();
+            std::cin.ignore(32767, '\n');
+            std::cout << "error,input again:";
+        }
+        else
+        {
+            std::cin.ignore(32767, '\n');
+            return inputNumber;
+        }
+    }
+}
+#include <iostream>
+#include <cstdlib> // for std::rand() and std::srand()
+#include <ctime>   // for std::time()
+#include <random>  // for std::mt19937
+int getRandomNumber()
+{
+	// Initialize our mersenne twister with a random seed based on the clock
+    std::mt19937 mersenne{static_cast<std::mt19937::result_type>(std::time(nullptr))};
+    const int minNumber{1};
+    const int maxNumber{100};
+    std::uniform_int_distribution die{minNumber, maxNumber};
+    return die(mersenne);
+}
+```
+
+
+
 # Arrays, Strings, Pointers, and References
+## dynamic mamory
+```cpp
+void doSomething()
+{
+    int *ptr{new int{}};
+    ptr = nullptr; //mewmory leak
+}
+```
 ## Pointers
+```cpp
+int x{5};
+std::cout << typeid(&x).name() << '\n'; // prints “pi” (pointer to int)
+```
 - When declaring a pointer variable, put the asterisk next to the variable name.
 - When declaring a function, put the asterisk of a pointer return value next to the type.
 ## poinnter and array
@@ -149,6 +213,77 @@ void setId( Simple* const this,int id){this->m_id=id;}
 Cents cents{ 5 }; // normal variable
 Cents{ 7 }; // anonymous object
 ```
+
+
+
+
+# operator overloading
+## introduction-to-operator-overloading
+- First, almost any existing operator in C++ can be overloaded. The exceptions are: conditional (?:), sizeof, scope (::), member selector (.), member pointer selector (.*), typeid, and the casting operators.
+- you can only overload the operators that exist.
+- at least one of the operands in an overloaded operator must be a user-defined type.
+- it is not possible to change the number of operands an operator supports.
+- all operators keep their default precedence and associativity
+- If the meaning of an operator when applied to a custom class is not clear and intuitive, use a named function instead.
+
+
+
+## overloading-the-arithmetic-operators-using-friend-function
+- We’re multiplying temporary Fraction objects, but non-const references cannot bind to temporaries.
+- Prefer overloading operators as normal functions instead of friends if it’s possible to do so without adding additional functions.
+```cpp
+// The non-const multiplication operator looks like this
+Fraction operator*(Fraction &f1, Fraction &f2)
+ 
+// This doesn't work anymore
+Fraction f6{ Fraction{1, 2} * Fraction{2, 3} * Fraction{3, 4} };
+```
+
+## overloading-operators-using-member-function
+### Not everything can be overloaded as a friend function
+- The assignment (=), subscript ([]), function call (()), and member selection (->) operators must be overloaded as member functions, because the language requires them to be.
+### When to use a normal, friend, or member function overload
+When dealing with binary operators that don’t modify the left operand (e.g. operator+), the normal or friend function version is typically preferred.
+When dealing with binary operators that do modify the left operand (e.g. operator+=), the member function version is typically preferred.
+Unary operators are usually overloaded as member functions as well
+
+### The following rules of thumb can help you determine which form is best for a given situation:
+1. If you’re overloading assignment (=), subscript ([]), function call (()), or member selection (->), do so as a member function.
+2. If you’re overloading a unary operator, do so as a member function.
+3. If you’re overloading a binary operator that does not modify its left operand (e.g. operator+), do so as a normal function (preferred) or friend function.
+4. If you’re overloading a binary operator that modifies its left operand, but you can’t modify the definition of the left operand (e.g. operator<<, which has a left operand of type ostream), do so as a normal function (preferred) or friend function.
+5. If you’re overloading a binary operator that modifies its left operand (e.g. operator+=), and you can modify the definition of the left operand, do so as a member functi
+
+### copy-constructor
+- Prior to C++17, copy elision is an optimization the compiler can make. As of C++17, some cases of copy elision (including the example above) have been made mandatory.
+
+### onverting-constructors-explicit-and-delete
+- There are two things to keep in mind: first, the parenthesis operator must be implemented as a member function. Second, in non-object-oriented C++, the () operator is used to call functions. In the case of classes, operator() is just a normal operator that calls a function (named operator()) like any other overloaded operator.
+- Consider making your constructors and user-defined conversion member functions explicit to prevent implicit conversion errors
+- explicit keyword makes  constructor ineligible for implicit conversions
+- When a function has been deleted, any use of that function is considered a compile error.
+
+### Overloading the assignment operator
+- If a new object has to be created before the copying can occur, the copy constructor is used (note: this includes passing or returning objects by value).
+- If a new object does not have to be created before the copying can occur, the assignment operator is used.
+- assignment operator must be overloaded as a member function.
+
+
+### shallow-vs-deep-copying
+1. The default copy constructor and default assignment operators do shallow copies, which is fine for classes that contain no dynamically allocated variables.
+2. Classes with dynamically allocated variables need to have a copy constructor and assignment operator that do a deep copy.
+3. Favor using classes in the standard library over doing your own memory management.
+
+### Summary
+- If you’re overloading assignment (=), subscript ([]), function call (()), or member selection (->), do so as a member function.
+- If you’re overloading a unary operator, do so as a member function.
+- If you’re overloading a binary operator that modifies its left operand (e.g. operator+=), do so as a member function if you can.
+- If you’re overloading a binary operator that does not modify its left operand (e.g. operator+), do so as a normal function or friend functio
+
+
+
+
+
 
 # my_cpp
 sqe8ql

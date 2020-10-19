@@ -22,11 +22,12 @@ int main()
 {
     int x{ 1 };
     int y{ 2 };
-    double z{  }; 
+    double z{ 0.1+0.1+0.1 }; 
     if(z == 0.3)
        std::cout << (++x, ++y); // increment x and y, evaluates to the right operand
     else
     {
+        std::cerr<<z<<'\n';
         std::cout<<"0.1 + 0.1 + 0.1 != 0.3";
     }
     
