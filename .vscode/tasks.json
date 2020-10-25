@@ -6,7 +6,7 @@
 			"label": "single file",//"label": "C/C++: g++ build active file",
 			"command": "/usr/bin/g++",
 			"args": [
-				"-std=c++17",
+				"-std=c++2a",
 				"-pedantic-errors",  //disable compiler extensions
 				// "-Werror",  //Make all warnings into errors.
 				"-Wall",

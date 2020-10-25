@@ -38,7 +38,7 @@ std::string_view askForName()
 
     return view;
 }
-int main2()
+int main()
 {
     std::string_view text{"hello"}; // view the text "hello", which is stored in the binary
     std::string_view str2{text};    // view of the same "hello"
@@ -54,8 +54,8 @@ int main2()
     std::cout << (str == "Trains are fast!") << '\n';  // 1
 
     // Since C++20
-    // std::cout << str.starts_with("Boats") << '\n'; // 0
-    // std::cout << str.ends_with("fast!") << '\n';   // 1
+    std::cout << str.starts_with("Boats") << '\n'; // 0
+    std::cout << str.ends_with("fast!") << '\n';   // 1
 
     std::cout << str << '\n'; // Trains are fast!
 
@@ -67,7 +67,7 @@ void print(std::string s)
     std::cout << s << '\n';
 }
 
-int main()
+int main2()
 {
     std::string bal{"balloon"};
     std::string_view sv{bal};
