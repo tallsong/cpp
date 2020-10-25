@@ -11,8 +11,11 @@
             "request": "launch",
             //"program": "${fileDirname}/${fileBasenameNoExtension}",
             "program": "${workspaceFolder}/test.out",
-            "args": ["123","fuck"],
-            "stopAtEntry": false,  //If set to true, the debugger should stop at the entry-point of the target (ignored on attach). 
+            "args": [
+                "123",
+                "fuck"
+            ],
+            "stopAtEntry": false, //If set to true, the debugger should stop at the entry-point of the target (ignored on attach). 
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,

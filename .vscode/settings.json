@@ -52,5 +52,6 @@
         "ctime": "cpp",
         "chrono": "cpp",
         "ratio": "cpp"
-    }
+    },
+    "C_Cpp.loggingLevel": "Debug"
 }
