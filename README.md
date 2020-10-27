@@ -1,8 +1,7 @@
 # Fundamental Data Types
-```
-//Using g++, you can use the -I option to specify an alternate include directory.
-//g++ -o main -I/source/includes main.cpp
-```
+
+## char
+- '9' - '0'的类型为**int**
 ## Now that fixed-width integers have been added to C++, the best practice for integers in C++ is as follows:
 - int should be preferred when the size of the integer doesn’t matter (e.g. the number will always fit within the range of a 2 byte signed integer). For example, if you’re asking the user to enter their age, or counting from 1 to 10, it doesn’t matter whether int is 16 or 32 bits (the numbers will fit either way). This will cover the vast majority of the cases you’re likely to run across.
 - If you need a variable guaranteed to be a particular size and want to favor performance, use std::int_fast#_t.
@@ -13,8 +12,15 @@
 ## const
 - Any variable that should not be modifiable after initialization and whose initializer is known at compile-time should be declared as constexpr.
 - Any variable that should not be modifiable after initialization and whose initializer is not known at compile-time should be declared as const.
+
+
 # Debug
+```
+//Using g++, you can use the -I option to specify an alternate include directory.
+//g++ -o main -I/source/includes main.cpp
+```
 - When using print statements, use `std::cerr` instead of `std::cout`.
+- C++ cout利用控制符dec、hex和oct，分别输出十进制、十六进制和八进制显示整数
 
 ## literals
 
@@ -100,6 +106,7 @@ int getRandomNumber()
 
 
 # Arrays, Strings, Pointers, and References
+- 指针p也是对象，它同样有地址&p和存储的值p，只不过，p存储的数据类型是数据的地址。
 ## dynamic mamory
 ```cpp
 void doSomething()
@@ -109,6 +116,8 @@ void doSomething()
 }
 ```
 ## Pointers
+- 箭头（->）：左边必须为指针；
+- 点号（.）：左边必须为实体。
 ```cpp
 int x{5};
 std::cout << typeid(&x).name() << '\n'; // prints “pi” (pointer to int)
@@ -126,8 +135,14 @@ std::cout << typeid(&x).name() << '\n'; // prints “pi” (pointer to int)
 - Standard library functions may copy function objects (reminder: lambdas are function objects). If you want to provide lambdas with mutable captured variables, pass them by reference using std::ref.
 - Member functions can (and should) be made const if they do not modify the state of the class. Const class objects can only call const member functions.
 - Static member variables are shared among all objects of the class. Although they can be accessed from a class object, they can also be accessed directly via the scope resolution operator. Similarly, static member functions are member functions that have no *this pointer. They can only access static member variables.
+- C++中函数的形参的列表为void表面函数不接受任何参数，这与括号里面空着等效；
+- C中函数的形参的列表为void表面函数不接受任何参数，让括号里面空着意外着对是否接受参数保存沉默；
+
+
+
+
 # Basic object-oriented programming
-- By default, all members of a class are private and all members of a struct are public.		
+- By default, all members of a class are private and all members of a struct are public.	- - 对象是指一块能存储数据并具有某种类型的内存空间	
 ## classes-and-class-members
 - With normal non-member functions, a function can’t call a function that’s defined “below” it ,With member functions, this limitation doesn’t apply
 - Use the struct keyword for data-only structures. Use the class keyword for objects that have both data and functions.
@@ -155,9 +170,9 @@ std::cout << typeid(&x).name() << '\n'; // prints “pi” (pointer to int)
 - If you have multiple constructors that have the same functionality, use delegating constructors to avoid duplicate code.
 
 ## hidden-this-pointer
+
+
 ```cpp
-
-
 class Simple
 {
 private:
@@ -284,50 +299,25 @@ Unary operators are usually overloaded as member functions as well
 
 
 
+# object relationship
+- If you can design a class using (composition, aggregation, association, or dependency), then you should use composition
+## Composition vs aggregation vs association summary
+|Property|Composition|Aggregation|Association|
+|--- |--- |--- |--- |
+|Relationship type|Whole/part|Whole/part|Otherwise unrelated|
+|Members can belong to multiple classes|No|Yes|Yes|
+|Members existence managed by class|Yes|No|No|
+|Directionality|Unidirectional|Unidirectional|Unidirectional or bidirectional|
+|Relationship verb|Part-of|Has-a|Uses-a|
+## stdinitializer_list
+- Much like std::string_view, std::initializer_list is very lightweight and copies tend to be cheaper than an indirection.
+- If you provide list construction, it’s a good idea to provide list assignment as well.
+```cpp
+std::vector<int> array(5); // Calls std::vector::vector(std::vector::size_type), 5 value-initialized elements: 0 0 0 0 0
+std::vector<int> array{ 5 }; // Calls std::vector::vector(std::initializer_list<int>), 1 element: 5
+```
 
-# my_cpp
-sqe8ql
-this is leetcode solution and learn cpp for you all
-
-***[markdown basic-syntax](https://www.markdownguide.org/basic-syntax/)***
-
-# P94
-答案:P950
-# 基础知识 
-## C++ 与C的区别
-C++中函数的形参的列表为void表面函数不接受任何参数，这与括号里面空着等效；
-C中函数的形参的列表为void表面函数不接受任何参数，让括号里面空着意外着对是否接受参数保存沉默；
-# 处理数据
-## 简单变量
-计算机内存的基本单位是位（bit），可以看作电子开关，可以开也可以关；
-
-字节（bytes）通常指的是8位的内存单元;
-
-sizeof(short):2    (bytes )	sizeof(int):4 	sizeof(long):4	sizeof(long):8
-
-大括号初始化：
-
-- int emus{7};//set emus to 7
-
-- int emus = {7};//set emus to 7
-
-- int emus = {};//set emus to 0
-
-- int emus{};//set emus to 0
-
-对象是指一块能存储数据并具有某种类型的内存空间
-
-指针p也是对象，它同样有地址&p和存储的值p，只不过，p存储的数据类型是数据的地址。
-
-cout<<hex ; 修改cout显示证书的方式;
-
-'9' - '0'的类型为**int**
-
-# 指针
-
-* 箭头（->）：左边必须为指针；
-* 点号（.）：左边必须为实体。
-*  
+# The Standard Template Library
 ## Array
 ```C++
 int a1[5] = { 1, 2, 3 };  // other element will be set as the default value，也就是该数组的第4，5个元素的值为0
@@ -358,5 +348,3 @@ sort(a1, a1 + size); //sort
 
 	}
 ```
-
-
