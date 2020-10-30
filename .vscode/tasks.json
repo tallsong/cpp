@@ -14,7 +14,7 @@
 				"-Wextra",  
 				"-Wsign-conversion",  
 				//-Wall -Weffc++ -Wextra -Wsign-conversion Turn your warning levels up to the maximum
-				"-g",
+				"-g",   // for gdb to debug
 				"${file}",
 				"-o",
 				//"${fileDirname}/${fileBasenameNoExtension}",
