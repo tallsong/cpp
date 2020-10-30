@@ -102,7 +102,29 @@ int getRandomNumber()
     return die(mersenne);
 }
 ```
+```cpp
+#include <cstdlib> // for rand() and srand()
+// Generate a random number between min and max (inclusive)
+// Assumes std::srand() has already been called
+// Assumes max - min <= RAND_MAX
+int getRandomNumber(int min, int max)
+{
+  static constexpr double fraction{ 1.0 / (RAND_MAX + 1.0) }; // static used for efficiency, so we only calculate this value once
+  // evenly distribute the random number across our range
+  return min + static_cast<int>((max - min + 1) * (std::rand() * fraction));
+}
+int main()
+{
+	std::srand(static_cast<unsigned int>(std::time(nullptr))); // set initial seed value to system clock
+	std::rand(); // get rid of first result
+	for (int i{ 0 }; i < 10; ++i)
+	{
+		Monster m{ Monster::getRandomMonster() };
+		std::cout << "A " << m.getName() << " (" << m.getSymbol() << ") was created.\n";
+	}
+}
 
+```
 
 
 # Arrays, Strings, Pointers, and References
@@ -316,6 +338,44 @@ Unary operators are usually overloaded as member functions as well
 std::vector<int> array(5); // Calls std::vector::vector(std::vector::size_type), 5 value-initialized elements: 0 0 0 0 0
 std::vector<int> array{ 5 }; // Calls std::vector::vector(std::initializer_list<int>), 1 element: 5
 ```
+
+
+# Inheritance
+## inheritance-and-access-specifier
+- The protected access specifier allows the class the member belongs to, friends, and derived classes to access the member. However, protected members are not accessible from outside the class.
+- Different kinds of inheritance, and their impact on access.If you do not choose an inheritance type, C++ defaults to private inheritance (just like members default to private access if you do not specify otherwise).
+```cpp
+// Inherit from Base publicly
+class Pub: public Base
+{
+};
+ 
+// Inherit from Base protectedly
+class Pro: protected Base
+{
+};
+ 
+// Inherit from Base privately
+class Pri: private Base
+{
+};
+ 
+class Def: Base // Defaults to private inheritance
+{
+};
+
+```
+- Use public inheritance unless you have a specific reason to do otherwise.
+
+| Access specifier in base class | Access specifier when inherited publicly |Access specifier when inherited protectedly|  Access specifier when inherited privately  |
+|--------------------------------|------------------------------------------|-------------------------------------------|---------------------------------------------|
+| Public                         | Public                                   | Protected                                 | Private                                   |
+| Protected                      | Protected                                | Protected                                 | Private                                   |
+| Private                        | Inaccessible                             | Inaccessible                              | Inaccessible                                |
+
+- Avoid multiple inheritance unless alternatives lead to more complexity.
+- Local variables are destroyed in the opposite order of definition.
+
 
 # The Standard Template Library
 ## Array
