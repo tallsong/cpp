@@ -4,7 +4,7 @@
 		{
 			"type": "shell",
 			"label": "single file",//"label": "C/C++: g++ build active file",
-			"command": "/usr/bin/g++",
+			"command": "/usr/bin/g++-10",
 			"args": [
 				"-std=c++2a",
 				"-pedantic-errors",  //disable compiler extensions
