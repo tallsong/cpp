@@ -55,10 +55,10 @@ int main()
     const Dog truffle{ "Truffle" };
  
     // Set up an array of pointers to animals, and set those pointers to our Cat and Dog objects
-    //const auto animals{ std::to_array<const Animal*>({ &fred, &garbo, &misty, &pooky, &truffle, &zeke }) };
+    const auto animals{ std::to_array<const Animal*>({ &fred, &garbo, &misty, &pooky, &truffle, &zeke }) };
     
     // Before C++20, with the array size being explicitly specified
-    const std::array<const Animal*, 6> animals{ &fred, &garbo, &misty, &pooky, &truffle, &zeke };
+    //const std::array<const Animal*, 6> animals{ &fred, &garbo, &misty, &pooky, &truffle, &zeke };
     
     // animal is not a reference, because we're looping over pointers
     for (const auto animal : animals)
