@@ -3,7 +3,7 @@
 ## char
 - '9' - '0'的类型为**int**
 ## Now that fixed-width integers have been added to C++, the best practice for integers in C++ is as follows:
-- int should be preferred when the size of the integer doesn’t matter (e.g. the number will always fit within the range of a 2 byte signed integer). For example, if you’re asking the user to enter their age, or counting from 1 to 10, it doesn’t matter whether int is 16 or 32 bits (the numbers will fit either way). This will cover the vast majority of the cases you’re likely to run across.
+- int should be preferred when the size of the integer doesn’t matter (e.g. the number will always fit within the range of a 2 byte signed integer). For example, if you're asking the user to enter their age, or counting from 1 to 10, it doesn’t matter whether int is 16 or 32 bits (the numbers will fit either way). This will cover the vast majority of the cases you’re likely to run across.
 - If you need a variable guaranteed to be a particular size and want to favor performance, use std::int_fast#_t.
 - If you need a variable guaranteed to be a particular size and want to favor memory conservation over performance, use std::int_least#_t. This is used most often when allocating lots of variables.
 ------------------
@@ -376,6 +376,74 @@ class Def: Base // Defaults to private inheritance
 - Avoid multiple inheritance unless alternatives lead to more complexity.
 - Local variables are destroyed in the opposite order of definition.
 
+
+
+
+# virtual function
+- order in function `const override final` 
+- A virtual function is a special type of function that, when called, resolves to the most-derived version of the function that exists between the base and derived class. 
+- If a function is marked as virtual, all matching overrides are also considered virtual, even if they are not explicitly marked as such.
+- Rule: Never call virtual functions from constructors or destructors
+- Rule: Apply the override specifier to every intended override function you write.
+- Whenever you are dealing with inheritance, you should make any explicit destructors virtual.
+- - If you intend your class to be inherited from, make sure your destructor is virtual.
+- - If you do not intend your class to be inherited from, mark your class as final. This will prevent other classes from inheriting from it in the first place, without imposing any other use restrictions on the class itself.
+## Pure virtual functions
+1. any class with one or more pure virtual functions becomes an abstract base class, which means that it can not be instantiated!
+2. any derived class must define a body for this function, or that derived class will be considered an abstract base class as well.
+3. A pure virtual function is useful when we have a function that we want to put in the base class, but only the derived classes know what it should return. A pure virtual function makes it so the base class can not be instantiated, and the derived classes are forced to define these functions before they can be instantiated. This helps ensure the derived classes do not forget to redefine functions that the base class was expecting them to.
+- A virtual function can be made pure virtual/abstract by adding “= 0” to the end of the virtual function prototype
+- A class contain a  pure virtual function (whether with a body or not) oi an abstract class so it can’t be instantiated.
+- An **interface class** is a class that has no member variables, and where all of the functions are pure virtual!
+- An **interface class** is one with no member variables and all pure virtual functions. These are often named starting with a capital I.
+- Abstract classes still have virtual tables, as these can still be used if you have a pointer or reference to the abstract class. The virtual table entry for a pure virtual function will generally either contain a null pointer, or point to a generic function that prints an error (sometimes this function is named __purecall) if no override is provided.
+
+- To share a base class, simply insert the “virtual” keyword in the inheritance list of the derived class. This creates what is called a **virtual base class**, which means there is only one base object. The base object is shared between all objects in the inheritance tree and it is only constructed once.
+
+- The assigning of a Derived class object to a Base class object is called **object slicing** (or slicing for short).
+
+- Make sure your function parameters are references (or pointers) and try to avoid any kind of pass-by-value when it comes to derived classes.
+
+- **Dynamic casting** can be used to convert a pointer to a base class object into a pointer to a derived class object. This is called downcasting. A failed conversion will return a null pointer.
+
+-  Although **dynamic casts** have a few different capabilities, by far the most common use for dynamic casting is for converting base-class pointers into derived-class pointers. This process is called **downcasting**.
+
+- Always ensure your dynamic casts actually succeeded by checking for a null pointer result.
+
+
+```C++
+class PoweredDevice
+{
+};
+ 
+class Scanner: virtual public PoweredDevice
+{
+};
+ 
+class Printer: virtual public PoweredDevice
+{
+};
+ 
+class Copier: public Scanner, public Printer
+{
+};
+
+```
+
+- Also note that there are several cases where downcasting using dynamic_cast will not work:
+1) With protected or private inheritance.
+2) For classes that do not declare or inherit any virtual functions (and thus don’t have a virtual table).
+3) In certain cases involving virtual base classes (see this [page](https://docs.microsoft.com/en-us/cpp/cpp/dynamic-cast-operator) for an example of some of these cases, and how to resolve them).
+- It turns out that downcasting can also be done with static_cast. The main difference is that static_cast does no runtime type checking to ensure that what you’re doing makes sense.  This makes using static_cast faster, but more dangerous. 
+- New programmers are sometimes confused about when to use static_cast vs dynamic_cast. The answer is quite simple: use static_cast unless you’re downcasting, in which case dynamic_cast is usually a better choice. However, you should also consider avoiding casting altogether and just using virtual functions.
+
+- In general, using a virtual function should be preferred over downcasting. However, there are times when downcasting is the better choice:
+
+1. When you can not modify the base class to add a virtual function (e.g. because the base class is part of the standard library)
+2. When you need access to something that is derived-class specific (e.g. an access function that only exists in the derived class)
+3. When adding a virtual function to your base class doesn’t make sense (e.g. there is no appropriate value for the base class to return). Using a pure virtual function may be an option here if you don’t need to instantiate the base class.
+
+- The easiest way to overload operator<< for inherited classes is to write an overloaded operator<< for the most-base class, and then call a virtual member function to do the printing.
 
 # The Standard Template Library
 ## Array
