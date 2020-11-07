@@ -445,6 +445,12 @@ class Copier: public Scanner, public Printer
 
 - The easiest way to overload operator<< for inherited classes is to write an overloaded operator<< for the most-base class, and then call a virtual member function to do the printing.
 
+# Template
+
+- If you feel that putting the Array.cpp code into the Array.h header makes the header too long/messy, an alternative is to rename Array.cpp to Array.inl (.inl stands for inline), and then include Array.inl from the bottom of the Array.h header. That yields the same result as putting all the code in the header, but helps keep things a little cleaner.
+- Another alternative is to use a three-file approach. The template class definition goes in the header. The template class member functions goes in the code file. Then you add a third file, which contains all of the instantiated classes you need:
+-  Classes also support partial specialization, where only some of the templated parameters are specialized. Functions do not support partial specialization as of C++14.
+
 # The Standard Template Library
 ## Array
 ```C++
