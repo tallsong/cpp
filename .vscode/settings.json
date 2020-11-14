@@ -51,7 +51,10 @@
         "bitset": "cpp",
         "ctime": "cpp",
         "chrono": "cpp",
-        "ratio": "cpp"
+        "ratio": "cpp",
+        "compare": "cpp",
+        "concepts": "cpp",
+        "ranges": "cpp"
     },
     "C_Cpp.loggingLevel": "Debug"
 }

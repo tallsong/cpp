@@ -411,7 +411,7 @@ class Def: Base // Defaults to private inheritance
 - Always ensure your dynamic casts actually succeeded by checking for a null pointer result.
 
 
-```C++
+```cpp
 class PoweredDevice
 {
 };
@@ -451,16 +451,68 @@ class Copier: public Scanner, public Printer
 - Another alternative is to use a three-file approach. The template class definition goes in the header. The template class member functions goes in the code file. Then you add a third file, which contains all of the instantiated classes you need:
 -  Classes also support partial specialization, where only some of the templated parameters are specialized. Functions do not support partial specialization as of C++14.
 
+# Exception
+- throw type
+```cpp
+throw -1; // throw a literal integer value
+throw ENUM_INVALID_INDEX; // throw an enum value
+throw "Can not take square root of negative number"; // throw a literal C-style (const char*) string
+throw dX; // throw a double variable that was previously defined
+throw MyException("Fatal Error"); // Throw an object of class MyException
+
+```
+- Note that the compiler will not perform implicit conversions or promotions when matching exceptions with catch blocks! For example, a char exception will not match with an int catch block. An int exception will not match a float catch block. However, casts from a derived class to one of its parent classes will be performed.
+- Rule: Handlers for derived exception classes should be listed before those for base classes.
+- **std::exception::what()** this string is meant to be used for descriptive text only -- do not use it for comparisons, as it is not guaranteed to be the same across compilers.
+- Rule: When rethrowing the same exception, use the throw keyword by itself.
+- So when should I use exceptions?
+```markdown
+The error being handled is likely to occur only infrequently. 
+The error is serious and execution could not continue otherwise. 
+The error cannot be handled at the place where it occurs. 
+There isn’t a good alternative way to return an error code back to the caller.
+```
+- The **noexcept** specifier defines a function as non-throwing.
+- Functions that are non-throwing by default:
+```
+default constructors
+copy constructors
+move constructors
+destructors
+copy assignment operators
+move assignment operators
+```
+- The following are potentially throwing by default:
+```markdown
+Normal functions
+User-defined constructors
+Some operators, such as new
+```
+```cpp
+void foo() {throw -1;}
+void boo() {};
+void goo() noexcept {};
+struct S{};
+ 
+constexpr bool b1{ noexcept(5 + 3) }; // true; ints are non-throwing
+constexpr bool b2{ noexcept(foo()) }; // false; foo() throws an exception
+constexpr bool b3{ noexcept(boo()) }; // false; boo() is implicitly noexcept(false)
+constexpr bool b4{ noexcept(goo()) }; // true; goo() is explicitly noexcept(true)
+constexpr bool b5{ noexcept(S{}) };   // true; a struct's default constructor is noexcept by default
+```
+- Use the noexcept specifier in specific cases where you want to express a no-fail or no-throw guarantee.
+
+
 # The Standard Template Library
 ## Array
-```C++
+```cpp
 int a1[5] = { 1, 2, 3 };  // other element will be set as the default value，也就是该数组的第4，5个元素的值为0
 int size = sizeof(a1) / sizeof(*a1);  // sizeof(a1)的值为20，sizeof(*a1)为4，*a1为数组第一个元素，值为1，*(a1+2)为数组第三个元素，值为3
 for (int& item : a1) {cout << " " << item;} // Iterate all Elements
 sort(a1, a1 + size); //sort
 ```
 ## vector
-```C++
+```cpp
 	vector<int> v2(v1.begin(), v1.end());vector<int> v3(v2);// 2. make a copy
 	// 2. cast an array to a vector
 	int a[5] = { 0, 1, 2, 3, 4 };
