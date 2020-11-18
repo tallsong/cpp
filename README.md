@@ -503,6 +503,57 @@ constexpr bool b5{ noexcept(S{}) };   // true; a struct's default constructor is
 - Use the noexcept specifier in specific cases where you want to express a no-fail or no-throw guarantee.
 
 
+
+
+# move semantics and smart pointers
+- C++11 adds a new type of reference called an r-value reference. An r-value reference is a reference that is designed to be initialized with an r-value (only). While an l-value reference is created using a single ampersand, an r-value reference is created using a double ampersand:
+```cpp
+int x{ 5 };
+int &lref{ x }; // l-value reference initialized with l-value x
+int &&rref{ 5 }; // r-value reference initialized with r-value 5
+```
+- First, r-value references extend the lifespan of the object they are initialized with to the lifespan of the r-value reference (l-value references to const objects can do this too). Second, non-const r-value references allow you to modify the r-value!
+- R-value references are more often used as function parameters. This is most useful for function overloads when you want to have different behavior for l-value and r-value arguments.
+```cpp
+void fun(const int &lref) // l-value arguments will select this function
+{
+	std::cout << "l-value reference to const\n";
+}
+ 
+void fun(int &&rref) // r-value arguments will select this function
+{
+	std::cout << "r-value reference\n";
+}
+ 
+int main()
+{
+	int x{ 5 };
+	fun(x); // l-value argument calls l-value version of function
+	fun(5); // r-value argument calls r-value version of function
+ 
+	return 0;
+}
+```
+- In C++11, **std::move** is a standard library function that serves a single purpose -- to convert its argument into an r-value. We can pass an l-value to std::move, and it will return an r-value reference. std::move is defined in the utility header.
+- **std::unique_ptr** has an overloaded operator* and operator-> that can be used to return the resource being managed. Operator* returns a reference to the managed resource, and operator-> returns a pointer
+- Rule: Favor std::array, std::vector, or std::string over a smart pointer managing a fixed array, dynamic array, or C-style string
+- use **std::make_unique()** instead of creating **std::unique_ptr** and using new yourself
+- std::unique_ptr can be safely returned from a function by value:
+```cpp
+std::unique_ptr<Resource> createResource()
+{
+     return std::make_unique<Resource>();
+}
+int main()
+{
+    auto ptr{ createResource() };
+ 
+    // do whatever
+ 
+    return 0;
+}
+```
+ 
 # The Standard Template Library
 ## Array
 ```cpp
