@@ -585,3 +585,5 @@ sort(a1, a1 + size); //sort
 
 	}
 ```
+## string
+![img](./img/stdstring.png)
