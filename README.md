@@ -587,3 +587,381 @@ sort(a1, a1 + size); //sort
 ```
 ## string
 ![img](./img/stdstring.png)
+
+# Input and Output
+## input-with-istream
+**setw** (in the iomanip.h header)  can be used to limit the number of characters read in from a stream. 
+```cpp
+#include <iomanip.h>
+char buf[10];
+std::cin >> std::setw(10) >> buf;
+```
+**get()** function, which simply gets a character from the input stream but not discard whitespace
+```cpp
+char ch;
+while (std::cin.get(ch))
+    std::cout << ch;
+```
+```cpp
+char strBuf[11];
+std::cin.get(strBuf, 11);
+std::cout << strBuf << '\n';
+
+```
+**getline()** that works exactly like get() but reads the newline as well
+```cpp
+char strBuf[11];
+// Read up to 10 characters
+std::cin.getline(strBuf, 11);
+std::cout << strBuf << '\n';
+
+// Read up to 10 more characters
+std::cin.getline(strBuf, 11);
+std::cout << strBuf << '\n';
+```
+use **gcount()** to know how many character were extracted by the last call of getline()
+```cpp
+char strBuf[100];
+std::cin.getline(strBuf, 100);
+std::cout << strBuf << '\n';
+std::cout << std::cin.gcount() << " characters were read" << std::endl;
+```
+A special version of getline() for std::string
+```cpp
+std::string strBuf;
+std::getline(std::cin, strBuf);
+std::cout << strBuf << '\n';
+```
+- `ignore()` discards the first character in the stream.
+- `ignore(int nCount)` discards the first nCount characters.
+- `peek()` allows you to read a character from the stream without removing it from the stream.
+- `unget()` returns the last character read back into the stream so it can be read again by the next call.
+- `putback(char ch)` allows you to put a character of your choice back into the stream to be read by the next call.
+## Output with ostream and ios
+To switch a flag on, use the `setf()` function, with the appropriate flag as a parameter.use ` unsetf()` To turn a flag off
+```cpp
+std::cout.setf(std::ios::showpos); // turn on the std::ios::showpos flag
+std::cout << 27 << '\n';
+std::cout.unsetf(std::ios::showpos); // turn off the std::ios::showpos flag
+std::cout << 28 << '\n';
+```
+```cpp
+std::cout.unsetf(std::ios::dec); // turn off decimal output
+std::cout.setf(std::ios::hex); // turn on hexadecimal output
+std::cout << 27 << '\n';
+```
+when using this form of setf(), all of the flags belonging to the group are turned off, and only the flag passed in is turned on. For example:
+```cpp
+// Turn on std::ios::hex as the only std::ios::basefield flag
+std::cout.setf(std::ios::hex, std::ios::basefield);
+std::cout << 27 << '\n';
+```
+manipulators : change the formatting options
+```cpp
+std::cout << std::hex << 27 << '\n'; // print 27 in hex
+std::cout << 28 << '\n'; // we're still in hex
+std::cout << std::dec << 29 << '\n'; // back to decimal
+```
+### Useful formatters
+| Group | Flag                | Meaning                                                                       |
+|-------|---------------------|-------------------------------------------------------------------------------|
+|       | std::ios::boolalpha | If set, booleans print “true” or “false”\.  If not set, booleans print 0 or 1 |
+
+
+| Manipulator      | Meaning                           |
+|------------------|-----------------------------------|
+| std::boolalpha   | Booleans print “true” or “false”  |
+| std::noboolalpha | Booleans print 0 or 1 \(default\) |
+
+| Group | Flag              | Meaning                                   |
+|-------|-------------------|-------------------------------------------|
+|       | std::ios::showpos | If set, prefix positive numbers with a \+ |
+
+| Manipulator    | Meaning                                   |
+|----------------|-------------------------------------------|
+| std::showpos   | Prefixes positive numbers with a \+       |
+| std::noshowpos | Doesn’t prefix positive numbers with a \+ |
+
+| Group | Flag                | Meaning                         |
+|-------|---------------------|---------------------------------|
+|       | std::ios::uppercase | If set, uses upper case letters |
+
+| Manipulator      | Meaning                 |
+|------------------|-------------------------|
+| std::uppercase   | Uses upper case letters |
+| std::nouppercase | Uses lower case letters |
+
+| Group               | Flag          | Meaning                                                |
+|---------------------|---------------|--------------------------------------------------------|
+| std::ios::basefield | std::ios::dec | Prints values in decimal \(default\)                   |
+| std::ios::basefield | std::ios::hex | Prints values in hexadecimal                           |
+| std::ios::basefield | std::ios::oct | Prints values in octal                                 |
+| std::ios::basefield | \(none\)      | Prints values according to leading characters of value |
+
+| Manipulator | Meaning                      |
+|-------------|------------------------------|
+| std::dec    | Prints values in decimal     |
+| std::hex    | Prints values in hexadecimal |
+| std::oct    | Prints values in octal       |
+### Precision, notation, and decimal points
+| Group                | Flag                 | Meaning                                                                 |
+|----------------------|----------------------|-------------------------------------------------------------------------|
+| std::ios::floatfield | std::ios::fixed      | Uses decimal notation for floating\-point numbers                       |
+| std::ios::floatfield | std::ios::scientific | Uses scientific notation for floating\-point numbers                    |
+| std::ios::floatfield | \(none\)             | Uses fixed for numbers with few digits, scientific otherwise            |
+| std::ios::floatfield | std::ios::showpoint  | Always show a decimal point and trailing 0’s for floating\-point values |
+
+| Manipulator              | Meaning                                                                 |
+|--------------------------|-------------------------------------------------------------------------|
+| std::fixed               | Use decimal notation for values                                         |
+| std::scientific          | Use scientific notation for values                                      |
+| std::showpoint           | Show a decimal point and trailing 0’s for floating\-point values        |
+| std::noshowpoint         | Don’t show a decimal point and trailing 0’s for floating\-point values  |
+| std::setprecision\(int\) | Sets the precision of floating\-point numbers \(defined in iomanip\.h\) |
+
+
+| Member function       | Meaning                                                                 |
+|-----------------------|-------------------------------------------------------------------------|
+| std::precision\(\)    | Returns the current precision of floating\-point numbers                |
+| std::precision\(int\) | Sets the precision of floating\-point numbers and returns old precision |
+
+| Option     | Precision       | 12345\.0        | 0\.12345     |
+|------------|-----------------|-----------------|--------------|
+| Normal     | 3               | 1\.23e\+004     | 0\.123       |
+| 4          | 1\.235e\+004    | 0\.1235         |
+| 5          | 12345           | 0\.12345        |
+| 6          | 12345           | 0\.12345        |
+| Showpoint  | 3               | 1\.23e\+004     | 0\.123       |
+| 4          | 1\.235e\+004    | 0\.1235         |
+| 5          | 12345\.         | 0\.12345        |
+| 6          | 12345\.0        | 0\.123450       |
+| Fixed      | 3               | 12345\.000      | 0\.123       |
+| 4          | 12345\.0000     | 0\.1235         |
+| 5          | 12345\.00000    | 0\.12345        |
+| 6          | 12345\.000000   | 0\.123450       |
+| Scientific | 3               | 1\.235e\+004    | 1\.235e\-001 |
+| 4          | 1\.2345e\+004   | 1\.2345e\-001   |
+| 5          | 1\.23450e\+004  | 1\.23450e\-001  |
+| 6          | 1\.234500e\+004 | 1\.234500e\-001 |
+### Width, fill characters, and justification
+| Group                 | Flag               | Meaning                                                                |
+|-----------------------|--------------------|------------------------------------------------------------------------|
+| std::ios::adjustfield | std::ios::internal | Left\-justifies the sign of the number, and right\-justifies the value |
+| std::ios::adjustfield | std::ios::left     | Left\-justifies the sign and value                                     |
+| std::ios::adjustfield | std::ios::right    | Right\-justifies the sign and value \(default\)                        |
+
+
+| Manipulator          | Meaning                                                                              |
+|----------------------|--------------------------------------------------------------------------------------|
+| std::internal        | Left\-justifies the sign of the number, and right\-justifies the value               |
+| std::left            | Left\-justifies the sign and value                                                   |
+| std::right           | Right\-justifies the sign and value                                                  |
+| std::setfill\(char\) | Sets the parameter as the fill character \(defined in iomanip\.h\)                   |
+| std::setw\(int\)     | Sets the field width for input and output to the parameter \(defined in iomanip\.h\) |
+
+
+| Member function   | Meaning                                                    |
+|-------------------|------------------------------------------------------------|
+| std::fill\(\)     | Returns the current fill character                         |
+| std::fill\(char\) | Sets the fill character and returns the old fill character |
+| std::width\(\)    | Returns the current field width                            |
+| std::width\(int\) | Sets the current field width and returns old field width   |
+```cpp
+std::cout.fill('*');
+std::cout << -12345 << '\n'; // print default value with no field width
+std::cout << std::setw(10) << -12345 << '\n'; // print default with field width
+std::cout << std::setw(10) << left << -12345 << '\n'; // print left justified
+std::cout << std::setw(10) << right << -12345 << '\n'; // print right justified
+std::cout << std::setw(10) << internal << -12345 << '\n'; // print internally justified
+/*
+-12345
+****-12345
+-12345****
+****-12345
+-****12345
+*/
+```
+## Stream classes for strings
+### stringstream
+```cpp
+std::stringstream os;
+os << "12345 67.89"; // insert a string of numbers into the stream
+ 
+std::string strValue;
+os >> strValue;
+ 
+std::string strValue2;
+os >> strValue2;
+ 
+// print the numbers separated by a dash
+std::cout << strValue << " - " << strValue2 << '\n';
+```
+### Conversion between strings and numbers
+converting numbers into a string:
+```cpp
+std::stringstream os;
+ 
+int nValue{ 12345 };
+double dValue{ 67.89 };
+os << nValue << ' ' << dValue;
+ 
+std::string strValue1, strValue2;
+os >> strValue1 >> strValue2;
+ 
+std::cout << strValue1 << ' ' << strValue2 << '\n';
+```
+convert a numerical string to a number:
+```cpp
+std::stringstream os;
+os << "12345 67.89"; // insert a string of numbers into the stream
+int nValue;
+double dValue;
+ 
+os >> nValue >> dValue;
+ 
+cout << nValue << ' ' << dValue << '\n';
+```
+### Clearing a stringstream for reuse
+```cpp
+std::stringstream os;
+os << "Hello ";
+ 
+os.str(std::string{}); // erase the buffer
+ 
+os << "World!";
+cout << os.str();
+```
+```cpp
+std::stringstream os;
+os << "Hello ";
+ 
+os.str(""); // erase the buffer
+os.clear(); // reset error flags
+ 
+os << "World!";
+std::cout << os.str();
+```
+## Stream states and input validation
+### Stream states
+The ios_base class contains several state flags that are used to signal various conditions that may occur when using streams:
+| Flag    | Meaning                                                                                                 |
+|---------|---------------------------------------------------------------------------------------------------------|
+| goodbit | Everything is okay                                                                                      |
+| badbit  | Some kind of fatal error occurred \(e\.g\. the program tried to read past the end of a file\)           |
+| eofbit  | The stream has reached the end of a file                                                                |
+| failbit | A non\-fatal error occurred \(eg\. the user entered letters when the program was expecting an integer\) |
+ios also provides a number of member functions in order to conveniently access these states:
+| Member function   | Meaning                                                                  |
+|-------------------|--------------------------------------------------------------------------|
+| good\(\)          | Returns true if the goodbit is set \(the stream is ok\)                  |
+| bad\(\)           | Returns true if the badbit is set \(a fatal error occurred\)             |
+| eof\(\)           | Returns true if the eofbit is set \(the stream is at the end of a file\) |
+| fail\(\)          | Returns true if the failbit is set \(a non\-fatal error occurred\)       |
+| clear\(\)         | Clears all flags and restores the stream to the goodbit state            |
+| clear\(state\)    | Clears all flags and sets the state flag passed in                       |
+| rdstate\(\)       | Returns the currently set flags                                          |
+| setstate\(state\) | Sets the state flag passed in                                            |
+### Input validation
+C++ provides a number of useful functions that we can use to determine whether specific characters are numbers or letters. The following functions live in the cctype header:
+| Function             | Meaning                                                                            |
+|----------------------|------------------------------------------------------------------------------------|
+| std::isalnum\(int\)  | Returns non\-zero if the parameter is a letter or a digit                          |
+| std::isalpha\(int\)  | Returns non\-zero if the parameter is a letter                                     |
+| std::iscntrl\(int\)  | Returns non\-zero if the parameter is a control character                          |
+| std::isdigit\(int\)  | Returns non\-zero if the parameter is a digit                                      |
+| std::isgraph\(int\)  | Returns non\-zero if the parameter is printable character that is not whitespace   |
+| std::isprint\(int\)  | Returns non\-zero if the parameter is printable character \(including whitespace\) |
+| std::ispunct\(int\)  | Returns non\-zero if the parameter is neither alphanumeric nor whitespace          |
+| std::isspace\(int\)  | Returns non\-zero if the parameter is whitespace                                   |
+| std::isxdigit\(int\) | Returns non\-zero if the parameter is a hexadecimal digit \(0\-9, a\-f, A\-F\)     |
+```cpp
+#include <algorithm> // std::all_of
+#include <cctype> // std::isalpha, std::isspace
+#include <iostream>
+#include <string>
+#include <string_view>
+ 
+bool isValidName(std::string_view name)
+{
+  return std::ranges::all_of(name, [](char ch) {
+    return (std::isalpha(ch) || std::isspace(ch));
+  });
+ 
+  // Before C++20, without ranges
+  // return std::all_of(name.begin(), name.end(), [](char ch) {
+  //    return (std::isalpha(ch) || std::isspace(ch));
+  // });
+}
+ 
+int main()
+{
+  std::string name{};
+ 
+  do
+  {
+    std::cout << "Enter your name: ";
+    std::getline(std::cin, name); // get the entire line, including spaces
+  } while (!isValidName(name));
+ 
+  std::cout << "Hello " << name << "!\n";
+}
+```
+## Basic file I/O
+### File modes#
+| Ios file mode | Meaning                                                |
+|---------------|--------------------------------------------------------|
+| app           | Opens the file in append mode                          |
+| ate           | Seeks to the end of the file before reading/writing    |
+| binary        | Opens the file in binary mode \(instead of text mode\) |
+| in            | Opens the file in read mode \(default for ifstream\)   |
+| out           | Opens the file in write mode \(default for ofstream\)  |
+| trunc         | Erases the file if it already exists                   |
+```cpp
+std::ofstream outf{ "Sample.dat", std::ios::app };
+
+// If we couldn't open the output file stream for writing
+if (!outf)
+{
+    // Print an error and exit
+    std::cerr << "Uh oh, Sample.dat could not be opened for writing!\n";
+    return 1;
+}
+
+outf << "This is line 3" << '\n';
+outf << "This is line 4" << '\n';
+```
+### Explicitly opening files using open()
+```cpp
+std::ofstream outf{ "Sample.dat" };
+outf << "This is line 1" << '\n';
+outf << "This is line 2" << '\n';
+outf.close(); // explicitly close the file
+ 
+// Oops, we forgot something
+outf.open("Sample.dat", std::ios::app);
+outf << "This is line 3\n";
+outf.close();
+```
+## Random file I/O
+The `seekg()` and `seekp()` functions take two parameters. The first parameter is an offset that determines how many bytes to move the file pointer. The second parameter is an `Ios flag` that specifies what the offset parameter should be offset from.
+
+
+| Ios seek flag | Meaning                                                            |
+|---------------|--------------------------------------------------------------------|
+| beg           | The offset is relative to the beginning of the file \(default\)    |
+| cur           | The offset is relative to the current location of the file pointer |
+| end           | The offset is relative to the end of the file                      |
+```cpp
+inf.seekg(14, ios::cur); // move forward 14 bytes
+inf.seekg(-18, ios::cur); // move backwards 18 bytes
+inf.seekg(22, ios::beg); // move to 22nd byte in file
+inf.seekg(24); // move to 24th byte in file
+inf.seekg(-28, ios::end); // move to the 28th byte before end of the file
+```
+
+this can be used to determine the size of a file:
+```cpp
+std::ifstream inf("Sample.dat");
+inf.seekg(0, std::ios::end); // move to end of file
+std::cout << inf.tellg();
+```
