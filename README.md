@@ -297,7 +297,7 @@ Unary operators are usually overloaded as member functions as well
 ### onverting-constructors-explicit-and-delete
 - There are two things to keep in mind: first, the parenthesis operator must be implemented as a member function. Second, in non-object-oriented C++, the () operator is used to call functions. In the case of classes, operator() is just a normal operator that calls a function (named operator()) like any other overloaded operator.
 - Consider making your constructors and user-defined conversion member functions explicit to prevent implicit conversion errors
-- explicit keyword makes  constructor ineligible for implicit conversions
+- `explicit` keyword makes  constructor ineligible for implicit conversions
 - When a function has been deleted, any use of that function is considered a compile error.
 
 ### Overloading the assignment operator
