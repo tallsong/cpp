@@ -54,7 +54,11 @@
         "ratio": "cpp",
         "compare": "cpp",
         "concepts": "cpp",
-        "ranges": "cpp"
+        "ranges": "cpp",
+        "iomanip": "cpp",
+        "stop_token": "cpp",
+        "thread": "cpp"
     },
-    "C_Cpp.loggingLevel": "Debug"
+    "C_Cpp.loggingLevel": "Debug",
+    "C_Cpp.errorSquiggles": "Disabled"
 }

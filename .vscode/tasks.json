@@ -3,24 +3,67 @@
 	"tasks": [
 		{
 			"type": "shell",
-			"label": "single file",//"label": "C/C++: g++ build active file",
-			"command": "/usr/bin/g++-10",
+			"label": "CPP_single_standatd", //"label": "C/C++: g++ build active file",
+			"command": "/usr/bin/g++",
 			"args": [
 				"-std=c++2a",
-				"-pedantic-errors",  //disable compiler extensions
-				// "-Werror",  //Make all warnings into errors.
+				"-pedantic-errors", //disable compiler extensions
+				"-Werror", //Make all warnings into errors.
 				"-Wall",
 				"-Weffc++",
-				"-Wextra",  
-				"-Wsign-conversion",  
+				"-Wextra",
+				"-Wsign-conversion",
 				//-Wall -Weffc++ -Wextra -Wsign-conversion Turn your warning levels up to the maximum
-				"-g",   // for gdb to debug
+				"-g", // for gdb to debug
 				"${file}",
 				"-o",
 				//"${fileDirname}/${fileBasenameNoExtension}",
 				"${workspaceFolder}/test.out",
-
-				
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		},
+		{
+			"type": "shell",
+			"label": "CPP_single_pass", //"label": "C/C++: g++ build active file",
+			"command": "/usr/bin/g++",
+			"args": [
+				"-std=c++2a",
+				"-g", // for gdb to debug
+				"${file}",
+				"-o",
+				//"${fileDirname}/${fileBasenameNoExtension}",
+				"${workspaceFolder}/test.out",
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		},
+		{
+			"type": "shell",
+			"label": "CPP_multiple_pass", //"label": "C/C++: g++ build active file",
+			"command": "/usr/bin/g++",
+			"args": [
+				"-std=c++2a",
+				"-g", // for gdb to debug
+				"${fileDirname}/*.cpp",
+				"-o",
+				"${workspaceFolder}/test.out",
 			],
 			"options": {
 				"cwd": "${workspaceFolder}"
