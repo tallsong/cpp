@@ -57,7 +57,10 @@
         "ranges": "cpp",
         "iomanip": "cpp",
         "stop_token": "cpp",
-        "thread": "cpp"
+        "thread": "cpp",
+        "regex": "cpp",
+        "condition_variable": "cpp",
+        "shared_mutex": "cpp"
     },
     "C_Cpp.loggingLevel": "Debug",
     "C_Cpp.errorSquiggles": "Disabled"
