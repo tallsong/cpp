@@ -1,3 +1,21 @@
+# C++ 与C的区别
+- C++中函数的形参的列表为void表面函数不接受任何参数，这与括号里面空着等效；
+- C中函数的形参的列表为void表面函数不接受任何参数，让括号里面空着意外着对是否接受参数保存沉默；
+
+
+# need to know
+- '\n'的性能高于std::cout
+- 计算机内存的基本单位是位（bit），可以看作电子开关，可以开也可以关；
+- \-\'9\' - \'0\'的类型为**int**
+- 字节（bytes）通常指的是8位的内存单元;
+
+- sizeof(short):2    (bytes )	sizeof(int):4 	sizeof(long):4	sizeof(long):8
+
+计算机在存储数据时候必须跟踪的三种基本属性：
+* 信息存储在何处
+* 存储的值为多少
+* 存储的信息是什么类型
+
 # Fundamental Data Types
 | ***\*整型常量\**** | ***\*所需类型\****         |
 | ------------------ | -------------------------- |
@@ -597,6 +615,17 @@ sort(a1, a1 + size); //sort
 
 	}
 ```
+## unordered_map
+```C++
+unordered_map<int, int> m;
+cout<<[0]// 默认值为1
+```
+
+```C++
+String s='asdas';
+s[0]//数据类型为char
+```
+
 ## string
 ![img](./img/stdstring.png)
 
