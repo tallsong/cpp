@@ -1,4 +1,16 @@
 # Fundamental Data Types
+| ***\*整型常量\**** | ***\*所需类型\****         |
+| ------------------ | -------------------------- |
+| 10                 | 代表int类型                |
+| 10l, 10L           | 代表long类型               |
+| 10ll, 10LL         | 代表long long类型          |
+| 10u, 10U           | 代表unsigned int类型       |
+| 10ul, 10UL         | 代表unsigned long类型      |
+| 10ull, 10ULL       | 代表unsigned long long类型 |
+
+
+
+
 
 ## char
 - '9' - '0'的类型为**int**
@@ -589,6 +601,30 @@ sort(a1, a1 + size); //sort
 ![img](./img/stdstring.png)
 
 # Input and Output
+
+| ***\*打印格式\**** | ***\*含义\****             |
+| ------------------ | -------------------------- |
+| %hd                | 输出short类型              |
+| %d                 | 输出int类型                |
+| %ld                | 输出long类型               |
+| %lld               | 输出long long类型          |
+| %hu                | 输出unsigned short类型     |
+| %u                 | 输出unsigned int类型       |
+| %lu                | 输出unsigned long类型      |
+| %llu               | 输出unsigned long long类型 |
+
+
+- 输入/输出函数家族
+
+| 家族名  | 目的       | 可用于所有流 | 只用于stdin和stdout |
+| ------- | ---------- | ------------ | ------------------- |
+| getchar | 字符输入   | fgetc、getc  | getchar             |
+| putchar | 字符输出   | fputc、putc  | putchar             |
+| gets    | 文本行输入 | fgets        | gets                |
+| puts    | 文本行输出 | fputs        | puts                |
+| scanf   | 格式化输入 | fscanf       | scanf               |
+| printf  | 格式化输出 | fprintf      | printf              |
+
 ## input-with-istream
 **setw** (in the iomanip.h header)  can be used to limit the number of characters read in from a stream. 
 ```cpp
