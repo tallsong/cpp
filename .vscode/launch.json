@@ -6,7 +6,32 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "single Build and debug active",
+            "name": "single Build and debug active for mac",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${fileDirname}/${fileBasenameNoExtension}",
+            //"program": "${workspaceFolder}/test.out",
+            "args": [
+                "123",
+                "fuck"
+            ],
+            "stopAtEntry": false, //If set to true, the debugger should stop at the entry-point of the target (ignored on attach). 
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "CPP_single_stanard",
+            "miDebuggerPath": "/Users/cedar/.vscode/extensions/ms-vscode.cpptools-1.5.1/debugAdapters/lldb-mi/bin/lldb-mi"
+        },
+        {
+            "name": "single Build and debug active for windows",
             "type": "cppdbg",
             "request": "launch",
             //"program": "${fileDirname}/${fileBasenameNoExtension}",
