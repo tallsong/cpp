@@ -585,6 +585,43 @@ int main()
 ```
  
 # The Standard Template Library
+## accumulate
+> Defined in header `<numeric>`
+```cpp
+#include <iostream>
+#include <vector>
+#include <numeric>
+#include <string>
+#include <functional>
+ 
+int main()
+{
+    std::vector<int> v{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+ 
+    int sum = std::accumulate(v.begin(), v.end(), 0);  //55
+    //   int product = std::accumulate(v.begin(), v.end(), 1, std::puls<int>());   //55
+    int product = std::accumulate(v.begin(), v.end(), 1, std::multiplies<int>());  //3628800
+ 
+    auto dash_fold = [](std::string a, int b) {
+                         return std::move(a) + '-' + std::to_string(b);
+                     };
+ 
+    std::string s = std::accumulate(std::next(v.begin()), v.end(),
+                                    std::to_string(v[0]), // start with first element
+                                    dash_fold);    //1-2-3-4-5-6-7-8-9-10
+ 
+    // Right fold using reverse iterators
+    std::string rs = std::accumulate(std::next(v.rbegin()), v.rend(),
+                                     std::to_string(v.back()), // start with last element
+                                     dash_fold);  //10-9-8-7-6-5-4-3-2-1
+ 
+    std::cout << "sum: " << sum << '\n'
+              << "product: " << product << '\n'
+              << "dash-separated string: " << s << '\n'
+              << "dash-separated string (right-folded): " << rs << '\n';
+}
+```
+
 ## Array
 ```cpp
 int a1[5] = { 1, 2, 3 };  // other element will be set as the default value，也就是该数组的第4，5个元素的值为0
