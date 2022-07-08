@@ -8,7 +8,7 @@ private:
     static constexpr int directions[4][2] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
 
 public:
-    vector<int> ç(vector<vector<int>> &matrix)
+    vector<int> spiralOrder(vector<vector<int>> &matrix)
     {
         if (!matrix.size())
         {
@@ -44,38 +44,12 @@ public:
     }
 };
 
-class Solution
-{
-public:
-    vector<vector<int>> generate(int numRows)
-    {
-        vector<vector<int>> result(numRows);
-        for (int row{0}; row < numRows; ++row)
-        {
-            vector<int> temp(row+1);
-            for (int column{0}; column < row; ++column)
-            {
-                int first_row = row - 1;
-                if (first_row < 0 || column == 0 || column ==row-1 )
-                {
-                    temp.at(column)=0;
-                }
-                else
-                {
-                    temp.at(column) = result.at(row-1).at(column-1)  + result.at(row-1).at(column);
-                }
-            }
-            result.at(row) = temp;
-        }
-        return result;
-    }
-};
 
-int test_spiralOrder()
+int main()
 {
     vector<vector<int>> matrix{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
 
-    spiralOrder s;
+    Solution s;
     vector<int> result = s.spiralOrder(matrix);
     for (int i = 0; i < result.size(); i++)
     {
@@ -85,11 +59,3 @@ int test_spiralOrder()
     return 0;
 }
 
-
-int main()
-{
-    Solution s;
-    vector<vector<int>> resut{s.generate(5)};
-    return 0;
-
-}
