@@ -4,46 +4,32 @@ using namespace std;
 
 class Solution
 {
-private:
-    static constexpr int directions[4][2] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
-
 public:
     vector<int> spiralOrder(vector<vector<int>> &matrix)
     {
-        if (!matrix.size())
+        static constexpr int directions[4][2] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+        auto m{matrix.size()};
+        auto n{matrix.at(0).size()};
+        vector<int> result(m * n);
+        vector<vector<int>> visited(m, vector<int>(n, 0));
+        int x{0};
+        int y{0};
+        int way{0};
+        for (int i{0}; i < m * n; ++i)
         {
-            return {};
+            result[i] = matrix.at(x).at(y);
+            visited[x][y] = 1;
+            int next_x{x + directions[way][0]};
+            int next_y{y + directions[way][1]};
+            if (next_x < 0 || next_x >= m || next_y < 0 || next_y >= n || visited.at(next_x).at(next_y))
+                way = (way + 1) % 4;
+            x = x + directions[way][0];
+            y = y + directions[way][1];
         }
-        if (!matrix.at(0).size())
-        {
-            return {};
-        }
-        unsigned long rows{matrix.size()};
-        unsigned long columns{matrix.at(0).size()};
 
-        vector<vector<bool>> visited(rows, vector<bool>(columns, false));
-        vector<int> order(rows * columns);
-
-        int row{0};
-        int column{0};
-        int direction_index{0};
-        for (int i{0}; i < rows * columns; ++i)
-        {
-            order.at(i) = matrix.at(row).at(column);
-            visited.at(row).at(column) = true;
-            int next_row{row + directions[direction_index][0]};
-            int next_column{column + directions[direction_index][1]};
-            if (next_row < 0 || next_row >= rows || next_column < 0 || next_column >= columns || visited.at(next_row).at(next_column))
-            {
-                direction_index = (direction_index + 1) % 4;
-            }
-            row = {row + directions[direction_index][0]};
-            column = {column + directions[direction_index][1]};
-        }
-        return order;
+        return result;
     }
 };
-
 
 int main()
 {
@@ -58,4 +44,3 @@ int main()
     std::cout << std::endl;
     return 0;
 }
-
