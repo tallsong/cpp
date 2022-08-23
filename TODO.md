@@ -1,1 +1,6 @@
+- [ ] leetcode/5.longest-palindromic-substring.cpp
 - [ ] leetcode/54_sprial_matrix.cpp
+- [ ] leetcode/minSubArrayLen.cpp
+- [ ] leetcode/rotate.cpp   
+- [] leetcode/138.copy-list-with-random-pointer.cpp
+- [] leetcode/622.design-circular-queue.cpp

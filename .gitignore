@@ -3,3 +3,7 @@ core.*
 *.swp
 .gitignore
 build/
+test.out.dSYM/Contents/Info.plist
+.vscode/configurationCache.log
+.vscode/dryrun.log
+.vscode/targets.log

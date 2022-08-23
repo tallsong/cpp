@@ -16,18 +16,15 @@ public:
     int thirdMax(std::vector<int> &nums)
     {
         std::set<int> s;
-        for (int num : nums)
+        for (auto num : nums)
         {
             s.insert(num);
             if (s.size() > 3)
-            {
                 s.erase(s.begin());
-            }
         }
         return s.size() == 3 ? *s.begin() : *s.rbegin();
-    }
+    };
 };
-
 // @lc code=end
 int main()
 {

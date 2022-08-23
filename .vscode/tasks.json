@@ -8,7 +8,7 @@
 			"args": [
 				"-std=c++2a",
 				"-pedantic-errors", //disable compiler extensions
-				//"-Werror", //Make all warnings into errors.
+				// "-Werror", //Make all warnings into errors.
 				"-Wall",
 				"-Weffc++",
 				"-Wextra",
@@ -17,8 +17,8 @@
 				"-g", // for gdb to debug
 				"${file}",
 				"-o",
-				"${fileDirname}/${fileBasenameNoExtension}",
-				//"${workspaceFolder}/test.out",
+				//"${fileDirname}/${fileBasenameNoExtension}",
+				"${workspaceFolder}/test.out",
 			],
 			"options": {
 				"cwd": "${workspaceFolder}"

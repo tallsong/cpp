@@ -9,7 +9,8 @@
             "name": "single Build and debug active for mac",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${fileDirname}/${fileBasenameNoExtension}",
+            //"program": "${fileDirname}/${fileBasenameNoExtension}",
+            "program": "${workspaceFolder}/test.out",
             //"program": "${workspaceFolder}/test.out",
             "args": [
                 "123",
@@ -19,6 +20,7 @@
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
+            "targetArchitecture": "x86_64",
             "MIMode": "lldb",
             "setupCommands": [
                 {
@@ -27,8 +29,9 @@
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "CPP_single_stanard",
-            "miDebuggerPath": "/Users/cedar/.vscode/extensions/ms-vscode.cpptools-1.5.1/debugAdapters/lldb-mi/bin/lldb-mi"
+            "preLaunchTask": "CPP_single_pass",
+            //"miDebuggerPath": "/Users/cedar/.vscode/extensions/ms-vscode.cpptools-1.5.1/debugAdapters/lldb-mi/bin/lldb-mi"
+      
         },
         {
             "name": "single Build and debug active for windows",
