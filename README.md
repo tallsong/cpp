@@ -1,3 +1,4 @@
+[TOC]
 # C++ 与C的区别
 - C++中函数的形参的列表为void表面函数不接受任何参数，这与括号里面空着等效；
 - C中函数的形参的列表为void表面函数不接受任何参数，让括号里面空着意外着对是否接受参数保存沉默；
@@ -6,7 +7,6 @@
 # need to know
 - '\n'的性能高于std::cout
 - 计算机内存的基本单位是位（bit），可以看作电子开关，可以开也可以关；
-- \-\'9\' - \'0\'的类型为**int**
 - 字节（bytes）通常指的是8位的内存单元;
 
 - sizeof(short):2    (bytes )	sizeof(int):4 	sizeof(long):4	sizeof(long):8
@@ -190,6 +190,11 @@ std::cout << typeid(&x).name() << '\n'; // prints “pi” (pointer to int)
 - C++中函数的形参的列表为void表面函数不接受任何参数，这与括号里面空着等效；
 - C中函数的形参的列表为void表面函数不接受任何参数，让括号里面空着意外着对是否接受参数保存沉默；
 
+## lambda
+- lambdas can only access specific kinds of identifiers: global identifiers, entities that are known at compile time, and entities with static storage duration
+- By default, variables are captured by `const value`. 
+- To allow modifications of variables that were captured by value, we can mark the lambda as `mutable`.
+- To capture a variable by reference, we prepend an ampersand (`&`) to the variable name in the capture. Unlike variables that are captured by value, variables that are captured by reference are non-const, unless the variable they’re capturing is const. 
 
 
 
@@ -220,6 +225,27 @@ std::cout << typeid(&x).name() << '\n'; // prints “pi” (pointer to int)
 
 ## -overlapping-and-delegating-constructors
 - If you have multiple constructors that have the same functionality, use delegating constructors to avoid duplicate code.
+```cpp
+class class_c {
+public:
+    int max;
+    int min;
+    int middle;
+
+    class_c(int my_max) {
+        max = my_max > 0 ? my_max : 10;
+    }
+    class_c(int my_max, int my_min) : class_c(my_max) {
+        min = my_min > 0 && my_min < max ? my_min : 1;
+    }
+    class_c(int my_max, int my_min, int my_middle) : class_c (my_max, my_min){
+        middle = my_middle < max && my_middle > min ? my_middle : 5;
+}
+};
+int main() {
+    class_c c1{ 1, 3, 2 };
+}
+```
 
 ## hidden-this-pointer
 
@@ -583,7 +609,7 @@ int main()
     return 0;
 }
 ```
- 
+
 # The Standard Template Library
 ## accumulate
 > Defined in header `<numeric>`
