@@ -3,65 +3,94 @@
  *
  * [622] Design Circular Queue
  */
-#include<vector>
+#include <vector>
 
 // @lc code=start
 
-
-
-class MyCircularQueue {
+class MyCircularQueue
+{
 private:
-    int front;
-    int rear;
-    int capacity;
-    std::vector<int> elements;
+    std::vector<int> data;
+    int head;
+    int tail;
+    int size;
 
 public:
-    MyCircularQueue(int k) {
-        this->capacity = k + 1;
-        this->elements = vector<int>(capacity);
-        rear = front = 0;
+    /** Initialize your data structure here. Set the size of the queue to be k. */
+    MyCircularQueue(int k)
+    {
+        data.resize(k);
+        head = -1;
+        tail = -1;
+        size = k;
     }
 
-    bool enQueue(int value) {
-        if (isFull()) {
+    /** Insert an element into the circular queue. Return true if the operation is successful. */
+    bool enQueue(int value)
+    {
+        if (isFull())
+        {
             return false;
         }
-        elements[rear] = value;
-        rear = (rear + 1) % capacity;
+        if (isEmpty())
+        {
+            head = 0;
+        }
+        tail = (tail + 1) % size;
+        data[tail] = value;
         return true;
     }
 
-    bool deQueue() {
-        if (isEmpty()) {
+    /** Delete an element from the circular queue. Return true if the operation is successful. */
+    bool deQueue()
+    {
+        if (isEmpty())
+        {
             return false;
         }
-        front = (front + 1) % capacity;
+        if (head == tail)
+        {
+            head = -1;
+            tail = -1;
+            return true;
+        }
+        head = (head + 1) % size;
         return true;
     }
 
-    int Front() {
-        if (isEmpty()) {
+    /** Get the front item from the queue. */
+    int Front()
+    {
+        if (isEmpty())
+        {
             return -1;
         }
-        return elements[front];
+        return data[head];
     }
 
-    int Rear() {
-        if (isEmpty()) {
+    /** Get the last item from the queue. */
+    int Rear()
+    {
+        if (isEmpty())
+        {
             return -1;
         }
-        return elements[(rear - 1 + capacity) % capacity];
+        return data[tail];
     }
 
-    bool isEmpty() {
-        return rear == front;
+    /** Checks whether the circular queue is empty or not. */
+    bool isEmpty()
+    {
+        return head == -1;
     }
 
-    bool isFull() {
-        return ((rear + 1) % capacity) == front;
+    /** Checks whether the circular queue is full or not. */
+    bool isFull()
+    {
+        return ((tail + 1) % size) == head;
     }
 };
+
 
 /**
  * Your MyCircularQueue object will be instantiated and called as such:
