@@ -19,13 +19,12 @@ public:
         {
             int minn{INT_MAX};
             for (int j{1}; j * j <= i; ++j)
-                minn = std::min(minn, f.at(i - j * j));
-            f.at(i) = minn + 1;
+                minn = std::min(minn, f.at(i - j * j) + 1);
+            f.at(i) = minn;
         }
         return f.at(n);
     }
 };
-
 
 // @lc code=end
 

@@ -6,40 +6,41 @@
 
 #include <stack>
 
-#include<vector>
-#include<iostream>
+#include <vector>
+#include <iostream>
 // @lc code=start
 class Solution
 {
 public:
     std::vector<int> dailyTemperatures(std::vector<int> &temperatures)
     {
-        int length = temperatures.size();
-        std::vector<int> result(length,0);
-        std::stack<int> stack;
-
-        for(int i{0};i<length;++i)
+        std::vector<int> result(temperatures.size());
+        std::stack<int> stk;
+        for (size_t i{0}; i < temperatures.size(); ++i)
         {
-            while(!stack.empty() && temperatures.at(i)>temperatures.at(stack.top()))
-            {
-                result.at(stack.top())=i-stack.top();
-                stack.pop();
-            }
-                stack.push(i);
 
+            while (!stk.empty() && temperatures.at(stk.top()) < temperatures.at(i))
+            {
+                result.at(stk.top()) = i - stk.top();
+                stk.pop();
+            }
+            stk.emplace(i);
         }
         return result;
     }
-
 };
 // @lc code=end
-
 
 int main()
 {
     Solution s;
-    std::vector v{73,74,75,71,69,72,76,73};
-    for(auto i:s.dailyTemperatures(v))
-        std::cerr<<i<<'\t';
+    std::vector v{73, 74, 75, 71, 69, 72, 76, 73};
+    for (auto i : s.dailyTemperatures(v))
+        std::cerr << i << '\t';
+    std::cerr << "\n";
+    v = {30, 40, 50, 60};
+    for (auto i : s.dailyTemperatures(v))
+        std::cerr << i << '\t';
+    std::cerr << "\n";
     return 0;
 }

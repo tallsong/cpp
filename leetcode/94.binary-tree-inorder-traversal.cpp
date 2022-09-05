@@ -44,7 +44,8 @@ public:
     }
 };
 
-class Solution
+
+class Solution_std
 {
 public:
     vector<int> inorderTraversal(TreeNode *root)
@@ -63,6 +64,33 @@ public:
             result.push_back(root->val);
             root=root->right;
             
+        }
+        return result;
+    }
+};
+
+class Solution
+{
+public:
+    std::vector<int> inorderTraversal(TreeNode *root)
+    {
+        std::stack<TreeNode *> stack;
+        std::vector<int> result;
+        while (root)
+        {
+            stack.push(root);
+            root = root->left;
+        }
+        while (!stack.empty())
+        {
+            auto point{stack.top()};
+            stack.pop();
+            result.push_back(point->val);
+            while (point->right)
+            {
+                stack.push(point->right);
+                point->right = point->right->left;
+            }
         }
         return result;
     }

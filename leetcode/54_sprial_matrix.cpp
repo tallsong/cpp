@@ -1,42 +1,47 @@
 #include <iostream>
 #include <vector>
-using namespace std;
 
 class Solution
 {
 public:
-    vector<int> spiralOrder(vector<vector<int>> &matrix)
+    static constexpr int directions[4][2] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+    std::vector<int> spiralOrder(std::vector<std::vector<int>> &matrix)
     {
-        static constexpr int directions[4][2] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
-        auto m{matrix.size()};
-        auto n{matrix.at(0).size()};
-        vector<int> result(m * n);
-        vector<vector<int>> visited(m, vector<int>(n, 0));
-        int x{0};
-        int y{0};
-        int way{0};
-        for (int i{0}; i < m * n; ++i)
+        int m{int(matrix.size())};
+        int n{int(matrix.at(0).size())};
+        std::vector<int> result(m*n);
+        std::vector<std::vector<bool>> visited(m, std::vector<bool>(n));
+        int i{0};
+        int j{0};
+        int direction{0};
+        for (int index{0}; index < m * n; ++index)
         {
-            result[i] = matrix.at(x).at(y);
-            visited[x][y] = 1;
-            int next_x{x + directions[way][0]};
-            int next_y{y + directions[way][1]};
-            if (next_x < 0 || next_x >= m || next_y < 0 || next_y >= n || visited.at(next_x).at(next_y))
-                way = (way + 1) % 4;
-            x = x + directions[way][0];
-            y = y + directions[way][1];
+            result.at(index) = matrix.at(i).at(j);
+            visited.at(i).at(j) = true;
+            int ni{i + directions[direction][0]};
+            int nj{j + directions[direction][1]};
+            if (ni >= 0 && ni < m && nj >= 0 && nj < n && !visited.at(ni).at(nj))
+            {
+                i = ni;
+                j = nj;
+            }
+            else
+            {
+                direction = (direction + 1) % 4;
+                i={i + directions[direction][0]};
+                j = {j + directions[direction][1]};
+            }
         }
-
         return result;
     }
 };
 
 int main()
 {
-    vector<vector<int>> matrix{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+    std::vector<std::vector<int>> matrix{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
 
     Solution s;
-    vector<int> result = s.spiralOrder(matrix);
+    std::vector<int> result = s.spiralOrder(matrix);
     for (int i = 0; i < result.size(); i++)
     {
         std::cout << result.at(i) << " ";

@@ -3,25 +3,33 @@
 #include <numeric>
 #include <utility>
 using namespace std;
-// 189
+/*
+ * @lc app=leetcode id=189 lang=cpp
+ *
+ * [189] Rotate Array
+ */
+
+// @lc code=start
 class Solution
 {
 public:
-    void reverse(vector<int> & nums, int start, int end)
+    void reverse(std::vector<int> &nums, int start, int end)
     {
         while (start < end)
         {
             std::swap(nums.at(start++), nums.at(end--));
         }
     }
-    void rotate(vector<int> &nums, int k)
+    void rotate(std::vector<int> &nums, int k)
     {
-        this->reverse(nums,0, nums.size()-1);
-        this->reverse(nums,0,k%nums.size()-1);
-        this->reverse(nums,k%nums.size(),nums.size()-1);
-
+        k%=nums.size();
+        reverse(nums,0,nums.size()-1);
+        reverse(nums,0,k-1);
+        reverse(nums,k,nums.size()-1);
     }
 };
+
+// @lc code=end
 
 int main()
 {
