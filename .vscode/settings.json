@@ -85,7 +85,8 @@
         "variant": "cpp",
         "__functional_base": "cpp",
         "__functional_03": "cpp",
-        "filesystem": "cpp"
+        "filesystem": "cpp",
+        "list": "cpp"
     },
     "C_Cpp.loggingLevel": "Debug",
     "C_Cpp.errorSquiggles": "Disabled"
