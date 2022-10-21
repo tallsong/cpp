@@ -1093,3 +1093,9 @@ std::ifstream inf("Sample.dat");
 inf.seekg(0, std::ios::end); // move to end of file
 std::cout << inf.tellg();
 ```
+
+
+
+
+
+

@@ -8,3 +8,4 @@ test.out.dSYM/Contents/Info.plist
 .vscode/dryrun.log
 .vscode/targets.log
 .DS_Store
+test
