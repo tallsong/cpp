@@ -570,6 +570,120 @@ int &&rref{ 5 }; // r-value reference initialized with r-value 5
 ```
 - First, r-value references extend the lifespan of the object they are initialized with to the lifespan of the r-value reference (l-value references to const objects can do this too). Second, non-const r-value references allow you to modify the r-value!
 - R-value references are more often used as function parameters. This is most useful for function overloads when you want to have different behavior for l-value and r-value arguments.
+
+
+```cpp
+
+#include <iostream>
+
+template <typename T>
+class Auto_ptr4
+{
+	T *m_ptr;
+
+public:
+	Auto_ptr4(T *ptr = nullptr)
+		: m_ptr(ptr)
+	{
+	}
+
+	~Auto_ptr4()
+	{
+		delete m_ptr;
+	}
+
+	// Copy constructor -- no copying allowed!
+	// Auto_ptr5(const Auto_ptr5& a) = delete;
+
+	// Copy constructor
+	// Do deep copy of a.m_ptr to m_ptr
+	Auto_ptr4(const Auto_ptr4 &a)
+	{
+		m_ptr = new T;
+		*m_ptr = *a.m_ptr;
+		std::cerr << "call copy ()\n";
+	}
+
+	// Move constructor
+	// Transfer ownership of a.m_ptr to m_ptr
+	Auto_ptr4(Auto_ptr4 &&a) noexcept
+		: m_ptr(a.m_ptr)
+	{
+		a.m_ptr = nullptr; // we'll talk more about this line below
+		std::cerr << "call more ()";
+	}
+	// Copy assignment -- no copying allowed!
+	// Auto_ptr5 &operator=(const Auto_ptr5 &a) = delete;
+
+	// Copy assignment
+	// Do deep copy of a.m_ptr to m_ptr
+	Auto_ptr4 &operator=(const Auto_ptr4 &a)
+	{
+		// Self-assignment detection
+		if (&a == this)
+			return *this;
+
+		// Release any resource we're holding
+		delete m_ptr;
+
+		// Copy the resource
+		m_ptr = new T;
+		*m_ptr = *a.m_ptr;
+		std::cerr << "call copy =\n";
+
+		return *this;
+	}
+
+	// Move assignment
+	// Transfer ownership of a.m_ptr to m_ptr
+	Auto_ptr4 &operator=(Auto_ptr4 &&a) noexcept
+	{
+		// Self-assignment detection
+		if (&a == this)
+			return *this;
+
+		// Release any resource we're holding
+		delete m_ptr;
+
+		// Transfer ownership of a.m_ptr to m_ptr
+		m_ptr = a.m_ptr;
+		a.m_ptr = nullptr; // we'll talk more about this line below
+		std::cerr << "call more =\n";
+
+		return *this;
+	}
+
+	T &operator*() const { return *m_ptr; }
+	T *operator->() const { return m_ptr; }
+	bool isNull() const { return m_ptr == nullptr; }
+};
+
+class Resource
+{
+public:
+	Resource() { std::cout << "Resource acquired\n"; }
+	~Resource() { std::cout << "Resource destroyed\n"; }
+};
+
+Auto_ptr4<Resource> generateResource()
+{
+	Auto_ptr4<Resource> res{new Resource};
+	return res; // this return value will invoke the move constructor
+}
+
+int main()
+{
+	Auto_ptr4<Resource> mainres;
+	mainres = generateResource(); // this assignment will invoke the move assignment
+	int *a{new int[11111]};
+	delete[] a;
+	return 0;
+}
+```
+
+- However, if we construct an object or do an assignment where the argument is an r-value, then we know that r-value is just a temporary object of some kind. Instead of copying it (which can be expensive), we can simply transfer its resources (which is cheap) to the object we’re constructing or assigning. This is safe to do because the temporary will be destroyed at the end of the expression anyway, so we know it will never be used again!
+
+
 ```cpp
 void fun(const int &lref) // l-value arguments will select this function
 {
@@ -591,6 +705,40 @@ int main()
 }
 ```
 - In C++11, **std::move** is a standard library function that serves a single purpose -- to convert its argument into an r-value. We can pass an l-value to std::move, and it will return an r-value reference. std::move is defined in the utility header.
+
+```cpp
+#include <iostream>
+#include <string>
+#include <utility> // for std::move
+
+template <class T>
+void myswapMove(T &a, T &b)
+{
+    T tmp{std::move(a)}; // invokes move constructor
+    a = std::move(b);    // invokes move assignment
+    b = std::move(tmp);  // invokes move assignment
+}
+
+int main()
+{
+    std::string x{"abc"};
+    std::string y{"de"};
+
+    std::cout << "x: " << x << '\n';
+    std::cout << "y: " << y << '\n';
+
+    myswapMove(x, y);
+
+    std::cout << "x: " << x << '\n';
+    std::cout << "y: " << y << '\n';
+
+    return 0;
+}
+
+```
+
+
+
 - **std::unique_ptr** has an overloaded operator* and operator-> that can be used to return the resource being managed. Operator* returns a reference to the managed resource, and operator-> returns a pointer
 - Rule: Favor std::array, std::vector, or std::string over a smart pointer managing a fixed array, dynamic array, or C-style string
 - use **std::make_unique()** instead of creating **std::unique_ptr** and using new yourself
@@ -609,6 +757,62 @@ int main()
     return 0;
 }
 ```
+
+- `std::shared_ptr`
+- `std::shared_ptr` uses two pointers internally. One pointer points at the resource being managed. The other points at a “control block”, which is a dynamically allocated object that tracks of a bunch of stuff, including how many std::shared_ptr are pointing at the resource. 
+- ` std::make_shared()` is simpler and safer(there’s no way to directly create two std::shared_ptr pointing to the same resource using this method)
+
+- `std::weak_ptr`  is the smart pointer class used when you need one or more objects with the ability to view and access a resource managed by a std::shared_ptr, but unlike std::shared_ptr, std::weak_ptr is not considered when determining whether the resource should be destroyed.
+```cpp
+#include <iostream>
+#include <memory> // for std::shared_ptr and std::weak_ptr
+#include <string>
+
+class Person
+{
+	std::string m_name;
+	std::weak_ptr<Person> m_partner; // note: This is now a std::weak_ptr
+
+public:
+
+	Person(const std::string &name): m_name(name)
+	{
+		std::cout << m_name << " created\n";
+	}
+	~Person()
+	{
+		std::cout << m_name << " destroyed\n";
+	}
+
+	friend bool partnerUp(std::shared_ptr<Person> &p1, std::shared_ptr<Person> &p2)
+	{
+		if (!p1 || !p2)
+			return false;
+
+		p1->m_partner = p2;
+		p2->m_partner = p1;
+
+		std::cout << p1->m_name << " is now partnered with " << p2->m_name << '\n';
+
+		return true;
+	}
+};
+
+int main()
+{
+	auto lucy { std::make_shared<Person>("Lucy") };
+	auto ricky { std::make_shared<Person>("Ricky") };
+
+	partnerUp(lucy, ricky);
+
+	return 0;
+}
+
+
+```
+
+
+
 
 # The Standard Template Library
 ## accumulate

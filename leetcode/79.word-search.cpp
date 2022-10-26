@@ -24,8 +24,7 @@ public:
         {
             auto new_i{i + direction.first};
             auto new_j{j + direction.second};
-            // TODO try to assemble here to compare efficenty
-            // if (new_i >= 0 && new_i < board.size() && new_j >= 0 && new_j < board.at(0).size() && !visited.at(new_i).at(new_j))
+         
             if (new_i >= 0 && new_i < board.size() && new_j >= 0 && new_j < board.at(0).size())
             {
                 if (!visited.at(new_i).at(new_j))
