@@ -1,4 +1,8 @@
 - 最大连续子数组和
+训练二分查找模版
+
+leetcode/443.string-compression.cpp
+leetcode/322.coin-change.cpp
 leetcode/139.word-break.cpp
 leetcode/3.longest-substring-without-repeating-characters.cpp
 leetcode/131.palindrome-partitioning.cpp
@@ -23,7 +27,14 @@ leetcode/48.rotate-image.cpp
 leetcode/49.group-anagrams.cpp
 leetcode/62.unique-paths.cpp
 leetcode/75.sort-colors.cpp
-
+leetcode/146.lru-cache.cpp
+leetcode/152.maximum-product-subarray.cpp
+leetcode/153.find-minimum-in-rotated-sorted-array.cpp
+leetcode/208.implement-trie-prefix-tree.cpp
+leetcode/230.kth-smallest-element-in-a-bst.cpp
+leetcode/240.search-a-2-d-matrix-ii.cpp
+leetcode/287.find-the-duplicate-number.cpp
+leetcode/300.longest-increasing-subsequence.cpp
 
 
 
