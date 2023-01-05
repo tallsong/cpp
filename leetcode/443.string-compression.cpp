@@ -12,30 +12,30 @@ class Solution
 public:
     int compress(std::vector<char> &chars)
     {
-        int length = chars.size();
-        int wirte{0};
         int left{0};
-        for (int read{0}; read < chars.size(); ++read)
+        int write{0};
+        int length = chars.size();
+        for (int read{0}; read < length; ++read)
         {
             if (read == length - 1 || chars[read] != chars[read + 1])
             {
-                chars[wirte++] = chars[read];
-                int sub_length = read - left + 1;
+                chars[write++] = chars[read];
+                int sub_length{read - left + 1};
                 if (sub_length > 1)
                 {
-                    int anchor{wirte};
+                    int anchor = write;
                     while (sub_length > 0)
                     {
-                        chars[wirte++] = sub_length % 10 + '0';
+                        chars[write++] = sub_length % 10 + '0';
                         sub_length /= 10;
                     }
-                    std::reverse(&chars[anchor], &chars[wirte]);
+                    std::reverse(&chars[anchor], &chars[write]);
                 }
 
                 left = read + 1;
             }
         }
-        return wirte;
+        return write;
     }
 };
 

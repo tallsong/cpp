@@ -1,6 +1,7 @@
 - 最大连续子数组和
 训练二分查找模版
 
+leetcode/347.top-k-frequent-elements.cpp
 leetcode/443.string-compression.cpp
 leetcode/322.coin-change.cpp
 leetcode/139.word-break.cpp
