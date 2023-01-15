@@ -8,7 +8,7 @@
 #include <iostream>
 #include <utility>
 #include <queue>
-
+#include <climits>
 // @lc code=start
 class Solution
 {
@@ -18,42 +18,50 @@ private:
 public:
     std::vector<std::vector<int>> updateMatrix(std::vector<std::vector<int>> &mat)
     {
-        size_t m{mat.size()};
-        size_t n{mat.at(0).size()};
+        int m = mat.size();
+        int n = mat[0].size();
+        std::queue<std::pair<int, int>> q;
 
-        std::vector<std::vector<int>> distance(m, std::vector<int>(n));
-        std::vector<std::vector<bool>> visited(m, std::vector<bool>(n));
-        std::queue<std::pair<size_t, size_t>> q;
+        std::vector<std::vector<int>> distances(m, std::vector(n, 0));
         for (int i{0}; i < m; ++i)
         {
             for (int j{0}; j < n; ++j)
             {
-                if (!mat.at(i).at(j))
+                if (mat[i][j])
                 {
-
-                    visited.at(i).at(j) = true;
+                    distances[i][j] = INT_MAX;
+                }
+                else
+                {
                     q.emplace(i, j);
                 }
             }
         }
+
+        int count{0};
         while (!q.empty())
         {
-            auto [row, column]{q.front()};
-            q.pop();
-            for (int i{0}; i < 4; ++i)
+            ++count;
+            int size = q.size();
+            for (int i{0}; i < size; ++i)
             {
-                auto new_row{row + directions[i][0]};
-                auto new_column{column + directions[i][1]};
-                if (new_row >= 0 && new_row < m && new_column >= 0 && new_column < n && !visited.at(new_row).at(new_column))
+
+                auto dirction = q.front();
+                q.pop();
+                for (int temp{0}; temp < 4; ++temp)
                 {
-                    visited.at(new_row).at(new_column) = true;
-                    distance.at(new_row).at(new_column) = distance.at(row).at(column) + 1;
-                    q.emplace(new_row, new_column);
+                    int new_row = dirction.first + directions[temp][0];
+                    int new_column = dirction.second + directions[temp][1];
+                    if (new_row >= 0 && new_row < m && new_column >= 0 && new_column < n && mat[new_row][new_column] != 0 && distances[new_row][new_column] == INT_MAX)
+                    {
+                        distances[new_row][new_column] = count;
+                        q.emplace(new_row, new_column);
+                    }
                 }
             }
         }
 
-        return distance;
+        return distances;
     }
 };
 // @lc code=end
