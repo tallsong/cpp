@@ -15,16 +15,17 @@ public:
     std::vector<int> dailyTemperatures(std::vector<int> &temperatures)
     {
         std::vector<int> result(temperatures.size());
-        std::stack<int> stk;
-        for (size_t i{0}; i < temperatures.size(); ++i)
-        {
 
-            while (!stk.empty() && temperatures.at(stk.top()) < temperatures.at(i))
+        std::stack<int> stk;
+        for (int i{0}; i < temperatures.size(); ++i)
+        {
+            int cur = temperatures[i];
+            while (!stk.empty() && cur > temperatures[stk.top()])
             {
-                result.at(stk.top()) = i - stk.top();
+                result[stk.top()] = i - stk.top();
                 stk.pop();
             }
-            stk.emplace(i);
+            stk.push(i);
         }
         return result;
     }

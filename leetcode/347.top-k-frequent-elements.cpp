@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-#include <map>
+#include <unordered_map>
 #include <queue>
 #include <iostream>
 
@@ -18,33 +18,36 @@ public:
         {
             return nums;
         }
-
-        std::map<int, int> counter_map;
+        std::unordered_map<int, int> count;
         for (auto num : nums)
         {
-            counter_map[num]++;
+            ++count[num];
         }
 
-        auto compare{
-            [&counter_map](int x, int y)
-            {
-                return counter_map[x] > counter_map[y];
-            }};
+        auto compare = [&count](int x, int y)
+        {
+            return count[x] > count[y];
+        };
+
         std::priority_queue<int, std::vector<int>, decltype(compare)> heap(compare);
 
-        for (auto[first,second]:counter_map)
+        for (auto [key, value] : count)
         {
-            heap.push(first);
+            heap.push(key);
             if (heap.size() > k)
                 heap.pop();
         }
+
         std::vector<int> result(k);
-         while (k > 0)
+
+        while (k > 0)
         {
+
             result[--k] = heap.top();
             heap.pop();
         }
-        return nums;
+
+        return result;
     }
 };
 
@@ -53,7 +56,7 @@ public:
 int main()
 {
     Solution s;
-    std::vector<int > v{1,1,1,2,2,3};
-    s.topKFrequent(v,2);
+    std::vector<int> v{1, 1, 1, 2, 2, 3};
+    s.topKFrequent(v, 2);
     return 0;
 }

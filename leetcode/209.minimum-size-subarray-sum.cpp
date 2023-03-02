@@ -45,21 +45,18 @@ public:
     }
     int minSubArrayLen(int target, std::vector<int> &nums)
     {
-        int result = INT_MAX;
-        int start{0};
-        int end{0};
-        auto length{nums.size()};
+        int n = nums.size();
+        int result{INT_MAX};
+        int left{0};
         int sum{0};
-        while (end < length)
+        for (int right{0}; right < n; ++right)
         {
-            sum += nums.at(end);
+            sum += nums[right];
             while (sum >= target)
             {
-                int temp{end - start + 1};
-                result = std::min(result, temp);
-                sum -= nums.at(start++);
+                result = std::min(result, right - left + 1);
+                sum -= nums[left++];
             }
-            ++end;
         }
         return result == INT_MAX ? 0 : result;
     }
@@ -72,11 +69,11 @@ int main()
 {
     Solution s;
     std::vector<int> numbers;
-    numbers={2,3,1,2,4,3};
+    numbers = {2, 3, 1, 2, 4, 3};
     std::cout << s.minSubArrayLen(7, numbers);
-    std::cerr<<'\n';
-    numbers={1, 1, 1, 1, 1, 1, 1, 1};
+    std::cerr << '\n';
+    numbers = {1, 1, 1, 1, 1, 1, 1, 1};
     std::cout << s.minSubArrayLen(11, numbers);
-    std::cerr<<'\n';
+    std::cerr << '\n';
     return 0;
 }

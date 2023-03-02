@@ -11,23 +11,19 @@ class Solution
 public:
     int findMin(std::vector<int> &nums)
     {
-        int low{0};
-        int high{ static_cast<int>(nums.size() )  - 1};
-
-        while (low < high)
+        int start{0};
+        int end{static_cast<int>(nums.size()) - 1};
+        while (start < end)
         {
-            int pivot{(low + high) / 2};
-            if (nums[pivot] < nums[high])
-            {
-                high = pivot;
-            }
+            int mid{(start + end) / 2};
+            if (nums[mid] < nums[end])
+                end = mid;
             else
-            {   
-                //pivot+1 instead of pivot
-                low = pivot+1;
+            {
+                start = mid + 1;
             }
         }
-        return nums[low];
+        return nums[start];
     }
 };
 // @lc code=end

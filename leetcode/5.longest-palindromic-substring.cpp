@@ -16,39 +16,23 @@ class Solution_dp
 public:
     std::string longestPalindrome(std::string s)
     {
-        size_t length{s.size()};
-        std::vector<std::vector<bool>> dp(length, std::vector<bool>(length));
-        std::string result;
-        for (int i{0}; i < length; ++i)
+        std::string result{""};
+        int length = s.size();
+        std::vector<std::vector<bool>> dp(length, std::vector<bool>(length, true));
+
+        for (int start{length - 1}; start >= 0; --start)
         {
-            for (int j{i}; j >= 0; --j)
+            for (int end{start}; end < length; ++end)
             {
-                if (i == j)
+
+                if (start == end || (s[start] == s[end] && dp[start + 1][end - 1]))
                 {
-                    dp.at(i).at(j) = true;
+                    dp[start][end] = true;
+                    result = result.length() > end - start + 1 ? result : s.substr(start, end - start + 1);
                 }
                 else
                 {
-                    if (i - j == 1)
-                    {
-                        dp.at(i).at(j) = s.at(i) == s.at(j);
-                    }
-                    else
-                    {
-
-                        if (s.at(i) == s.at(j))
-                        {
-                            dp.at(i).at(j) = dp.at(i - 1).at(j + 1);
-                        }
-                        else
-                        {
-                            dp.at(i).at(j) = false;
-                        }
-                    }
-                }
-                if (dp.at(i).at(j) && i - j + 1 > result.size())
-                {
-                    result = s.substr(j, i - j + 1);
+                    dp[start][end] = false;
                 }
             }
         }

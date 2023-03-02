@@ -7,22 +7,27 @@
 #include <stack>
 #include <iostream>
 #include <vector>
-
+#include <climits>
+#include <algorithm>
 // @lc code=start
 class Solution
 {
 public:
     int numSquares(int n)
     {
-        std::vector<int> f(n + 1);
+        std::vector<int> dp(n + 1, INT_MAX);
+
+        dp[0] = 0;
         for (int i{1}; i <= n; ++i)
         {
-            int minn{INT_MAX};
-            for (int j{1}; j * j <= i; ++j)
-                minn = std::min(minn, f.at(i - j * j) + 1);
-            f.at(i) = minn;
+            int x{1};
+            while (x * x <= i)
+            {
+                dp[i] = std::min(dp[i], dp[i - x * x] + 1);
+                ++x;
+            }
         }
-        return f.at(n);
+        return dp.back();
     }
 };
 

@@ -7,31 +7,31 @@ public:
     static constexpr int directions[4][2] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
     std::vector<int> spiralOrder(std::vector<std::vector<int>> &matrix)
     {
-        int m{int(matrix.size())};
-        int n{int(matrix.at(0).size())};
-        std::vector<int> result(m*n);
-        std::vector<std::vector<bool>> visited(m, std::vector<bool>(n));
-        int i{0};
-        int j{0};
+        int m = matrix.size();
+        int n = matrix[0].size();
+        std::vector<std::vector<bool>> visited(m, std::vector(n, false));
+        std::vector<int> result(m * n);
+        int x{0};
+        int y{0};
         int direction{0};
-        for (int index{0}; index < m * n; ++index)
+        for (int i{0}; i < m * n; ++i)
         {
-            result.at(index) = matrix.at(i).at(j);
-            visited.at(i).at(j) = true;
-            int ni{i + directions[direction][0]};
-            int nj{j + directions[direction][1]};
-            if (ni >= 0 && ni < m && nj >= 0 && nj < n && !visited.at(ni).at(nj))
+            result[i] = matrix[x][y];
+            visited[x][y] = true;
+            if (auto new_x{x + directions[direction][0]}, new_y{y + directions[direction][1]}; new_x < m && new_y < n && new_x >= 0 && new_y >= 0 && !visited[new_x][new_y])
             {
-                i = ni;
-                j = nj;
+                x = new_x;
+                y = new_y;
             }
             else
             {
                 direction = (direction + 1) % 4;
-                i={i + directions[direction][0]};
-                j = {j + directions[direction][1]};
+                x = x + directions[direction][0];
+
+                y = y + directions[direction][1];
             }
         }
+
         return result;
     }
 };

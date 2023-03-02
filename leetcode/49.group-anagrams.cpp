@@ -8,27 +8,30 @@
 #include <string>
 #include <iostream>
 #include <algorithm>
-#include<unordered_map>
+#include <unordered_map>
 // @lc code=start
 class Solution
 {
 public:
     std::vector<std::vector<std::string>> groupAnagrams(std::vector<std::string> &strs)
     {
-        std::vector<std::vector<std::string>> result;
-        std::unordered_map<std::string,std::vector<std::string>> map;
-        for(auto& str:strs)
+        std::unordered_map<std::string, int> hashtable;
+        std::vector<std::vector<std::string>> group;
+        for (auto str : strs)
         {
             auto key{str};
-            std::sort(key.begin(),key.end());
-            map[key].emplace_back(str);
+            std::sort(key.begin(), key.end());
+            if (hashtable.count(key))
+            {
+                group[hashtable[key]].push_back(str);
+            }
+            else
+            {
+                hashtable[key] = group.size();
+                group.push_back({str});
+            }
         }
-        for(auto &key:map)
-        {
-            result.emplace_back(key.second);
-        }
-
-        return result;
+        return group;
     }
 };
 // @lc code=end

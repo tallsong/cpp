@@ -15,7 +15,7 @@ struct ListNode
 
 // @lc code=start
 
-class Solution
+class Solution_iterative
 {
 public:
     ListNode *mergeTwoLists(ListNode *list1, ListNode *list2)
@@ -26,12 +26,12 @@ public:
         {
             if (!list2)
             {
-                cur->next=list1;
+                cur->next = list1;
                 break;
             }
             if (!list1)
             {
-                cur->next=list2;
+                cur->next = list2;
                 break;
             }
             if (list1->val < list2->val)
@@ -50,6 +50,32 @@ public:
         return dummy->next;
     }
 };
+
+class Solution
+{
+public:
+    ListNode *mergeTwoLists(ListNode *list1, ListNode *list2)
+    {
+        if (!list1)
+        {
+            return list2;
+        }
+        if (!list2)
+            return list1;
+
+        if (list1->val < list2->val)
+        {
+            list1->next = mergeTwoLists(list1->next, list2);
+            return list1;
+        }
+        else
+        {
+            list2->next = mergeTwoLists(list1, list2->next);
+            return list2;
+        }
+    }
+};
+
 // @lc code=end
 
 int main()
@@ -75,6 +101,6 @@ int main()
     b3->next = b4;
     b4->next = b5;
     Solution s;
-    s.mergeTwoLists(a1,b1);
+    s.mergeTwoLists(a1, b1);
     return 0;
 }

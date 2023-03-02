@@ -6,7 +6,28 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include <unordered_set>
+#include <unordered_map>
+
+// class Solution
+// {
+// public:
+//     int lengthOfLongestSubstring(string s)
+//     {
+//         int n = int(s.length()), res = 0;
+//         unordered_map<char, int> mp;
+
+//         for (int j = 0, i = 0; j < n; j++)
+//         {
+//             if (mp[s[j]] > 0)
+//             {
+//                 i = max(mp[s[j]], i);
+//             }
+//             res = max(res, j - i + 1);
+//             mp[s[j]] = j + 1;
+//         }
+//         return res;
+//     }
+// };
 
 // @lc code=start
 class Solution
@@ -14,30 +35,28 @@ class Solution
 public:
     int lengthOfLongestSubstring(std::string s)
     {
-        int max_length{0};
-        std::unordered_set<char> set;
-        int end{0};
-        int start{0};
-        while (end < s.size())
-        {
-            if (set.count(s[end]))
-            {
-                max_length = max_length > set.size() ? max_length : set.size();
 
-                while (s[start] != s[end])
-                {
-                    set.erase(s[start++]);
-                }
-                ++start;
-                // set.insert(s[end++]);
-                ++end;
-            }
-            else
+        int string_size = s.size();
+        int left{0};
+        int right{0};
+        int max_length{0};
+
+        std::unordered_map<char, int> cache;
+
+        while (right < string_size)
+        {
+            while (right < string_size && !cache[s[right]])
             {
-                set.insert(s[end++]);
+                cache[s[right++]]++;
+            }
+            max_length = max_length > (right - left) ? max_length : (right - left);
+
+            while (cache[(s[right])])
+            {
+                --cache[s[left++]];
             }
         }
-        return max_length > set.size() ? max_length : set.size();
+        return max_length > (right - left) ? max_length : (right - left);
     }
 };
 // @lc code=end

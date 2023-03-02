@@ -8,7 +8,7 @@
 
 // @lc code=start
 
-class Solution_std
+class Solution
 {
 public:
     int binarySearch(std::vector<int> &nums, int target, bool lower)
@@ -42,48 +42,6 @@ public:
     }
 };
 
-class Solution
-{
-public:
-    std::vector<int> searchRange(std::vector<int> &nums, int target)
-    {
-        int n{int(nums.size())};
-        if (!n)
-            return {-1, -1};
-        if (n == 1)
-        {
-            if (nums.at(0) == target)
-                return {0, 0};
-            else
-                return {-1, -1};
-        }
-        int left{0};
-        int right{n - 1};
-        while (left <= right)
-        {
-            int mid{(left + right) / 2};
-            if (nums.at(mid) == target)
-            {
-                int start{mid};
-                int end{mid};
-                while (start - 1 >= 0 && nums.at(start - 1) == target)
-                {
-                    --start;
-                }
-                while (end + 1 < n && nums.at(end + 1) == target)
-                {
-                    ++end;
-                }
-                return {start, end};
-            }
-            if (nums.at(mid) < target)
-                left = mid + 1;
-            else
-                right = mid - 1;
-        }
-        return {-1, -1};
-    }
-};
 // @lc code=end
 
 //  [5,7,7,8,8,10]
@@ -91,7 +49,9 @@ public:
 int main()
 {
 
-    std::vector<int> numns{1, 2, 3};
+    std::vector<int> nums{1, 2, 3};
     Solution s;
-    s.searchRange(nums,1);
+    s.searchRange(nums, 1);
+
+   
 }

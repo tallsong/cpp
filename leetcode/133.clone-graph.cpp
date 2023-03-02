@@ -121,30 +121,32 @@ class Solution
 public:
     Node *cloneGraph(Node *node)
     {
+        std::unordered_map<Node *, Node *> visited;
 
         if (!node)
-            return nullptr;
-        std::unordered_map<Node *, Node *> hashtable;
+            return node;
+
         std::queue<Node *> q;
+
+        auto cloned_node = new Node(node->val);
+        visited[node] = cloned_node;
         q.push(node);
-        hashtable[node] = new Node(node->val);
         while (!q.empty())
         {
-            auto front = q.front();
+            auto front{q.front()};
             q.pop();
-            for (auto &neighbor : front->neighbors)
+            for (auto &neigbor : front->neighbors)
             {
-                if (!hashtable.count(neighbor))
+                if (!visited.count(neigbor))
                 {
-                    Node *new_neighbor = new Node(neighbor->val);
-
-                    hashtable[neighbor] = new_neighbor;
-                    q.push(neighbor);
+                    visited[neigbor] = new Node(neigbor->val);
+                    q.push(neigbor);
                 }
-                hashtable[front]->neighbors.emplace_back(hashtable[neighbor]);
+                visited[front]->neighbors.push_back(visited[neigbor]);
             }
         }
-        return hashtable[node];
+
+        return visited[node];
     }
 };
 

@@ -12,3 +12,6 @@ sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/ins
 
 
 sed  -i 's/robbyrussell/agnoster/g'    ~/.zshrc  
+
+
+source ~/.zshrc
