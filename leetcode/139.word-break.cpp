@@ -8,7 +8,10 @@
 #include <vector>
 #include <string>
 #include <unordered_set>
+
+//  https://leetcode.com/problems/word-break/
 // @lc code=start
+
 class Solution
 {
 public:
@@ -23,7 +26,6 @@ public:
         dp[0] = true;
         for (int i{1}; i <= s.size(); ++i)
         {
-
             for (int j{0}; j < i; ++j)
             {
                 if (dp[j] && set.count(s.substr(j, i - j)))
@@ -33,7 +35,7 @@ public:
                 }
             }
         }
-        return dp[dp.size() - 1];
+        return dp.back();
     }
 };
 // @lc code=end
@@ -75,6 +77,7 @@ int test2()
 }
 int main()
 {
+    test1();
     test2();
     return 0;
 }

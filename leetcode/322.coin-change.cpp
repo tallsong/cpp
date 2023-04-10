@@ -5,28 +5,38 @@
  */
 #include <vector>
 #include <algorithm>
+#include <climits>
+#include <iostream>
 // @lc code=start
 
 class Solution
 {
 public:
-    int coinChange(vector<int> &coins, int amount)
+    int coinChange(std::vector<int> &coins, int amount)
     {
-        std::vector<int> dp{std::vector<int>(amount + 1, amount + 1)};
-
+        std::vector<int> dp(amount + 1, INT_MAX);
         dp[0] = 0;
         for (int i{1}; i <= amount; ++i)
         {
-            for (int j{0}; j < int(coins.size()); ++j)
+            for (auto coin : coins)
             {
-                if (coins[j] <= i)
+                if (coin <= i && dp[i - coin] != INT_MAX)
                 {
-
-                    dp[i] = std::min(dp[i - coins[j]] + 1, dp[i]);
+                    dp[i] = std::min(dp[i - coin] + 1, dp[i]);
                 }
             }
         }
-        return dp[amount] > amount?-1 : dp[amount];
+
+        return dp.back() == INT_MAX ? -1 : dp.back();
     }
 };
 // @lc code=end
+
+int main()
+{
+
+    std::vector<int> v{1, 2, 5};
+    Solution s;
+    std::cerr << s.coinChange(v, 11);
+    return 0;
+}

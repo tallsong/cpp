@@ -12,39 +12,45 @@ class Solution
 public:
     int compress(std::vector<char> &chars)
     {
-        int left{0};
-        int write{0};
-        int length = chars.size();
-        for (int read{0}; read < length; ++read)
+        int count{0};
+        for (int i{0}; i < chars.size(); ++i)
         {
-            if (read == length - 1 || chars[read] != chars[read + 1])
+            int j{i};
+            while (j + 1 < chars.size() && chars[j] == chars[j + 1])
             {
-                chars[write++] = chars[read];
-                int sub_length{read - left + 1};
-                if (sub_length > 1)
-                {
-                    int anchor = write;
-                    while (sub_length > 0)
-                    {
-                        chars[write++] = sub_length % 10 + '0';
-                        sub_length /= 10;
-                    }
-                    std::reverse(&chars[anchor], &chars[write]);
-                }
-
-                left = read + 1;
+                ++j;
             }
+            chars[count] = chars[i];
+            ++count;
+            int start{count};
+            int temp{j - i + 1};
+            if (temp > 1)
+            {
+
+                while (temp)
+                {
+                    // chars[count++] = '0' + temp % 10;
+                    chars[count++] = static_cast<char>(temp % 10);
+                    temp /= 10;
+                }
+                std::reverse(chars.begin() + start, chars.begin() + count);
+            }
+            i = j;
         }
-        return write;
+        return count;
     }
 };
-
 // @lc code=end
 
 int main()
 {
     Solution s;
     std::vector<char> chars{'a', 'a', 'a', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'c'};
-    std::cerr << s.compress(chars);
+    std::cerr << s.compress(chars) << '\n';
+    for (auto letter : chars)
+    {
+        std::cerr << letter;
+    }
+
     return 0;
 }
