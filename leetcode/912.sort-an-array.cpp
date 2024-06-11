@@ -20,12 +20,20 @@ class Solution_quick_sork
         int right{end};
         int pivot{nums[(start + end) / 2]};
         // <= not <
+        /**
+         * 0. avoid left and right share same party that case reduntant timer
+         * 1. void infinite recursive , such as [1,2 ]
+         */
         while (left <= right)
         {
-            //   // nums[start] < pivot  not <=  since we want to the numvber equal to pivot distribute in two parts equaly
-            while (nums[left] < pivot)
+            /**
+             * nums[start] < pivot  not <=  since
+             * 0. we want to the numvber equal to pivot distribute in two parts equaly
+             * 1.  void infinite recursive , such as [1,1 ]
+             */
+            while (left <= right && nums[left] < pivot)
                 ++left;
-            while (nums[right] > pivot)
+            while (left <= right && nums[right] > pivot)
                 --right;
             if (left <= right)
                 std::swap(nums[left++], nums[right--]);
@@ -97,6 +105,7 @@ int main()
 {
     Solution_marge_sork solution_marge_sork;
     std::vector<int> nums{1, 2, 3, 7, 8, 6, 4, 5, 0};
+
     solution_marge_sork.sortArray(nums);
     for (auto num : nums)
     {
@@ -104,7 +113,8 @@ int main()
     }
     std::cerr << "\n  quick sork  \n";
     Solution_quick_sork solution_quick_sork;
-    std::vector<int> nums2{1, 2, 3, 7, 8, 6, 4, 5, 0};
+    // std::vector<int> nums2{1, 2, 3, 7, 8, 6, 4, 5, 0};
+    std::vector<int> nums2{1, 1};
     solution_quick_sork.sortArray(nums2);
     for (auto num : nums2)
     {
