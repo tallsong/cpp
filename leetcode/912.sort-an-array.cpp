@@ -20,20 +20,18 @@ class Solution_quick_sork
         int right{end};
         int pivot{nums[(start + end) / 2]};
         // <= not <
-        while (start <= end)
+        while (left <= right)
         {
             //   // nums[start] < pivot  not <=  since we want to the numvber equal to pivot distribute in two parts equaly
-            while ( nums[start] < pivot)
-                ++start;
-            while ( nums[end] > pivot)
-                --end;
-            if (start <= end)
-                std::swap(nums[start++], nums[end--]);
+            while (nums[left] < pivot)
+                ++left;
+            while (nums[right] > pivot)
+                --right;
+            if (left <= right)
+                std::swap(nums[left++], nums[right--]);
         }
-        if (left < end)
-            quick_sort(nums, left, end);
-        if (start < right)
-            quick_sort(nums, start, right);
+        quick_sort(nums, start, right);
+        quick_sort(nums, left, end);
     }
 
 public:
