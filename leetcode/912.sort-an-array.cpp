@@ -19,8 +19,10 @@ class Solution_quick_sork
         int left{start};
         int right{end};
         int pivot{nums[(start + end) / 2]};
+        // <= not <
         while (start <= end)
         {
+            //   // nums[start] < pivot  not <=  since we want to the numvber equal to pivot distribute in two parts equaly
             while ( nums[start] < pivot)
                 ++start;
             while ( nums[end] > pivot)
