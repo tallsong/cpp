@@ -3,7 +3,8 @@
         {
             "name": "defaultWsl",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "/home/cedar/code/googletest/googletest/include/**"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",

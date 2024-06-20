@@ -87,7 +87,10 @@
         "__functional_03": "cpp",
         "filesystem": "cpp",
         "list": "cpp",
-        "typeindex": "cpp"
+        "typeindex": "cpp",
+        "numbers": "cpp",
+        "semaphore": "cpp",
+        "cinttypes": "cpp"
     },
     "C_Cpp.loggingLevel": "Debug",
     "C_Cpp.errorSquiggles": "Disabled"
