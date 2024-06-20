@@ -7,10 +7,10 @@
 struct ListNode
 {
     int val;
-    ListNode *next;
+    ListNode* next;
     ListNode() : val(0), next(nullptr) {}
     ListNode(int x) : val(x), next(nullptr) {}
-    ListNode(int x, ListNode *next) : val(x), next(next) {}
+    ListNode(int x, ListNode* next) : val(x), next(next) {}
 };
 
 // @lc code=start
@@ -24,63 +24,64 @@ struct ListNode
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
+
 class Solution
 {
 public:
-    ListNode *sortList(ListNode *head)
+    ListNode* sortList(ListNode* head)
     {
         return helper(head, nullptr);
     }
-    ListNode *helper(ListNode *head, ListNode *tail)
+
+    ListNode* helper(ListNode* head, ListNode* tail)
     {
         if (!head)
             return nullptr;
+
         if (head->next == tail)
         {
-            // avoid circular LinkedList
             head->next = nullptr;
             return head;
         }
+        auto slow = head;
+        auto fast = head;
 
-        auto fast{head};
-        auto slow{head};
-        while (fast != tail)
+        // notice while condition and if condition
+        while (fast && fast->next != tail)
         {
             slow = slow->next;
             fast = fast->next;
-            if (fast != tail)
+            if (fast && fast->next != tail)
                 fast = fast->next;
         }
 
-        return merge_two_list(helper(head, slow), helper(slow, tail));
+        return merge_sort(helper(head, slow), helper(slow, tail));
     }
 
-    ListNode *merge_two_list(ListNode *head1, ListNode *head2)
+    ListNode* merge_sort(ListNode* left, ListNode* right)
     {
-        ListNode *tail{new ListNode()};
-        ListNode *dummy{tail};
-        while (head1 && head2)
+        auto dummy = new ListNode(0);
+        auto tail = dummy;
+
+        while (left && right)
         {
-            if (head1->val < head2->val)
+            if (left->val < right->val)
             {
-                tail->next = head1;
-                head1 = head1->next;
+                tail->next = left;
+                left = left->next;
             }
             else
             {
-                tail->next = head2;
-                head2 = head2->next;
+                tail->next = right;
+                right = right->next;
             }
             tail = tail->next;
         }
-        if (head1)
-        {
-            tail->next = head1;
-        }
-        if (head2)
-        {
-            tail->next = head2;
-        }
+        if (left)
+            tail->next = left;
+        if (right)
+            tail->next = right;
+
         return dummy->next;
     }
 };
@@ -88,10 +89,10 @@ public:
 
 int main()
 {
-    ListNode *node1{new ListNode(3)};
-    ListNode *node2{new ListNode(1, node1)};
-    ListNode *node3{new ListNode(2, node2)};
-    ListNode *node4{new ListNode(4, node3)};
+    ListNode* node1{new ListNode(3)};
+    ListNode* node2{new ListNode(1, node1)};
+    ListNode* node3{new ListNode(2, node2)};
+    ListNode* node4{new ListNode(4, node3)};
     Solution s;
     auto node(s.sortList(node4));
     while (node)
