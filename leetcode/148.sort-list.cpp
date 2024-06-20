@@ -87,8 +87,10 @@ public:
 };
 // @lc code=end
 
-int main()
+#include <gtest/gtest.h>
+TEST(T148, BasicAssertions)
 {
+
     ListNode* node1{new ListNode(3)};
     ListNode* node2{new ListNode(1, node1)};
     ListNode* node3{new ListNode(2, node2)};
@@ -97,6 +99,7 @@ int main()
     auto node(s.sortList(node4));
     while (node)
     {
+        EXPECT_GE(node->val, 0);
         std::cerr << '\t' << node->val;
         node = node->next;
     }
