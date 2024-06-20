@@ -6,6 +6,36 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "(gdb) Launch on ubuntu",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/test.out",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [
+                {
+                    "name": "config",
+                    "value": "Debug"
+                }
+            ],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "CPP_single_pass",
+        },
+        {
             "name": "single Build and debug active for mac",
             "type": "cppdbg",
             "request": "launch",
@@ -31,7 +61,6 @@
             ],
             "preLaunchTask": "CPP_single_pass",
             //"miDebuggerPath": "/Users/cedar/.vscode/extensions/ms-vscode.cpptools-1.5.1/debugAdapters/lldb-mi/bin/lldb-mi"
-      
         },
         {
             "name": "single Build and debug active for windows",
