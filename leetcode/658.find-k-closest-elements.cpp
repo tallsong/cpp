@@ -4,32 +4,80 @@
  * [658] Find K Closest Elements
  */
 
-#include <vector>
 #include <algorithm>
 #include <cmath>
+#include <iostream>
+#include <vector>
 
 using namespace std;
 
 // @lc code=start
 class Solution
 {
-public:
-    vector<int> findClosestElements(vector<int> &arr, int k, int x)
+    int find_upright(std::vector<int>& arr, int x)
     {
-        int left = 0, right = arr.size() - k;
-        while (left < right)
+        int start{0};
+        auto end{arr.size() - 1};
+        while (start + 1 < end)
         {
-            int mid = (left + right) / 2;
-            if (x - arr[mid] > arr[mid + k] - x)
+            auto mid{start + (end - start) / 2};
+            if (arr[mid] >= x)
             {
-                left = mid + 1;
+                end = mid;
             }
             else
             {
-                right = mid;
+                start = mid;
             }
         }
-        return vector<int>(arr.begin() + left, arr.begin() + left + k);
+        if (arr[start] >= x)
+            return start;
+        return end;
+    }
+
+public:
+    vector<int> findClosestElements(vector<int>& arr, int k, int x)
+    {
+        auto right = find_upright(arr, x);
+        auto left = right - 1;
+        auto start = left;
+
+        std::vector<int> result;
+        while (result.size() < k)
+        {
+            if (left < 0)
+            {
+
+                result.push_back(arr[right++]);
+                continue;
+            }
+            if (right >= arr.size())
+            {
+                result.push_back(arr[left--]);
+                continue;
+            }
+            if (std::abs(arr[left] - x) <= std::abs(arr[right] - x))
+            {
+                result.push_back(arr[left--]);
+            }
+            else
+            {
+                result.push_back(arr[right++]);
+            }
+        }
+        std::sort(result.begin(), result.end());
+
+        return result;
     }
 };
 // @lc code=end
+
+int main()
+{
+    std::vector<int> arr{1, 2, 3, 4, 5};
+    Solution s;
+    for (auto element : s.findClosestElements(arr, 4, 3))
+    {
+        std::cerr << element << '\t';
+    }
+}
