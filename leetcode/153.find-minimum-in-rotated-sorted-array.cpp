@@ -9,21 +9,23 @@
 class Solution
 {
 public:
-    int findMin(std::vector<int> &nums)
+    int findMin(std::vector<int>& nums)
     {
         int start{0};
-        int end{static_cast<int>(nums.size()) - 1};
-        while (start < end)
+        int end{int(nums.size() - 1)};
+        while (start + 1 < end)
         {
             int mid{(start + end) / 2};
-            if (nums[mid] < nums[end])
-                end = mid;
+            if (nums[mid] > nums[end])
+            {
+                start = mid;
+            }
             else
             {
-                start = mid + 1;
+                end = mid;
             }
         }
-        return nums[start];
+        return std::min(nums[start], nums[end]);
     }
 };
 // @lc code=end
