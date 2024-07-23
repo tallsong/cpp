@@ -4,25 +4,25 @@
  * [133] Clone Graph
  */
 
-#include <vector>
-#include <unordered_map>
 #include <queue>
+#include <unordered_map>
+#include <vector>
 class Node
 {
 public:
     int val;
-    std::vector<Node *> neighbors;
+    std::vector<Node*> neighbors;
     Node()
     {
         val = 0;
-        neighbors = vector<Node *>();
+        neighbors = vector<Node*>();
     }
     Node(int _val)
     {
         val = _val;
-        neighbors = vector<Node *>();
+        neighbors = vector<Node*>();
     }
-    Node(int _val, vector<Node *> _neighbors)
+    Node(int _val, vector<Node*> _neighbors)
     {
         val = _val;
         neighbors = _neighbors;
@@ -54,18 +54,18 @@ public:
 class Solution_dfs
 {
 public:
-    std::unordered_map<Node *, Node *> hashtable;
-    Node *cloneGraph(Node *node)
+    std::unordered_map<Node*, Node*> hashtable;
+    Node* cloneGraph(Node* node)
     {
 
         if (!node)
             return nullptr;
         if (hashtable.count(node))
             return hashtable[node];
-        Node *new_node = new Node(node->val);
+        Node* new_node = new Node(node->val);
         hashtable[node] = new_node;
 
-        for (auto &neighbor : node->neighbors)
+        for (auto& neighbor : node->neighbors)
         {
             new_node->neighbors.emplace_back(cloneGraph(neighbor));
         }
@@ -73,20 +73,20 @@ public:
     }
 };
 
-class Solution
+class Solution_BFS
 {
 public:
-    Node *cloneGraph(Node *node)
+    Node* cloneGraph(Node* node)
     {
         if (node == nullptr)
         {
             return node;
         }
 
-        unordered_map<Node *, Node *> visited;
+        unordered_map<Node*, Node*> visited;
 
         // 将题目给定的节点添加到队列
-        queue<Node *> Q;
+        queue<Node*> Q;
         Q.push(node);
         // 克隆第一个节点并存储到哈希表中
         visited[node] = new Node(node->val);
@@ -98,7 +98,7 @@ public:
             auto n = Q.front();
             Q.pop();
             // 遍历该节点的邻居
-            for (auto &neighbor : n->neighbors)
+            for (auto& neighbor : n->neighbors)
             {
                 if (visited.find(neighbor) == visited.end())
                 {
@@ -119,14 +119,14 @@ public:
 class Solution
 {
 public:
-    Node *cloneGraph(Node *node)
+    Node* cloneGraph(Node* node)
     {
-        std::unordered_map<Node *, Node *> visited;
+        std::unordered_map<Node*, Node*> visited;
 
         if (!node)
             return node;
 
-        std::queue<Node *> q;
+        std::queue<Node*> q;
 
         auto cloned_node = new Node(node->val);
         visited[node] = cloned_node;
@@ -135,7 +135,7 @@ public:
         {
             auto front{q.front()};
             q.pop();
-            for (auto &neigbor : front->neighbors)
+            for (auto& neigbor : front->neighbors)
             {
                 if (!visited.count(neigbor))
                 {
