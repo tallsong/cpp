@@ -3,6 +3,9 @@
 * quick sort 912.sort-an-array.cpp
 - merge sort 912.sort-an-array.cpp
 * quick select  215.kth-largest-element-in-an-array.cpp
+
+## binary tree
+
 # binary search
 * leetcode/704.binary-search.cpp
 - leetcode/658.find-k-closest-elements.cpp
@@ -13,3 +16,22 @@
 - leetcode/173.binary-search-tree-iterator.cpp
 - leetcode/133.clone-graph.cpp
 ## Topological sorting
+* leetcode/207.course-schedule.cpp
+
+
+
+
+* leetcode/114.flatten-binary-tree-to-linked-list.cpp
+* leetcode/230.kth-smallest-element-in-a-bst.cpp
+
+```mermaid
+graph TD;
+    Search-->BFS;
+    Search-->DFS(DFS = back tracking);
+    DFS --> traversal
+    DFS --> DC(divide and conquer)
+    traversal --> recursion
+    traversal --> iteration(iteration = non recursion)
+    DC --> recursion
+    DC --> iteration(iteration = non recursion)
+```

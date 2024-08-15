@@ -1,4 +1,8 @@
 {
+    "leetcode.defaultLanguage": "cpp",
+    "leetcode.nodePath": "/home/cedar/.nvm/versions/node/v20.15.0/bin/node",
+    "leetcode.workspaceFolder": "/home/cedar/cpp/leetcode",
+    "leetcode.hint.configWebviewMarkdown": false,
     "files.associations": {
         "string_view": "cpp",
         "iostream": "cpp",
@@ -90,8 +94,12 @@
         "typeindex": "cpp",
         "numbers": "cpp",
         "semaphore": "cpp",
-        "cinttypes": "cpp"
+        "cinttypes": "cpp",
+        "any": "cpp",
+        "forward_list": "cpp",
+        "span": "cpp"
     },
     "C_Cpp.loggingLevel": "Debug",
-    "C_Cpp.errorSquiggles": "Disabled"
+    "C_Cpp.errorSquiggles": "Disabled",
+   
 }

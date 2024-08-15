@@ -54,6 +54,37 @@ public:
         }
     }
 };
+
+class Solution_DFS
+{
+public:
+    void flatten(TreeNode* root)
+    {
+        helper(root);
+    }
+    // flatten and return last node
+    TreeNode* helper(TreeNode* node)
+    {
+        if (!node)
+        {
+            return nullptr;
+        }
+        auto left_last = helper(node->left);
+        auto right_last = helper(node->right);
+
+        if (left_last)
+        {
+            left_last->right = node->right;
+            node->right = node->left;
+            node->left = nullptr;
+        }
+        if(right_last)
+            return right_last;
+        if(left_last)
+            return left_last;
+        return node;
+    }
+};
 // @lc code=end
 
 int main()

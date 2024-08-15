@@ -15,6 +15,12 @@ std::tuple<std::size_t, std::common_type_t<T...>> sum(T... args)
     return { sizeof...(T), (args + ...) };
 }
  
+int f(int n)
+{
+    if(n<=2)
+        return n;
+    return f(n-1)+f(n-2);
+}
 int main()
 {
     auto [iNumbers, iSum]{ sum(1, 2, 3) };
@@ -22,7 +28,7 @@ int main()
  
     std::array arr{ 1, 2, 3 };
  
-    std::cout << std::size(arr) << '\n';
+    std::cout << std::size(arr) << '\n'<<f(55)<<'\n';;
     
     return 0;
 }
