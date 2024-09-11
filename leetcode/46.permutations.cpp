@@ -5,6 +5,7 @@
  */
 
 #include <iostream>
+#include <ranges>
 #include <unordered_set>
 #include <vector>
 // @lc code=start
@@ -12,38 +13,35 @@
 class Solution
 {
 public:
-    void helper(std::vector<std::vector<int>> &results, std::vector<int> &result,std::vector<int> &nums)
+    std::vector<std::vector<int>> results;
+    std::vector<int> result;
+    void help(std::vector<int>& nums, std::vector<int> result)
     {
-        if(result.size()==nums.size())
-        {
-
+        if (result.size() == nums.size())
             results.push_back(result);
-            return;
-        }
-        for(auto num:nums)
+        for (auto num : nums)
         {
-            if(std::find(result.begin(), result.end(), num) == result.end())
-            {
-                result.push_back(num);
-                helper(results,result,nums);
-                result.pop_back();
-            }
+            if (std::ranges::count(result, num))
+                continue;
+            result.push_back(num);
+            help(nums, result);
+            result.pop_back();
         }
     }
-    std::vector<std::vector<int>> permute(std::vector<int> &nums)
+
+    std::vector<std::vector<int>> permute(std::vector<int>& nums)
     {
-        std::vector<std::vector<int>> results;
-        std::vector<int> result;
-        helper(results,result,nums);
+        result.clear();
+        results.clear();
+        help(nums, result);
         return results;
     }
 };
 // @lc code=end
 
-
 int main()
 {
-    std::vector<int> nums{0,1};
+    std::vector<int> nums{0, 1};
     Solution s;
     s.permute(nums);
     return 0;

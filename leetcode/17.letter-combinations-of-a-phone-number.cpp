@@ -6,20 +6,16 @@
  */
 
 #include <iostream>
-#include <vector>
 #include <unordered_map>
+#include <vector>
 
 // @lc code=start
 class Solution
 {
 
-public:
-    std::vector<std::string> letterCombinations(std::string digits)
-    {
-        if (!digits.size())
-            return {};
+    std::unordered_map<char, std::string> hash{
 
-        std::unordered_map<char, std::string> phoneMap{
+        {
             {'2', "abc"},
             {'3', "def"},
             {'4', "ghi"},
@@ -27,28 +23,35 @@ public:
             {'6', "mno"},
             {'7', "pqrs"},
             {'8', "tuv"},
-            {'9', "wxyz"}};
+            {'9', "wxyz"},
 
-        std::vector<std::string> combintaions;
-        std::string combination;
-        helper(combintaions, combination, 0, digits, phoneMap);
-        return combintaions;
-    }
-    void helper(std::vector<std::string> &combintaions, std::string &combination, int index, const std::string &digits, const std::unordered_map<char, std::string> &phoneMap)
+        }};
+    std::vector<std::string> combinations;
+    std::string combination;
+
+public:
+    std::vector<std::string> letterCombinations(std::string digits)
     {
-        if (index == digits.size())
+        if (!digits.size())
         {
-            combintaions.push_back(combination);
+            return {};
         }
-        else
-        {
+        helper(0, digits);
+        return combinations;
+    }
 
-            for (auto letter : phoneMap.at(digits.at(index)))
-            {
-                combination.push_back(letter);
-                helper(combintaions, combination, index + 1, digits, phoneMap);
-                combination.pop_back();
-            }
+    void helper(int index, std::string& digits)
+    {
+        if (combination.size() == digits.size())
+        {
+            combinations.push_back(combination);
+            return;
+        }
+        for (auto letter : hash.at(digits.at(index)))
+        {
+            combination.push_back(letter);
+            helper(index + 1, digits);
+            combination.pop_back();
         }
     }
 };
@@ -57,6 +60,9 @@ public:
 int main()
 {
     Solution s;
-    s.letterCombinations("23423423432423");
+    for (auto& com : s.letterCombinations("234"))
+    {
+        std::cerr << com << '\n';
+    }
     return 0;
 }

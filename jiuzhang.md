@@ -15,10 +15,15 @@
 - leetcode/102.binary-tree-level-order-traversal.cpp
 - leetcode/173.binary-search-tree-iterator.cpp
 - leetcode/133.clone-graph.cpp
-
-## back tracking
+- leetcode/17.letter-combinations-of-a-phone-number.cpp
+  
+## Backtracking
 * leetcode/78.subsets.cpp
 * leetcode/90.subsets-ii.cpp
+- leetcode/39.cpp
+- leetcode/40.combination-sum-ii.cpp
+* leetcode/212
+* leetcode/126    hard
 ## Topological sorting
 * leetcode/207.course-schedule.cpp
 
@@ -39,3 +44,8 @@ graph TD;
     DC --> recursion
     DC --> iteration(iteration = non recursion)
 ```
+
+
+
+* leetcode/567.permutation-in-string.cpp
+record : 20
