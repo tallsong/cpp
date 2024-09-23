@@ -35,6 +35,7 @@ class Solution_quick_sork
                 ++left;
             while (left <= right && nums[right] > pivot)
                 --right;
+            // 避免访问非法内存（也就是越界）
             if (left <= right)
                 std::swap(nums[left++], nums[right--]);
         }

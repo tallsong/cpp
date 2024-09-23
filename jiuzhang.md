@@ -1,19 +1,19 @@
 
 # divide and conquer
 * quick sort 912.sort-an-array.cpp
-- merge sort 912.sort-an-array.cpp
-* quick select  215.kth-largest-element-in-an-array.cpp
+* merge sort 912.sort-an-array.cpp
+- quick select  215.kth-largest-element-in-an-array.cpp 12:33
 
 ## binary tree
 
 # binary search
 * leetcode/704.binary-search.cpp
-- leetcode/658.find-k-closest-elements.cpp
-- leetcode/852.peak-index-in-a-mountain-array.cpp
-- leetcode/33.search-in-rotated-sorted-array.cpp
+- leetcode/658.find-k-closest-elements.cpp  32:35
+- leetcode/852.peak-index-in-a-mountain-array.cpp 15:06
+- leetcode/33.search-in-rotated-sorted-array.cpp 47:54
 #  BFS && DFS & GRAPH
-- leetcode/102.binary-tree-level-order-traversal.cpp
-- leetcode/173.binary-search-tree-iterator.cpp
+- leetcode/102.binary-tree-level-order-traversal.cpp 15:56
+- leetcode/173.binary-search-tree-iterator.cpp   5:57
 - leetcode/133.clone-graph.cpp
 - leetcode/17.letter-combinations-of-a-phone-number.cpp
   
@@ -26,7 +26,6 @@
 * leetcode/126    hard
 ## Topological sorting
 * leetcode/207.course-schedule.cpp
-
 
 
 

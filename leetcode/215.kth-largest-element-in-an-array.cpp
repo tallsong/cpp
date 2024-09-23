@@ -44,6 +44,7 @@ private:
             return quick_select(nums, k, start, right);
         if (k >= left)
             return quick_select(nums, k, left, end);
+        // 注意k在right后和left前的情况
         return nums[k];
     }
 };

@@ -65,7 +65,7 @@ public:
         return -1;
     }
 };
-
+// 先算mid在左还是右
 class Solution
 {
 
@@ -111,6 +111,67 @@ public:
         return -1;
     }
 };
+
+class Solution_DIY
+{
+    /**
+     * 先考虑是否roated， 然后在考虑mid在前半部分还是后半部分，然后分别cut掉短的一部分
+     */
+public:
+    int search(vector<int>& nums, int target)
+    {
+
+        int start{0};
+        int end = nums.size() - 1;
+
+        while (start + 1 < end)
+        {
+            int mid = start + (end - start) / 2;
+            if (nums[mid] == target)
+                return mid;
+            // roated
+            if (nums[start] > nums[end])
+            {
+                // 前半段
+                if (target >= nums[start])
+                {
+                    if (nums[mid] < target && nums[mid] > nums[start])
+                        start = mid;
+                    else
+                        end = mid;
+                }
+                else
+                {
+                    if (nums[mid] > target && nums[mid] < nums[start])
+                    {
+                        end = mid;
+                    }
+                    else
+                    {
+                        start = mid;
+                    }
+                }
+            }
+            else
+            {
+                if (nums[mid] > target)
+                {
+                    end = mid;
+                }
+                else
+                {
+                    start = mid;
+                }
+            }
+        }
+        if (nums[start] == target)
+            return start;
+        if (nums[end] == target)
+            return end;
+        return -1;
+    }
+};
+
 // @lc code=end
 
 int main()

@@ -41,6 +41,7 @@ public:
         while (!q.empty())
         {
             std::vector<int> temp;
+            // 注意这里的q长度会变必须要提前取出来
             auto width = q.size();
             for (int i{0}; i < width; ++i)
             {
