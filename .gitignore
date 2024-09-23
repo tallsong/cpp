@@ -9,3 +9,4 @@ test.out.dSYM/Contents/Info.plist
 .vscode/targets.log
 .DS_Store
 test
+test.out.dSYM
