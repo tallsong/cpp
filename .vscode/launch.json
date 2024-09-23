@@ -59,7 +59,7 @@
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "CPP_single_pass",
+            "preLaunchTask": "C/C++: for macos",
             //"miDebuggerPath": "/Users/cedar/.vscode/extensions/ms-vscode.cpptools-1.5.1/debugAdapters/lldb-mi/bin/lldb-mi"
         },
         {
