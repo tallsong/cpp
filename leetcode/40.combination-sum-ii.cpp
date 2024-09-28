@@ -33,7 +33,7 @@ class Solution
         for (int index{start}; index < candidates.size(); ++index)
         {
             // 排序以后， 连续相同的数字仅取第一个
-            if (index > start && candidates[index] == candidates[index - 1])
+            if (index > start && candidates[index] == candidates[index - 1])//还可以使用一个hash记忆这个数字在之前是否出现过
             {
                 continue;
             }
