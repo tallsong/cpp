@@ -1,7 +1,7 @@
 {
     "leetcode.defaultLanguage": "cpp",
-    "leetcode.nodePath": "/home/cedar/.nvm/versions/node/v20.15.0/bin/node",
-    "leetcode.workspaceFolder": "/home/cedar/cpp/leetcode",
+    "leetcode.nodePath": "/usr/local/bin/node",
+    "leetcode.workspaceFolder": "/Users/cedar/code/cpp/leetcode",
     "leetcode.hint.configWebviewMarkdown": false,
     "files.associations": {
         "string_view": "cpp",

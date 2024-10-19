@@ -26,7 +26,7 @@ struct TreeNode
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
-class Solution
+class Solution_
 {
 public:
     void flatten(TreeNode *root)
@@ -87,6 +87,41 @@ public:
 };
 // @lc code=end
 
+
+class Solution
+{
+public:
+    void flatten(TreeNode* root)
+    {
+
+        helper(root);
+    }
+    TreeNode* helper(TreeNode* node)
+    {
+        if (!node)
+            return nullptr;
+        if (!node->left && !node->right)
+            return node;
+
+        auto left = helper(node->left);
+        auto right = helper(node->right);
+       
+
+        if (left)
+        {
+             auto tail = left;
+            while (tail && tail->right)
+            {
+                tail = tail->right;
+            }
+            tail->right = right;
+            node->right = left;
+            node->left = nullptr;
+        }
+        return node;
+    
+    }
+};
 int main()
 {
     TreeNode *n3{new TreeNode(3)};
