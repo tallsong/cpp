@@ -10,3 +10,4 @@ test.out.dSYM/Contents/Info.plist
 .DS_Store
 test
 test.out.dSYM
+.idea
