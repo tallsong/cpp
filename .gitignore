@@ -11,3 +11,4 @@ test.out.dSYM/Contents/Info.plist
 test
 test.out.dSYM
 .idea
+*.exe
