@@ -3,8 +3,7 @@
         {
             "name": "defaultWsl",
             "includePath": [
-                "${workspaceFolder}/**",
-                "/home/cedar/code/googletest/googletest/include/**"
+                "${workspaceFolder}/**"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",
@@ -12,6 +11,14 @@
             "cppStandard": "c++20",
             "intelliSenseMode": "gcc-x64",
             "configurationProvider": "ms-vscode.cmake-tools"
+        },
+        {
+            "name": "macos",
+            "defines": [],
+            "compilerPath": "/usr/bin/clang",
+            "cStandard": "c23",
+            "cppStandard": "c++23",
+            "intelliSenseMode": "macos-clang-arm64"
         }
     ],
     "version": 4
