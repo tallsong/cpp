@@ -81,7 +81,7 @@
 			"label": "C/C++: for macos",
 			"command": "/usr/bin/clang++",
 			"args": [
-				"-std=c++2a",
+				"-std=c++20",
 				"-pedantic-errors", //disable compiler extensions
 				// "-Werror", //Make all warnings into errors.
 				"-Wall",
