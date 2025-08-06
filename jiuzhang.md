@@ -45,6 +45,7 @@
 ## dynamic program
 - leetcode/264.ugly-number-ii.cpp
 - leetcode/120.triangle.cpp
+- leetcode/1143.longest-common-subsequence.cpp
 
 
 ```mermaid

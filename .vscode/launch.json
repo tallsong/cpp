@@ -60,7 +60,7 @@
                 }
             ],
             "preLaunchTask": "C/C++: for macos",
-            "miDebuggerPath": "/usr/bin/lldb"
+            // "miDebuggerPath": "/usr/bin/lldb"
         }
     ]
 }

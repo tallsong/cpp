@@ -69,7 +69,7 @@
 				"cwd": "${workspaceFolder}"
 			},
 			"problemMatcher": [
-				"$gcc"
+				"$armcc5"
 			],
 			"group": {
 				"kind": "build",

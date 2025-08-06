@@ -28,7 +28,7 @@ int main()
  
     std::array arr{ 1, 2, 3 };
  
-    std::cout << std::size(arr) << '\n'<<f(55)<<'\n';;
+    std::cout << std::size(arr) << '\n'<<f(55)<<'\n';
     
     return 0;
 }
